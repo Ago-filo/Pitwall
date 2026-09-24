@@ -1383,3 +1383,30 @@ footer a {
     flex-basis: calc(100% - 30px);
   }
 }
+.share-link {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 18px;
+  padding: 10px 14px;
+  border: 1px solid #e52b32;
+  background: #25191c;
+  color: #fff;
+  cursor: pointer;
+  font:
+    800 12px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.12em;
+}
+.share-link:hover,
+.share-link:focus-visible {
+  background: #472025;
+}
+.archive-note {
+  margin: 0 0 18px;
+  padding: 12px 15px;
+  border-left: 3px solid #f4d95a;
+  background: #29271f;
+  color: #e5dfc5;
+  font-size: 12px;
+  line-height: 1.5;
+}

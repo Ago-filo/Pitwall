@@ -56,4 +56,5 @@ export interface Comparison {
   race: Race;
   drivers: [DriverRace, DriverRace];
   notes: string[];
+  source?: { kind: "snapshot"; capturedAt: string };
 }

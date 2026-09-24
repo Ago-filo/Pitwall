@@ -55,3 +55,11 @@
 **Decision:** one selected lap drives both chart markers and the two driver snapshots. The snapshots show only the values actually recorded or reconstructed for that lap. A pure TypeScript analysis function computes each stint's median from available positive lap durations, excluding recorded pit-stop laps and pit-out laps. The UI shows the number of laps used and pit laps excluded.
 
 **Trade-off:** this median is descriptive, not a controlled comparison of driver ability. Missing durations are omitted; Safety Car, traffic, weather and tyre age are not adjusted for. A stint without usable timed laps has no pace value.
+
+## Featured comparison fallback and links
+
+**Problem:** a cold cache during an OpenF1 live session leaves a portfolio visitor unable to see any comparison. A selected race is also difficult to share without a direct URL.
+
+**Decision:** capture one complete, dated and versioned PitWall API response for Bahrain 2024, Leclerc vs Sainz, with its catalog and driver list. The Worker serves it only when OpenF1 fails, marks the response with `X-PitWall-Source: snapshot`, and includes the capture date in the comparison body. The frontend displays this provenance. Season, race and drivers are encoded in the URL so a fresh browser can open the same comparison.
+
+**Trade-off:** this guarantees one representative comparison without new storage or account costs. Other uncached races still depend on OpenF1. The snapshot must be refreshed deliberately when transformation logic or the upstream dataset changes; the capture script rejects a response that already came from the snapshot.

@@ -8,10 +8,11 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format:check": "prettier --check src worker tests vite.config.ts vitest.config.ts eslint.config.js",
-    "format": "prettier --write src worker tests vite.config.ts vitest.config.ts eslint.config.js",
+    "format:check": "prettier --check src worker tests scripts vite.config.ts vitest.config.ts eslint.config.js",
+    "format": "prettier --write src worker tests scripts vite.config.ts vitest.config.ts eslint.config.js",
     "typecheck": "tsc -b",
     "test": "vitest run",
+    "capture:featured": "node scripts/capture-featured.mjs",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {

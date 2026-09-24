@@ -6,6 +6,7 @@ import {
   toRace,
   UpstreamError,
 } from "./openf1";
+import featured from "./snapshots/bahrain-2024.json";
 
 const json = (body: unknown, status = 200, maxAge = 0) =>
   new Response(JSON.stringify(body), {
@@ -20,6 +21,43 @@ const json = (body: unknown, status = 200, maxAge = 0) =>
 const bad = (message: string, status = 400) => json({ error: message }, status);
 const keyFrom = (value: string) =>
   /^\d{4,7}$/.test(value) ? Number(value) : null;
+
+function archived(body: unknown): Response {
+  const response = json(body, 200, 30 * 86400);
+  response.headers.set("X-PitWall-Source", "snapshot");
+  return response;
+}
+
+function featuredFallback(url: URL): Response | null {
+  if (
+    url.pathname === "/api/races" &&
+    url.searchParams.get("season") === "2024"
+  )
+    return archived({ races: featured.races });
+  if (url.pathname === "/api/races/9472/drivers")
+    return archived({ drivers: featured.drivers });
+  if (url.pathname !== "/api/races/9472/comparison") return null;
+  const numbers = url.searchParams.get("drivers")?.split(",").map(Number);
+  if (
+    !numbers ||
+    numbers.length !== 2 ||
+    ![16, 55].includes(numbers[0]) ||
+    ![16, 55].includes(numbers[1]) ||
+    numbers[0] === numbers[1]
+  )
+    return null;
+  const selected = numbers.map((number) =>
+    featured.comparison.drivers.find(
+      (driver) => driver.driver.number === number,
+    ),
+  );
+  if (!selected[0] || !selected[1]) return null;
+  return archived({
+    ...featured.comparison,
+    drivers: [selected[0], selected[1]],
+    source: { kind: "snapshot", capturedAt: featured.capturedAt },
+  });
+}
 
 export async function handleRequest(
   request: Request,
@@ -113,7 +151,8 @@ export async function handleRequest(
       604800,
     );
   } catch (error) {
-    if (error instanceof UpstreamError) return bad(error.message, error.status);
+    if (error instanceof UpstreamError)
+      return featuredFallback(url) ?? bad(error.message, error.status);
     console.error("PitWall API request failed", error);
     return bad("Race data is temporarily unavailable.", 500);
   }

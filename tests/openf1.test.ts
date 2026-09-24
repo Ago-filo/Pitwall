@@ -225,7 +225,7 @@ describe("PitWall API", () => {
       ) as typeof fetch,
     );
     const response = await handleRequest(
-      new Request("https://pitwall.test/api/races?season=2024"),
+      new Request("https://pitwall.test/api/races?season=2025"),
       paused,
     );
     expect(response.status).toBe(503);
@@ -248,5 +248,70 @@ describe("PitWall API", () => {
     expect(await response.json()).toEqual({
       error: "OpenF1 request limit reached. Please try again shortly.",
     });
+  });
+});
+
+describe("featured race fallback", () => {
+  const unavailable = new OpenF1(
+    vi.fn(
+      async () => new Response("Unavailable", { status: 503 }),
+    ) as typeof fetch,
+  );
+
+  it("keeps the 2024 catalog and featured drivers available", async () => {
+    const races = await handleRequest(
+      new Request("https://pitwall.test/api/races?season=2024"),
+      unavailable,
+    );
+    expect(races.status).toBe(200);
+    expect(races.headers.get("X-PitWall-Source")).toBe("snapshot");
+    expect(
+      ((await races.json()) as { races: { sessionKey: number }[] }).races.some(
+        (race) => race.sessionKey === 9472,
+      ),
+    ).toBe(true);
+
+    const drivers = await handleRequest(
+      new Request("https://pitwall.test/api/races/9472/drivers"),
+      unavailable,
+    );
+    expect(drivers.status).toBe(200);
+    expect(drivers.headers.get("X-PitWall-Source")).toBe("snapshot");
+    expect(
+      ((await drivers.json()) as { drivers: { number: number }[] }).drivers.map(
+        (driver) => driver.number,
+      ),
+    ).toEqual(expect.arrayContaining([16, 55]));
+  });
+
+  it("serves a labelled comparison in the requested driver order", async () => {
+    const response = await handleRequest(
+      new Request(
+        "https://pitwall.test/api/races/9472/comparison?drivers=55,16",
+      ),
+      unavailable,
+    );
+    const body = (await response.json()) as {
+      drivers: { driver: { number: number }; laps: unknown[] }[];
+      source: { kind: string; capturedAt: string };
+    };
+    expect(response.status).toBe(200);
+    expect(response.headers.get("X-PitWall-Source")).toBe("snapshot");
+    expect(body.drivers.map((driver) => driver.driver.number)).toEqual([
+      55, 16,
+    ]);
+    expect(body.drivers.every((driver) => driver.laps.length >= 40)).toBe(true);
+    expect(body.source.kind).toBe("snapshot");
+    expect(Date.parse(body.source.capturedAt)).not.toBeNaN();
+  });
+
+  it("does not substitute the sample for other comparisons", async () => {
+    const response = await handleRequest(
+      new Request(
+        "https://pitwall.test/api/races/9472/comparison?drivers=16,44",
+      ),
+      unavailable,
+    );
+    expect(response.status).toBe(502);
   });
 });

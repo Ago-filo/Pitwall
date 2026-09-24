@@ -33,6 +33,32 @@ const axis = {
   axisLabel: { color: "#a5bdc0" },
   splitLine: { lineStyle: { color: "#29404a" } },
 };
+function initialSelection() {
+  if (typeof window === "undefined")
+    return { season: "", race: "", a: "", b: "" };
+  const params = new URLSearchParams(window.location.search);
+  const season = params.get("season") ?? "";
+  const race = params.get("race") ?? "";
+  const drivers = (params.get("drivers") ?? "").split(",");
+  const validSeason =
+    /^\d{4}$/.test(season) &&
+    Number(season) >= 2023 &&
+    Number(season) <= new Date().getUTCFullYear();
+  const validRace = /^\d{4,7}$/.test(race);
+  const validDrivers =
+    drivers.length === 2 &&
+    drivers.every((number) => /^\d{1,3}$/.test(number)) &&
+    drivers[0] !== drivers[1];
+  return {
+    season: validSeason ? season : "",
+    race: validSeason && validRace ? race : "",
+    a: validSeason && validRace && validDrivers ? drivers[0] : "",
+    b: validSeason && validRace && validDrivers ? drivers[1] : "",
+  };
+}
+
+const initial = initialSelection();
+
 const displayTime = (seconds: number | null) =>
   seconds === null
     ? "—"
@@ -615,6 +641,24 @@ function ComparisonView({ data }: { data: Comparison }) {
     1,
   );
   const [selectedLap, setSelectedLap] = useState(1);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
+    "idle",
+  );
+  const copyLink = async () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("season", String(data.race.year));
+    url.searchParams.set("race", String(data.race.sessionKey));
+    url.searchParams.set(
+      "drivers",
+      data.drivers.map((driver) => driver.driver.number).join(","),
+    );
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
+    }
+  };
   const selectLap = (lap: number) =>
     setSelectedLap(Math.min(maxLap, Math.max(1, lap)));
   return (
@@ -635,6 +679,28 @@ function ComparisonView({ data }: { data: Comparison }) {
           </p>
         </div>
       </div>
+      <button
+        type="button"
+        className="share-link"
+        onClick={() => void copyLink()}
+      >
+        {copyStatus === "copied"
+          ? "LINK COPIED ✓"
+          : copyStatus === "failed"
+            ? "COPY FAILED — RETRY"
+            : "COPY COMPARISON LINK ↗"}
+      </button>
+      {data.source?.kind === "snapshot" && (
+        <div className="archive-note" role="status">
+          Saved OpenF1 snapshot captured{" "}
+          {new Date(data.source.capturedAt).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+          . Current OpenF1 data is temporarily unavailable.
+        </div>
+      )}
       <div className="result-grid">
         {data.drivers.map((d, index) => (
           <ResultCard
@@ -721,10 +787,10 @@ function ComparisonView({ data }: { data: Comparison }) {
 }
 
 export default function App() {
-  const [season, setSeason] = useState("");
-  const [raceKey, setRaceKey] = useState("");
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
+  const [season, setSeason] = useState(initial.season);
+  const [raceKey, setRaceKey] = useState(initial.race);
+  const [a, setA] = useState(initial.a);
+  const [b, setB] = useState(initial.b);
   const seasons = useQuery({ queryKey: ["seasons"], queryFn: pitwall.seasons });
   const races = useQuery({
     queryKey: ["races", season],
@@ -753,6 +819,16 @@ export default function App() {
     if (!season && seasons.data?.seasons.length)
       setSeason(String(seasons.data.seasons[0]));
   }, [season, seasons.data]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (season) url.searchParams.set("season", season);
+    else url.searchParams.delete("season");
+    if (raceKey) url.searchParams.set("race", raceKey);
+    else url.searchParams.delete("race");
+    if (a && b && a !== b) url.searchParams.set("drivers", `${a},${b}`);
+    else url.searchParams.delete("drivers");
+    window.history.replaceState(null, "", url);
+  }, [season, raceKey, a, b]);
   const raceOptions =
     races.data?.races.map((r: Race) => ({
       value: String(r.sessionKey),

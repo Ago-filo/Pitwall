@@ -1,0 +1,1254 @@
+{
+  "capturedAt": "2026-09-24T13:47:34.299Z",
+  "races": [
+    {
+      "sessionKey": 9472,
+      "year": 2024,
+      "name": "Sakhir",
+      "circuit": "Sakhir",
+      "country": "Bahrain",
+      "date": "2024-03-02T15:00:00+00:00"
+    },
+    {
+      "sessionKey": 9480,
+      "year": 2024,
+      "name": "Jeddah",
+      "circuit": "Jeddah",
+      "country": "Saudi Arabia",
+      "date": "2024-03-09T17:00:00+00:00"
+    },
+    {
+      "sessionKey": 9488,
+      "year": 2024,
+      "name": "Melbourne",
+      "circuit": "Melbourne",
+      "country": "Australia",
+      "date": "2024-03-24T04:00:00+00:00"
+    },
+    {
+      "sessionKey": 9496,
+      "year": 2024,
+      "name": "Suzuka",
+      "circuit": "Suzuka",
+      "country": "Japan",
+      "date": "2024-04-07T05:00:00+00:00"
+    },
+    {
+      "sessionKey": 9673,
+      "year": 2024,
+      "name": "Shanghai",
+      "circuit": "Shanghai",
+      "country": "China",
+      "date": "2024-04-21T07:00:00+00:00"
+    },
+    {
+      "sessionKey": 9507,
+      "year": 2024,
+      "name": "Miami",
+      "circuit": "Miami",
+      "country": "United States",
+      "date": "2024-05-05T20:00:00+00:00"
+    },
+    {
+      "sessionKey": 9515,
+      "year": 2024,
+      "name": "Imola",
+      "circuit": "Imola",
+      "country": "Italy",
+      "date": "2024-05-19T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9523,
+      "year": 2024,
+      "name": "Monaco",
+      "circuit": "Monte Carlo",
+      "country": "Monaco",
+      "date": "2024-05-26T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9531,
+      "year": 2024,
+      "name": "Montréal",
+      "circuit": "Montreal",
+      "country": "Canada",
+      "date": "2024-06-09T18:00:00+00:00"
+    },
+    {
+      "sessionKey": 9539,
+      "year": 2024,
+      "name": "Barcelona",
+      "circuit": "Catalunya",
+      "country": "Spain",
+      "date": "2024-06-23T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9550,
+      "year": 2024,
+      "name": "Spielberg",
+      "circuit": "Spielberg",
+      "country": "Austria",
+      "date": "2024-06-30T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9558,
+      "year": 2024,
+      "name": "Silverstone",
+      "circuit": "Silverstone",
+      "country": "United Kingdom",
+      "date": "2024-07-07T14:00:00+00:00"
+    },
+    {
+      "sessionKey": 9566,
+      "year": 2024,
+      "name": "Budapest",
+      "circuit": "Hungaroring",
+      "country": "Hungary",
+      "date": "2024-07-21T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9574,
+      "year": 2024,
+      "name": "Spa-Francorchamps",
+      "circuit": "Spa-Francorchamps",
+      "country": "Belgium",
+      "date": "2024-07-28T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9582,
+      "year": 2024,
+      "name": "Zandvoort",
+      "circuit": "Zandvoort",
+      "country": "Netherlands",
+      "date": "2024-08-25T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9590,
+      "year": 2024,
+      "name": "Monza",
+      "circuit": "Monza",
+      "country": "Italy",
+      "date": "2024-09-01T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9598,
+      "year": 2024,
+      "name": "Baku",
+      "circuit": "Baku",
+      "country": "Azerbaijan",
+      "date": "2024-09-15T11:00:00+00:00"
+    },
+    {
+      "sessionKey": 9606,
+      "year": 2024,
+      "name": "Marina Bay",
+      "circuit": "Singapore",
+      "country": "Singapore",
+      "date": "2024-09-22T12:00:00+00:00"
+    },
+    {
+      "sessionKey": 9617,
+      "year": 2024,
+      "name": "Austin",
+      "circuit": "Austin",
+      "country": "United States",
+      "date": "2024-10-20T19:00:00+00:00"
+    },
+    {
+      "sessionKey": 9625,
+      "year": 2024,
+      "name": "Mexico City",
+      "circuit": "Mexico City",
+      "country": "Mexico",
+      "date": "2024-10-27T20:00:00+00:00"
+    },
+    {
+      "sessionKey": 9636,
+      "year": 2024,
+      "name": "São Paulo",
+      "circuit": "Interlagos",
+      "country": "Brazil",
+      "date": "2024-11-03T15:30:00+00:00"
+    },
+    {
+      "sessionKey": 9644,
+      "year": 2024,
+      "name": "Las Vegas",
+      "circuit": "Las Vegas",
+      "country": "United States",
+      "date": "2024-11-24T06:00:00+00:00"
+    },
+    {
+      "sessionKey": 9655,
+      "year": 2024,
+      "name": "Lusail",
+      "circuit": "Lusail",
+      "country": "Qatar",
+      "date": "2024-12-01T16:00:00+00:00"
+    },
+    {
+      "sessionKey": 9662,
+      "year": 2024,
+      "name": "Yas Island",
+      "circuit": "Yas Marina Circuit",
+      "country": "United Arab Emirates",
+      "date": "2024-12-08T13:00:00+00:00"
+    }
+  ],
+  "drivers": [
+    {
+      "number": 23,
+      "name": "Alexander ALBON",
+      "acronym": "ALB",
+      "team": "Williams",
+      "color": "#64c4ff"
+    },
+    {
+      "number": 55,
+      "name": "Carlos SAINZ",
+      "acronym": "SAI",
+      "team": "Ferrari",
+      "color": "#e8002d"
+    },
+    {
+      "number": 16,
+      "name": "Charles LECLERC",
+      "acronym": "LEC",
+      "team": "Ferrari",
+      "color": "#e8002d"
+    },
+    {
+      "number": 3,
+      "name": "Daniel RICCIARDO",
+      "acronym": "RIC",
+      "team": "RB",
+      "color": "#6692ff"
+    },
+    {
+      "number": 31,
+      "name": "Esteban OCON",
+      "acronym": "OCO",
+      "team": "Alpine",
+      "color": "#ff87bc"
+    },
+    {
+      "number": 14,
+      "name": "Fernando ALONSO",
+      "acronym": "ALO",
+      "team": "Aston Martin",
+      "color": "#229971"
+    },
+    {
+      "number": 63,
+      "name": "George RUSSELL",
+      "acronym": "RUS",
+      "team": "Mercedes",
+      "color": "#27f4d2"
+    },
+    {
+      "number": 20,
+      "name": "Kevin MAGNUSSEN",
+      "acronym": "MAG",
+      "team": "Haas F1 Team",
+      "color": "#b6babd"
+    },
+    {
+      "number": 18,
+      "name": "Lance STROLL",
+      "acronym": "STR",
+      "team": "Aston Martin",
+      "color": "#229971"
+    },
+    {
+      "number": 4,
+      "name": "Lando NORRIS",
+      "acronym": "NOR",
+      "team": "McLaren",
+      "color": "#ff8000"
+    },
+    {
+      "number": 44,
+      "name": "Lewis HAMILTON",
+      "acronym": "HAM",
+      "team": "Mercedes",
+      "color": "#27f4d2"
+    },
+    {
+      "number": 2,
+      "name": "Logan SARGEANT",
+      "acronym": "SAR",
+      "team": "Williams",
+      "color": "#64c4ff"
+    },
+    {
+      "number": 1,
+      "name": "Max VERSTAPPEN",
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "color": "#3671c6"
+    },
+    {
+      "number": 27,
+      "name": "Nico HULKENBERG",
+      "acronym": "HUL",
+      "team": "Haas F1 Team",
+      "color": "#b6babd"
+    },
+    {
+      "number": 81,
+      "name": "Oscar PIASTRI",
+      "acronym": "PIA",
+      "team": "McLaren",
+      "color": "#ff8000"
+    },
+    {
+      "number": 10,
+      "name": "Pierre GASLY",
+      "acronym": "GAS",
+      "team": "Alpine",
+      "color": "#ff87bc"
+    },
+    {
+      "number": 11,
+      "name": "Sergio PEREZ",
+      "acronym": "PER",
+      "team": "Red Bull Racing",
+      "color": "#3671c6"
+    },
+    {
+      "number": 77,
+      "name": "Valtteri BOTTAS",
+      "acronym": "BOT",
+      "team": "Kick Sauber",
+      "color": "#52e252"
+    },
+    {
+      "number": 22,
+      "name": "Yuki TSUNODA",
+      "acronym": "TSU",
+      "team": "RB",
+      "color": "#6692ff"
+    },
+    {
+      "number": 24,
+      "name": "ZHOU Guanyu",
+      "acronym": "ZHO",
+      "team": "Kick Sauber",
+      "color": "#52e252"
+    }
+  ],
+  "comparison": {
+    "race": {
+      "sessionKey": 9472,
+      "year": 2024,
+      "name": "Sakhir",
+      "circuit": "Sakhir",
+      "country": "Bahrain",
+      "date": "2024-03-02T15:00:00+00:00"
+    },
+    "drivers": [
+      {
+        "driver": {
+          "number": 16,
+          "name": "Charles LECLERC",
+          "acronym": "LEC",
+          "team": "Ferrari",
+          "color": "#e8002d"
+        },
+        "laps": [
+          {
+            "number": 1,
+            "durationSeconds": 98.679,
+            "start": "2024-03-02T15:03:42.341000+00:00",
+            "pitOut": false,
+            "position": 2
+          },
+          {
+            "number": 2,
+            "durationSeconds": 96.862,
+            "start": "2024-03-02T15:05:21.019000+00:00",
+            "pitOut": false,
+            "position": 2
+          },
+          {
+            "number": 3,
+            "durationSeconds": 98.062,
+            "start": "2024-03-02T15:06:57.933000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 4,
+            "durationSeconds": 97.752,
+            "start": "2024-03-02T15:08:36.013000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 5,
+            "durationSeconds": 98.131,
+            "start": "2024-03-02T15:10:13.780000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 6,
+            "durationSeconds": 97.782,
+            "start": "2024-03-02T15:11:51.804000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 7,
+            "durationSeconds": 98.957,
+            "start": "2024-03-02T15:13:29.724000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 8,
+            "durationSeconds": 98.136,
+            "start": "2024-03-02T15:15:08.572000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 9,
+            "durationSeconds": 97.844,
+            "start": "2024-03-02T15:16:46.813000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 10,
+            "durationSeconds": 97.884,
+            "start": "2024-03-02T15:18:24.582000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 11,
+            "durationSeconds": 101.737,
+            "start": "2024-03-02T15:20:02.545000+00:00",
+            "pitOut": false,
+            "position": 6
+          },
+          {
+            "number": 12,
+            "durationSeconds": 117.471,
+            "start": "2024-03-02T15:21:44.282000+00:00",
+            "pitOut": true,
+            "position": 13
+          },
+          {
+            "number": 13,
+            "durationSeconds": 96.432,
+            "start": "2024-03-02T15:23:41.713000+00:00",
+            "pitOut": false,
+            "position": 10
+          },
+          {
+            "number": 14,
+            "durationSeconds": 96.756,
+            "start": "2024-03-02T15:25:18.300000+00:00",
+            "pitOut": false,
+            "position": 8
+          },
+          {
+            "number": 15,
+            "durationSeconds": 96.813,
+            "start": "2024-03-02T15:26:54.922000+00:00",
+            "pitOut": false,
+            "position": 6
+          },
+          {
+            "number": 16,
+            "durationSeconds": 96.673,
+            "start": "2024-03-02T15:28:31.703000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 17,
+            "durationSeconds": 97.302,
+            "start": "2024-03-02T15:30:08.227000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 18,
+            "durationSeconds": 97.438,
+            "start": "2024-03-02T15:31:45.651000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 19,
+            "durationSeconds": 96.821,
+            "start": "2024-03-02T15:33:23.136000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 20,
+            "durationSeconds": 96.794,
+            "start": "2024-03-02T15:34:59.925000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 21,
+            "durationSeconds": 96.977,
+            "start": "2024-03-02T15:36:36.698000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 22,
+            "durationSeconds": 96.796,
+            "start": "2024-03-02T15:38:13.647000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 23,
+            "durationSeconds": 96.987,
+            "start": "2024-03-02T15:39:50.476000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 24,
+            "durationSeconds": 96.924,
+            "start": "2024-03-02T15:41:27.495000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 25,
+            "durationSeconds": 96.76,
+            "start": "2024-03-02T15:43:04.442000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 26,
+            "durationSeconds": 96.81,
+            "start": "2024-03-02T15:44:41.174000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 27,
+            "durationSeconds": 96.831,
+            "start": "2024-03-02T15:46:18.033000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 28,
+            "durationSeconds": 96.907,
+            "start": "2024-03-02T15:47:54.787000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 29,
+            "durationSeconds": 96.963,
+            "start": "2024-03-02T15:49:31.662000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 30,
+            "durationSeconds": 97.158,
+            "start": "2024-03-02T15:51:08.688000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 31,
+            "durationSeconds": 97.031,
+            "start": "2024-03-02T15:52:45.777000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 32,
+            "durationSeconds": 96.941,
+            "start": "2024-03-02T15:54:22.697000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 33,
+            "durationSeconds": 96.741,
+            "start": "2024-03-02T15:55:59.834000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 34,
+            "durationSeconds": 99.614,
+            "start": "2024-03-02T15:57:36.511000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 35,
+            "durationSeconds": 116.166,
+            "start": "2024-03-02T15:59:16.179000+00:00",
+            "pitOut": true,
+            "position": 6
+          },
+          {
+            "number": 36,
+            "durationSeconds": 94.09,
+            "start": "2024-03-02T16:01:12.318000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 37,
+            "durationSeconds": 94.897,
+            "start": "2024-03-02T16:02:46.475000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 38,
+            "durationSeconds": 94.783,
+            "start": "2024-03-02T16:04:21.318000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 39,
+            "durationSeconds": 95.087,
+            "start": "2024-03-02T16:05:56.155000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 40,
+            "durationSeconds": 94.859,
+            "start": "2024-03-02T16:07:31.234000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 41,
+            "durationSeconds": 95.028,
+            "start": "2024-03-02T16:09:05.969000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 42,
+            "durationSeconds": 94.982,
+            "start": "2024-03-02T16:10:41.023000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 43,
+            "durationSeconds": 95.192,
+            "start": "2024-03-02T16:12:16.114000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 44,
+            "durationSeconds": 95.051,
+            "start": "2024-03-02T16:13:51.222000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 45,
+            "durationSeconds": 95.22,
+            "start": "2024-03-02T16:15:26.233000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 46,
+            "durationSeconds": 95.058,
+            "start": "2024-03-02T16:17:01.499000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 47,
+            "durationSeconds": 95.057,
+            "start": "2024-03-02T16:18:36.521000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 48,
+            "durationSeconds": 95.308,
+            "start": "2024-03-02T16:20:11.619000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 49,
+            "durationSeconds": 95.302,
+            "start": "2024-03-02T16:21:47.040000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 50,
+            "durationSeconds": 95.383,
+            "start": "2024-03-02T16:23:22.246000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 51,
+            "durationSeconds": 95.418,
+            "start": "2024-03-02T16:24:57.621000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 52,
+            "durationSeconds": 95.394,
+            "start": "2024-03-02T16:26:33.105000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 53,
+            "durationSeconds": 95.48,
+            "start": "2024-03-02T16:28:08.474000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 54,
+            "durationSeconds": 95.265,
+            "start": "2024-03-02T16:29:43.963000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 55,
+            "durationSeconds": 95.785,
+            "start": "2024-03-02T16:31:19.188000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 56,
+            "durationSeconds": 95.924,
+            "start": "2024-03-02T16:32:55.041000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 57,
+            "durationSeconds": 96.324,
+            "start": "2024-03-02T16:34:30.893000+00:00",
+            "pitOut": false,
+            "position": 4
+          }
+        ],
+        "pitStops": [
+          {
+            "lap": 11,
+            "laneSeconds": 24,
+            "stationarySeconds": null
+          },
+          {
+            "lap": 34,
+            "laneSeconds": 24.1,
+            "stationarySeconds": null
+          }
+        ],
+        "stints": [
+          {
+            "number": 1,
+            "startLap": 1,
+            "endLap": 11,
+            "compound": "SOFT",
+            "tyreAgeAtStart": 3
+          },
+          {
+            "number": 2,
+            "startLap": 12,
+            "endLap": 34,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          },
+          {
+            "number": 3,
+            "startLap": 35,
+            "endLap": 57,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          }
+        ],
+        "result": {
+          "position": 4,
+          "lapsCompleted": 57,
+          "status": "FINISHED"
+        },
+        "unavailable": []
+      },
+      {
+        "driver": {
+          "number": 55,
+          "name": "Carlos SAINZ",
+          "acronym": "SAI",
+          "team": "Ferrari",
+          "color": "#e8002d"
+        },
+        "laps": [
+          {
+            "number": 1,
+            "durationSeconds": 101.034,
+            "start": "2024-03-02T15:03:42.341000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 2,
+            "durationSeconds": 97.236,
+            "start": "2024-03-02T15:05:23.374000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 3,
+            "durationSeconds": 97.08,
+            "start": "2024-03-02T15:07:00.599000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 4,
+            "durationSeconds": 97.264,
+            "start": "2024-03-02T15:08:37.735000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 5,
+            "durationSeconds": 98.032,
+            "start": "2024-03-02T15:10:14.948000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 6,
+            "durationSeconds": 97.741,
+            "start": "2024-03-02T15:11:53.110000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 7,
+            "durationSeconds": 98.26,
+            "start": "2024-03-02T15:13:30.813000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 8,
+            "durationSeconds": 98.183,
+            "start": "2024-03-02T15:15:09.048000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 9,
+            "durationSeconds": 98.03,
+            "start": "2024-03-02T15:16:47.231000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 10,
+            "durationSeconds": 97.608,
+            "start": "2024-03-02T15:18:25.188000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 11,
+            "durationSeconds": 97.656,
+            "start": "2024-03-02T15:20:02.878000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 12,
+            "durationSeconds": 97.65,
+            "start": "2024-03-02T15:21:40.496000+00:00",
+            "pitOut": false,
+            "position": 2
+          },
+          {
+            "number": 13,
+            "durationSeconds": 97.243,
+            "start": "2024-03-02T15:23:18.127000+00:00",
+            "pitOut": false,
+            "position": 2
+          },
+          {
+            "number": 14,
+            "durationSeconds": 99.753,
+            "start": "2024-03-02T15:24:55.375000+00:00",
+            "pitOut": false,
+            "position": 2
+          },
+          {
+            "number": 15,
+            "durationSeconds": 117.225,
+            "start": "2024-03-02T15:26:35.190000+00:00",
+            "pitOut": true,
+            "position": 7
+          },
+          {
+            "number": 16,
+            "durationSeconds": 96.376,
+            "start": "2024-03-02T15:28:32.415000+00:00",
+            "pitOut": false,
+            "position": 5
+          },
+          {
+            "number": 17,
+            "durationSeconds": 95.507,
+            "start": "2024-03-02T15:30:08.672000+00:00",
+            "pitOut": false,
+            "position": 4
+          },
+          {
+            "number": 18,
+            "durationSeconds": 96.088,
+            "start": "2024-03-02T15:31:44.184000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 19,
+            "durationSeconds": 96.236,
+            "start": "2024-03-02T15:33:20.251000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 20,
+            "durationSeconds": 96.034,
+            "start": "2024-03-02T15:34:56.624000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 21,
+            "durationSeconds": 96.104,
+            "start": "2024-03-02T15:36:32.579000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 22,
+            "durationSeconds": 96.008,
+            "start": "2024-03-02T15:38:08.718000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 23,
+            "durationSeconds": 96.149,
+            "start": "2024-03-02T15:39:44.773000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 24,
+            "durationSeconds": 96.2,
+            "start": "2024-03-02T15:41:20.891000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 25,
+            "durationSeconds": 96.22,
+            "start": "2024-03-02T15:42:57.074000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 26,
+            "durationSeconds": 96.221,
+            "start": "2024-03-02T15:44:33.258000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 27,
+            "durationSeconds": 96.272,
+            "start": "2024-03-02T15:46:09.627000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 28,
+            "durationSeconds": 96.534,
+            "start": "2024-03-02T15:47:45.755000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 29,
+            "durationSeconds": 96.6,
+            "start": "2024-03-02T15:49:22.302000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 30,
+            "durationSeconds": 96.337,
+            "start": "2024-03-02T15:50:58.869000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 31,
+            "durationSeconds": 96.537,
+            "start": "2024-03-02T15:52:35.311000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 32,
+            "durationSeconds": 96.762,
+            "start": "2024-03-02T15:54:11.818000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 33,
+            "durationSeconds": 96.556,
+            "start": "2024-03-02T15:55:48.562000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 34,
+            "durationSeconds": 96.551,
+            "start": "2024-03-02T15:57:25.132000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 35,
+            "durationSeconds": 99.274,
+            "start": "2024-03-02T15:59:01.692000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 36,
+            "durationSeconds": 115.62,
+            "start": "2024-03-02T16:00:40.929000+00:00",
+            "pitOut": true,
+            "position": 3
+          },
+          {
+            "number": 37,
+            "durationSeconds": 95.302,
+            "start": "2024-03-02T16:02:36.585000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 38,
+            "durationSeconds": 95.1,
+            "start": "2024-03-02T16:04:11.792000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 39,
+            "durationSeconds": 94.709,
+            "start": "2024-03-02T16:05:46.917000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 40,
+            "durationSeconds": 94.739,
+            "start": "2024-03-02T16:07:21.661000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 41,
+            "durationSeconds": 95.041,
+            "start": "2024-03-02T16:08:56.441000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 42,
+            "durationSeconds": 94.861,
+            "start": "2024-03-02T16:10:31.440000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 43,
+            "durationSeconds": 94.795,
+            "start": "2024-03-02T16:12:06.345000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 44,
+            "durationSeconds": 94.507,
+            "start": "2024-03-02T16:13:41.129000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 45,
+            "durationSeconds": 94.79,
+            "start": "2024-03-02T16:15:15.714000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 46,
+            "durationSeconds": 94.853,
+            "start": "2024-03-02T16:16:50.393000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 47,
+            "durationSeconds": 94.901,
+            "start": "2024-03-02T16:18:25.312000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 48,
+            "durationSeconds": 94.981,
+            "start": "2024-03-02T16:20:00.228000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 49,
+            "durationSeconds": 95.44,
+            "start": "2024-03-02T16:21:35.199000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 50,
+            "durationSeconds": 95.142,
+            "start": "2024-03-02T16:23:10.557000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 51,
+            "durationSeconds": 95.282,
+            "start": "2024-03-02T16:24:45.766000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 52,
+            "durationSeconds": 95.083,
+            "start": "2024-03-02T16:26:20.950000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 53,
+            "durationSeconds": 95.211,
+            "start": "2024-03-02T16:27:56.175000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 54,
+            "durationSeconds": 95.309,
+            "start": "2024-03-02T16:29:31.299000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 55,
+            "durationSeconds": 95.407,
+            "start": "2024-03-02T16:31:06.647000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 56,
+            "durationSeconds": 95.305,
+            "start": "2024-03-02T16:32:41.989000+00:00",
+            "pitOut": false,
+            "position": 3
+          },
+          {
+            "number": 57,
+            "durationSeconds": 95.327,
+            "start": "2024-03-02T16:34:17.271000+00:00",
+            "pitOut": false,
+            "position": 3
+          }
+        ],
+        "pitStops": [
+          {
+            "lap": 14,
+            "laneSeconds": 24.4,
+            "stationarySeconds": null
+          },
+          {
+            "lap": 35,
+            "laneSeconds": 23.8,
+            "stationarySeconds": null
+          }
+        ],
+        "stints": [
+          {
+            "number": 1,
+            "startLap": 1,
+            "endLap": 14,
+            "compound": "SOFT",
+            "tyreAgeAtStart": 3
+          },
+          {
+            "number": 2,
+            "startLap": 15,
+            "endLap": 35,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          },
+          {
+            "number": 3,
+            "startLap": 36,
+            "endLap": 57,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          }
+        ],
+        "result": {
+          "position": 3,
+          "lapsCompleted": 57,
+          "status": "FINISHED"
+        },
+        "unavailable": []
+      }
+    ],
+    "notes": []
+  }
+}
