@@ -79,6 +79,7 @@ type CacheStore = {
 };
 
 export class OpenF1 {
+  private lastRequestAt = 0;
   constructor(
     private fetcher: Fetcher = fetch,
     private cache?: CacheStore,
@@ -89,6 +90,9 @@ export class OpenF1 {
     const key = new Request(url);
     let response = await this.cache?.match(key);
     if (!response) {
+      const wait = Math.max(0, 400 - (Date.now() - this.lastRequestAt));
+      if (wait) await new Promise((resolve) => setTimeout(resolve, wait));
+      this.lastRequestAt = Date.now();
       try {
         const fetcher = this.fetcher;
         response = await fetcher(url, {

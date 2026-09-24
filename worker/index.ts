@@ -18,7 +18,6 @@ const json = (body: unknown, status = 200, maxAge = 0) =>
 const bad = (message: string, status = 400) => json({ error: message }, status);
 const keyFrom = (value: string) =>
   /^\d{4,7}$/.test(value) ? Number(value) : null;
-const pause = () => new Promise((resolve) => setTimeout(resolve, 400));
 
 export async function handleRequest(
   request: Request,
@@ -90,13 +89,9 @@ export async function handleRequest(
     if (!chosen[0] || !chosen[1])
       return bad("Both drivers must belong to this race.");
     const datasets = { laps: await api.laps(sessionKey) };
-    await pause();
     const positions = await api.positions(sessionKey);
-    await pause();
     const pits = await api.pits(sessionKey);
-    await pause();
     const stints = await api.stints(sessionKey);
-    await pause();
     const results = await api.results(sessionKey);
     const unavailable = [
       ...(datasets.laps.length ? [] : ["Lap"]),
@@ -116,8 +111,8 @@ export async function handleRequest(
       604800,
     );
   } catch (error) {
-    console.error("PitWall API request failed", error);
     if (error instanceof UpstreamError) return bad(error.message, error.status);
+    console.error("PitWall API request failed", error);
     return bad("Race data is temporarily unavailable.", 500);
   }
 }

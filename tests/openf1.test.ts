@@ -212,4 +212,17 @@ describe("PitWall API", () => {
     );
     expect(response.status).toBe(400);
   });
+  it("turns upstream rate limits into a readable API response", async () => {
+    const limited = new OpenF1(
+      vi.fn(async () => new Response(null, { status: 429 })) as typeof fetch,
+    );
+    const response = await handleRequest(
+      new Request("https://pitwall.test/api/races?season=2025"),
+      limited,
+    );
+    expect(response.status).toBe(429);
+    expect(await response.json()).toEqual({
+      error: "OpenF1 request limit reached. Please try again shortly.",
+    });
+  });
 });
