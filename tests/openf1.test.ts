@@ -87,6 +87,37 @@ describe("race data normalization", () => {
     });
     expect(value.notes).toContain("Stint data is unavailable for this race.");
   });
+  it("keeps valid stints and explains missing starting laps", () => {
+    const value = buildComparison(race, [a, b], {
+      laps: [],
+      positions: [],
+      pits: [],
+      results: [],
+      stints: [
+        {
+          driver_number: 16,
+          stint_number: 1,
+          lap_start: null,
+          lap_end: 12,
+          compound: "SOFT",
+          tyre_age_at_start: 0,
+        },
+        {
+          driver_number: 16,
+          stint_number: 2,
+          lap_start: 13,
+          lap_end: 30,
+          compound: "HARD",
+          tyre_age_at_start: 0,
+        },
+      ],
+    });
+    expect(value.drivers[0].stints).toHaveLength(1);
+    expect(value.drivers[0].stints[0].startLap).toBe(13);
+    expect(value.notes).toContain(
+      "Some stints have no starting lap and are omitted from the timeline.",
+    );
+  });
 });
 
 describe("PitWall API", () => {

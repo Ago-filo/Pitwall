@@ -144,7 +144,9 @@ main {
   opacity: 0.45;
 }
 .hero-art span {
-  font: 700 12px "Space Grotesk";
+  font:
+    700 12px "Space Grotesk",
+    sans-serif;
   letter-spacing: 0.24em;
   text-align: center;
   color: #dce9e8;
@@ -165,7 +167,9 @@ main {
   margin-bottom: 28px;
 }
 .selector-title h2 {
-  font: 600 28px "Space Grotesk";
+  font:
+    600 28px "Space Grotesk",
+    sans-serif;
   letter-spacing: -0.04em;
   margin: 7px 0 0;
 }
@@ -227,7 +231,9 @@ main {
   border-bottom: 1px solid #243843;
 }
 .placeholder p {
-  font: 500 22px "Space Grotesk";
+  font:
+    500 22px "Space Grotesk",
+    sans-serif;
   color: #779297;
 }
 .comparison {
@@ -239,7 +245,9 @@ main {
   margin-bottom: 25px;
 }
 .section-heading h2 {
-  font: 600 clamp(32px, 4vw, 54px) "Space Grotesk";
+  font:
+    600 clamp(32px, 4vw, 54px) "Space Grotesk",
+    sans-serif;
   letter-spacing: -0.06em;
   margin: 8px 0;
 }
@@ -276,11 +284,15 @@ main {
   gap: 20px;
 }
 .driver-number {
-  font: 700 42px "Space Grotesk";
+  font:
+    700 42px "Space Grotesk",
+    sans-serif;
   color: #749099;
 }
 .driver-line h3 {
-  font: 600 21px "Space Grotesk";
+  font:
+    600 21px "Space Grotesk",
+    sans-serif;
   margin: 0;
 }
 .driver-line p {
@@ -295,7 +307,9 @@ main {
   gap: 4px;
 }
 .result-meta strong {
-  font: 700 30px "Space Grotesk";
+  font:
+    700 30px "Space Grotesk",
+    sans-serif;
   color: #f0f5ef;
 }
 .result-meta span {
@@ -331,7 +345,9 @@ main {
   color: #d8e95d;
 }
 .panel-heading h3 {
-  font: 600 25px "Space Grotesk";
+  font:
+    600 25px "Space Grotesk",
+    sans-serif;
   letter-spacing: -0.04em;
   margin: 9px 0 5px;
 }
@@ -353,7 +369,9 @@ main {
   align-items: center;
 }
 .stint-name {
-  font: 700 14px "Space Grotesk";
+  font:
+    700 14px "Space Grotesk",
+    sans-serif;
 }
 .stint-track {
   height: 30px;
@@ -422,7 +440,9 @@ td {
   padding: 80px;
   text-align: center;
   color: #d8e95d;
-  font: 600 20px "Space Grotesk";
+  font:
+    600 20px "Space Grotesk",
+    sans-serif;
 }
 footer {
   padding: 24px 5%;
@@ -498,5 +518,20 @@ footer a {
   }
   .comparison {
     padding-top: 42px;
+  }
+}
+@media (max-width: 580px) {
+  .site-header > a {
+    display: none;
+  }
+  .selector-title {
+    display: block;
+  }
+  .selector-title h2 {
+    margin-top: 10px;
+  }
+  .hero-copy,
+  .hero p {
+    max-width: 100%;
   }
 }

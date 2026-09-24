@@ -2,7 +2,9 @@
 
 PitWall is an independent Formula 1 race strategy explorer. Pick a completed Grand Prix and two drivers to compare their finishing result, lap positions, pace, tyre stints and pit stops. It uses historical data from [OpenF1](https://openf1.org/).
 
-> Project status: MVP implementation. Public demo link will be added after Cloudflare deployment.
+**[Live demo](https://pitwall.ago-filo-labs.workers.dev)** · [GitHub repository](https://github.com/Ago-filo/Pitwall)
+
+![PitWall homepage](docs/screenshot.png)
 
 ## Features
 

@@ -49,7 +49,7 @@ const pitSchema = z.object({
 const stintSchema = z.object({
   driver_number: number,
   stint_number: number,
-  lap_start: number,
+  lap_start: nullableNumber,
   lap_end: nullableNumber,
   compound: z.string().nullish(),
   tyre_age_at_start: nullableNumber,
@@ -120,8 +120,14 @@ export class OpenF1 {
       throw new UpstreamError(502, "OpenF1 returned invalid JSON.");
     }
     const parsed = z.array(schema).safeParse(json);
-    if (!parsed.success)
+    if (!parsed.success) {
+      console.error(
+        "OpenF1 schema validation failed",
+        path,
+        parsed.error.issues.slice(0, 3),
+      );
       throw new UpstreamError(502, "OpenF1 data format changed or is invalid.");
+    }
     return parsed.data;
   }
 
@@ -262,13 +268,17 @@ export function buildComparison(
         laneSeconds: p.lane_duration ?? null,
         stationarySeconds: p.stop_duration ?? null,
       })),
-      stints: forDriver(raw.stints).map((s) => ({
-        number: s.stint_number,
-        startLap: s.lap_start,
-        endLap: s.lap_end ?? null,
-        compound: s.compound || "UNKNOWN",
-        tyreAgeAtStart: s.tyre_age_at_start ?? null,
-      })),
+      stints: forDriver(raw.stints)
+        .filter(
+          (s): s is typeof s & { lap_start: number } => s.lap_start != null,
+        )
+        .map((s) => ({
+          number: s.stint_number,
+          startLap: s.lap_start,
+          endLap: s.lap_end ?? null,
+          compound: s.compound || "UNKNOWN",
+          tyreAgeAtStart: s.tyre_age_at_start ?? null,
+        })),
       result: result(
         raw.results.find((r) => r.driver_number === driver.number),
       ),
@@ -278,6 +288,16 @@ export function buildComparison(
   const notes = [
     ...unavailable.map((x) => `${x} data is unavailable for this race.`),
   ];
+  if (
+    raw.stints.some(
+      (s) =>
+        s.lap_start == null &&
+        drivers.some((d) => d.number === s.driver_number),
+    )
+  )
+    notes.push(
+      "Some stints have no starting lap and are omitted from the timeline.",
+    );
   if (mapped.some((d) => d.laps.some((l) => l.position === null)))
     notes.push(
       "Some lap positions could not be reconstructed from timed position events.",

@@ -27,3 +27,6 @@ Source: [OpenF1 documentation](https://openf1.org/docs/). Responses were sampled
 - `lane_duration` is pit lane time. `stop_duration` is stationary time and may be absent, especially before the 2024 United States Grand Prix. The deprecated `pit_duration` field is ignored.
 - `DNF`, `DNS` and `DSQ` take precedence over finishing position. Missing final position is not converted into a numeric position.
 - Empty source datasets generate visible notes. Invalid upstream schemas produce a controlled API error.
+
+- Additional spot checks on 24 September 2026 found non-empty driver, lap, position, pit, stint and result datasets for Bahrain 2024 (session_key=9472), Australia 2025 (session_key=9693) and Australia 2026 (session_key=11234).
+- Some 2025 stint records have `lap_start: null`. They are excluded from the tyre timeline because their placement is unknown, and the comparison shows a note explaining this.
