@@ -1153,3 +1153,233 @@ footer a {
     transition-duration: 0.01ms !important;
   }
 }
+.lap-timeline {
+  margin-top: 16px;
+  padding-bottom: 24px;
+}
+.timeline-control {
+  display: grid;
+  grid-template-columns: 42px auto minmax(80px, 1fr) 42px;
+  align-items: center;
+  gap: 17px;
+  margin: 23px 0;
+}
+.timeline-control button {
+  height: 42px;
+  border: 1px solid #545861;
+  background: #22252b;
+  color: #fff;
+  cursor: pointer;
+  font-size: 19px;
+}
+.timeline-control button:hover:not(:disabled) {
+  border-color: #e52b32;
+}
+.timeline-control button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.timeline-control label {
+  white-space: nowrap;
+  font:
+    800 17px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.12em;
+}
+.timeline-control label strong {
+  color: #fff;
+  font-size: 27px;
+  margin-left: 5px;
+}
+.timeline-control label span {
+  color: #9da0a5;
+}
+.timeline-control input {
+  width: 100%;
+  accent-color: #e52b32;
+  cursor: pointer;
+}
+.timeline-driver-grid,
+.stint-pace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.timeline-driver {
+  min-width: 0;
+  border: 1px solid;
+  border-left-width: 4px;
+  background: #1e2127;
+  padding: 14px 16px;
+}
+.timeline-driver-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+.timeline-driver-heading strong {
+  font:
+    900 23px "Barlow Condensed",
+    sans-serif;
+}
+.timeline-driver-heading span {
+  color: #a9abb0;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.timeline-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 15px 0;
+}
+.timeline-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.timeline-stats span,
+.stint-pace-row span {
+  color: #9da0a5;
+  font:
+    700 10px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.09em;
+}
+.timeline-stats strong {
+  font:
+    800 clamp(18px, 2.3vw, 28px) "Barlow Condensed",
+    sans-serif;
+  white-space: nowrap;
+}
+.timeline-event {
+  border-top: 1px solid #3b3e45;
+  color: #c3c5c9;
+  font-size: 11px;
+  margin: 0;
+  padding-top: 11px;
+  min-height: 29px;
+}
+.stint-pace {
+  margin-top: 16px;
+  padding-bottom: 24px;
+}
+.stint-pace-grid {
+  margin-top: 18px;
+}
+.stint-pace-driver {
+  min-width: 0;
+  background: #1e2127;
+  padding: 15px;
+}
+.stint-pace-driver h4 {
+  margin: 0 0 10px;
+  font:
+    900 21px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.08em;
+}
+.stint-pace-driver h4 span {
+  color: #a9abb0;
+  font:
+    500 11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0;
+  margin-left: 7px;
+}
+.stint-pace-list {
+  display: grid;
+}
+.stint-pace-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #3b3e45;
+}
+.stint-pace-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stint-pace-row > div:last-child {
+  text-align: right;
+}
+.stint-pace-row strong {
+  font:
+    800 19px "Barlow Condensed",
+    sans-serif;
+}
+@media (max-width: 650px) {
+  .timeline-driver-grid,
+  .stint-pace-grid {
+    grid-template-columns: 1fr;
+  }
+  .timeline-control {
+    grid-template-columns: 37px 1fr 37px;
+    gap: 10px;
+  }
+  .timeline-control label {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+  }
+  .timeline-control input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .timeline-control button:last-child {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .timeline-stats strong {
+    font-size: 23px;
+  }
+}
+.featured-race {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  margin: 17px 0 0;
+  padding: 12px 16px;
+  color: #f4f3ef;
+  background: #292d32;
+  border: 1px solid #555961;
+  cursor: pointer;
+  text-align: left;
+}
+.featured-race:hover,
+.featured-race:focus-visible {
+  border-color: #e52b32;
+  background: #333034;
+}
+.featured-race span:first-child {
+  color: #f38b90;
+  font:
+    800 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+.featured-race strong {
+  font:
+    800 15px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.07em;
+}
+.featured-race span:last-child {
+  margin-left: auto;
+  font-size: 18px;
+}
+@media (max-width: 650px) {
+  .featured-race {
+    flex-wrap: wrap;
+  }
+  .featured-race strong {
+    flex-basis: calc(100% - 30px);
+  }
+}

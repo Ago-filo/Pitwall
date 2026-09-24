@@ -10,6 +10,9 @@ PitWall is an independent Formula 1 race strategy explorer. Pick a completed Gra
 
 - Completed races from 2023 onward, depending on OpenF1 availability
 - Two-driver position and lap-time charts with pit-out and pit-stop markers
+- Interactive lap timeline with synchronized chart markers and driver snapshots
+- Per-stint median pace from available timed laps, with explicit pit-lap exclusions
+- One-click Bahrain 2024 sample comparison
 - Tyre stints, pit lane duration and stationary duration when available
 - Explicit notes for missing upstream data and unreconstructable lap positions
 - Motorsport-inspired responsive interface with animated driver cards and selected Creative Commons portraits
@@ -51,7 +54,7 @@ npm test
 npm run build
 ```
 
-GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position reconstruction, missing data, DNF results and a mocked Worker request.
+GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position reconstruction, missing data, DNF results, stint pace and a mocked Worker request.
 
 ## Deploy
 

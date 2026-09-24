@@ -13,6 +13,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import type { Comparison, Driver, DriverRace, Race } from "./domain";
 import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
+import { lapSnapshot, stintPace } from "./analysis";
 
 const surface = "#122632";
 const comparisonColors = ["#d8e95d", "#65d6dc"] as const;
@@ -162,10 +163,19 @@ function ResultCard({ data, color }: { data: DriverRace; color: string }) {
   );
 }
 
-function PositionChart({ drivers }: { drivers: Comparison["drivers"] }) {
+function PositionChart({
+  drivers,
+  selectedLap,
+}: {
+  drivers: Comparison["drivers"];
+  selectedLap: number;
+}) {
   const maxLap = Math.max(
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
     1,
+  );
+  const cursorDriverIndex = drivers.findIndex(
+    (driver) => driver.laps.length > 0,
   );
   const options = {
     backgroundColor: "transparent",
@@ -203,13 +213,28 @@ function PositionChart({ drivers }: { drivers: Comparison["drivers"] }) {
       nameTextStyle: { color: text },
       ...axis,
     },
-    series: drivers.map((d) => ({
+    series: drivers.map((d, index) => ({
       name: d.driver.acronym,
       type: "line",
       step: "end",
       showSymbol: false,
       connectNulls: false,
       lineStyle: { width: 3 },
+      markLine:
+        index === cursorDriverIndex
+          ? {
+              silent: true,
+              symbol: "none",
+              label: { show: false },
+              lineStyle: {
+                color: "#f4f3ef",
+                type: "solid",
+                width: 1.5,
+                opacity: 0.75,
+              },
+              data: [{ xAxis: selectedLap }],
+            }
+          : undefined,
       data: d.laps.map((l) => [l.number, l.position]),
     })),
   };
@@ -223,10 +248,19 @@ function PositionChart({ drivers }: { drivers: Comparison["drivers"] }) {
   );
 }
 
-function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
+function PaceChart({
+  drivers,
+  selectedLap,
+}: {
+  drivers: Comparison["drivers"];
+  selectedLap: number;
+}) {
   const maxLap = Math.max(
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
     1,
+  );
+  const cursorDriverIndex = drivers.findIndex(
+    (driver) => driver.laps.length > 0,
   );
   const series = drivers.flatMap((d, index) => [
     {
@@ -245,7 +279,22 @@ function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
           color: comparisonColors[index],
           opacity: 0.5,
         },
-        data: d.pitStops.map((p) => ({ xAxis: p.lap })),
+        data: [
+          ...d.pitStops.map((p) => ({ xAxis: p.lap })),
+          ...(index === cursorDriverIndex
+            ? [
+                {
+                  xAxis: selectedLap,
+                  lineStyle: {
+                    color: "#f4f3ef",
+                    type: "solid",
+                    width: 1.5,
+                    opacity: 0.75,
+                  },
+                },
+              ]
+            : []),
+        ],
       },
     },
     {
@@ -401,8 +450,173 @@ function PitTable({ drivers }: { drivers: Comparison["drivers"] }) {
   );
 }
 
+function LapTimeline({
+  drivers,
+  selectedLap,
+  maxLap,
+  onSelectLap,
+}: {
+  drivers: Comparison["drivers"];
+  selectedLap: number;
+  maxLap: number;
+  onSelectLap: (lap: number) => void;
+}) {
+  return (
+    <article
+      className="panel lap-timeline"
+      aria-label="Explore the race lap by lap"
+    >
+      <div className="panel-heading">
+        <span>RACE TIMELINE</span>
+        <h3>Read the race, one lap at a time.</h3>
+        <p>
+          Move through the race to see both drivers at the same lap. Chart
+          markers follow your selection; unavailable data stays blank.
+        </p>
+      </div>
+      <div className="timeline-control">
+        <button
+          type="button"
+          onClick={() => onSelectLap(selectedLap - 1)}
+          disabled={selectedLap <= 1}
+          aria-label="Previous lap"
+        >
+          ←
+        </button>
+        <label htmlFor="lap-scrubber">
+          LAP <strong>{selectedLap}</strong>
+          <span> / {maxLap}</span>
+        </label>
+        <input
+          id="lap-scrubber"
+          type="range"
+          min="1"
+          max={maxLap}
+          value={selectedLap}
+          onChange={(event) => onSelectLap(Number(event.target.value))}
+          aria-label="Selected race lap"
+        />
+        <button
+          type="button"
+          onClick={() => onSelectLap(selectedLap + 1)}
+          disabled={selectedLap >= maxLap}
+          aria-label="Next lap"
+        >
+          →
+        </button>
+      </div>
+      <div className="timeline-driver-grid">
+        {drivers.map((driver, index) => {
+          const snapshot = lapSnapshot(driver, selectedLap);
+          const { lap, stint, pitStop } = snapshot;
+          return (
+            <div
+              className="timeline-driver"
+              key={driver.driver.number}
+              style={{ borderColor: comparisonColors[index] }}
+            >
+              <div className="timeline-driver-heading">
+                <strong style={{ color: comparisonColors[index] }}>
+                  {driver.driver.acronym}
+                </strong>
+                <span>{driver.driver.name}</span>
+              </div>
+              <div className="timeline-stats">
+                <div>
+                  <span>POSITION</span>
+                  <strong>
+                    {lap?.position == null ? "—" : `P${lap.position}`}
+                  </strong>
+                </div>
+                <div>
+                  <span>LAP TIME</span>
+                  <strong>{displayTime(lap?.durationSeconds ?? null)}</strong>
+                </div>
+                <div>
+                  <span>TYRE</span>
+                  <strong>{stint?.compound ?? "—"}</strong>
+                </div>
+              </div>
+              <p className="timeline-event">
+                {pitStop
+                  ? `Pit stop recorded on lap ${selectedLap}${pitStop.laneSeconds == null ? "" : ` · ${pitStop.laneSeconds.toFixed(3)} s in pit lane`}`
+                  : lap?.pitOut
+                    ? "Pit-out lap"
+                    : !lap
+                      ? "No lap record available"
+                      : "No pit stop recorded on this lap"}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </article>
+  );
+}
+
+function StintPace({ drivers }: { drivers: Comparison["drivers"] }) {
+  return (
+    <article className="panel stint-pace">
+      <div className="panel-heading">
+        <span>STINT ANALYSIS</span>
+        <h3>Pace by tyre stint</h3>
+        <p>
+          Median of available timed laps in each stint. Recorded pit-stop and
+          pit-out laps are excluded; missing times are omitted. Safety Car laps
+          remain included. Compare stints with care: conditions and tyre age can
+          differ.
+        </p>
+      </div>
+      <div className="stint-pace-grid">
+        {drivers.map((driver, index) => (
+          <div className="stint-pace-driver" key={driver.driver.number}>
+            <h4 style={{ color: comparisonColors[index] }}>
+              {driver.driver.acronym} <span>{driver.driver.name}</span>
+            </h4>
+            {driver.stints.length ? (
+              <div className="stint-pace-list">
+                {stintPace(driver).map(
+                  ({ stint, medianSeconds, timedLaps, excludedPitLaps }) => (
+                    <div className="stint-pace-row" key={stint.number}>
+                      <div>
+                        <strong>{stint.compound}</strong>
+                        <span>
+                          LAPS {stint.startLap}–{stint.endLap ?? "?"}
+                        </span>
+                      </div>
+                      <div>
+                        <strong>{displayTime(medianSeconds)}</strong>
+                        <span>
+                          {timedLaps} timed {timedLaps === 1 ? "lap" : "laps"}{" "}
+                          used
+                          {excludedPitLaps
+                            ? ` · ${excludedPitLaps} pit ${excludedPitLaps === 1 ? "lap" : "laps"} excluded`
+                            : ""}
+                        </span>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+            ) : (
+              <p className="empty-inline">Stint data unavailable.</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 function ComparisonView({ data }: { data: Comparison }) {
   const hasLaps = data.drivers.some((d) => d.laps.length);
+  const maxLap = Math.max(
+    ...data.drivers.flatMap((driver) => driver.laps.map((lap) => lap.number)),
+    1,
+  );
+  const [selectedLap, setSelectedLap] = useState(1);
+  const selectLap = (lap: number) =>
+    setSelectedLap(Math.min(maxLap, Math.max(1, lap)));
   return (
     <section className="comparison" id="analysis" aria-label="Race comparison">
       <div className="section-heading">
@@ -440,6 +654,14 @@ function ComparisonView({ data }: { data: Comparison }) {
           </ul>
         </div>
       )}
+      {hasLaps && (
+        <LapTimeline
+          drivers={data.drivers}
+          selectedLap={selectedLap}
+          maxLap={maxLap}
+          onSelectLap={selectLap}
+        />
+      )}
       <div className="chart-grid">
         <article className="panel">
           <div className="panel-heading">
@@ -451,7 +673,7 @@ function ComparisonView({ data }: { data: Comparison }) {
             </p>
           </div>
           {hasLaps ? (
-            <PositionChart drivers={data.drivers} />
+            <PositionChart drivers={data.drivers} selectedLap={selectedLap} />
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
@@ -466,12 +688,13 @@ function ComparisonView({ data }: { data: Comparison }) {
             </p>
           </div>
           {hasLaps ? (
-            <PaceChart drivers={data.drivers} />
+            <PaceChart drivers={data.drivers} selectedLap={selectedLap} />
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
         </article>
       </div>
+      <StintPace drivers={data.drivers} />
       <div className="detail-grid">
         <article className="panel">
           <div className="panel-heading">
@@ -511,12 +734,20 @@ export default function App() {
   const drivers = useQuery({
     queryKey: ["drivers", raceKey],
     queryFn: () => pitwall.drivers(Number(raceKey)),
-    enabled: !!raceKey,
+    enabled:
+      !!raceKey &&
+      !!races.data?.races.some((race) => race.sessionKey === Number(raceKey)),
   });
   const comparison = useQuery({
     queryKey: ["comparison", raceKey, a, b],
     queryFn: () => pitwall.comparison(Number(raceKey), Number(a), Number(b)),
-    enabled: !!raceKey && !!a && !!b && a !== b,
+    enabled:
+      !!raceKey &&
+      !!a &&
+      !!b &&
+      a !== b &&
+      !!drivers.data?.drivers.some((driver) => String(driver.number) === a) &&
+      !!drivers.data?.drivers.some((driver) => String(driver.number) === b),
   });
   useEffect(() => {
     if (!season && seasons.data?.seasons.length)
@@ -732,6 +963,20 @@ export default function App() {
               disabled={!raceKey || drivers.isLoading}
             />
           </div>
+          <button
+            className="featured-race"
+            type="button"
+            onClick={() => {
+              setSeason("2024");
+              setRaceKey("9472");
+              setA("16");
+              setB("55");
+            }}
+          >
+            <span>START WITH A RACE</span>
+            <strong>BAHRAIN 2024 · LECLERC VS SAINZ</strong>
+            <span aria-hidden="true">↗</span>
+          </button>
           <div className="portrait-grid" aria-label="Selected drivers">
             <PortraitPanel
               key={selectedA?.name ?? "empty-a"}
@@ -777,7 +1022,12 @@ export default function App() {
             Analysing the race data…
           </div>
         )}
-        {comparison.data && <ComparisonView data={comparison.data} />}
+        {comparison.data && (
+          <ComparisonView
+            key={`${comparison.data.race.sessionKey}-${comparison.data.drivers.map((driver) => driver.driver.number).join("-")}`}
+            data={comparison.data}
+          />
+        )}
         {!comparison.data && !comparison.isLoading && (
           <div className="placeholder">
             <span>01 — SELECT A RACE</span>

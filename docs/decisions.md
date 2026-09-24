@@ -47,3 +47,11 @@
 **Decision:** ECharts with tree-shaken core components.
 
 **Trade-off:** more configuration than Recharts, but a better fit for rich event overlays.
+
+## Lap timeline and stint pace
+
+**Problem:** separate charts make it difficult to follow the same moment for two drivers. Raw stint lap times are also distorted by recorded pit-stop and pit-out laps.
+
+**Decision:** one selected lap drives both chart markers and the two driver snapshots. The snapshots show only the values actually recorded or reconstructed for that lap. A pure TypeScript analysis function computes each stint's median from available positive lap durations, excluding recorded pit-stop laps and pit-out laps. The UI shows the number of laps used and pit laps excluded.
+
+**Trade-off:** this median is descriptive, not a controlled comparison of driver ability. Missing durations are omitted; Safety Car, traffic, weather and tyre age are not adjusted for. A stint without usable timed laps has no pace value.
