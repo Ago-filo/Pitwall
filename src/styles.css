@@ -115,7 +115,7 @@ footer {
   color: #fff;
   white-space: nowrap;
 }
-.header-source span {
+.header-source span[aria-hidden="true"] {
   color: #e52b32;
   margin-left: 16px;
 }
@@ -1004,7 +1004,7 @@ footer a {
     font-size: 10px;
     padding: 9px;
   }
-  .header-source span {
+  .header-source span[aria-hidden="true"] {
     margin-left: 5px;
   }
   main {
@@ -1483,5 +1483,175 @@ footer a {
   }
   .context-jumps > div {
     margin-top: 7px;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: -80px;
+  left: 16px;
+  padding: 12px 16px;
+  background: #fff;
+  color: #17191e;
+  font-weight: 800;
+}
+.skip-link:focus {
+  top: 12px;
+}
+:where(a, button, select, input, summary):focus-visible {
+  outline: 3px solid #f4d95a;
+  outline-offset: 3px;
+}
+.race-insights {
+  margin-top: 16px;
+  padding: 24px;
+  background: #17191e;
+  border: 1px solid #4a4c51;
+}
+.race-insights .panel-heading p {
+  max-width: 720px;
+}
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 17px;
+}
+.insight-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 17px;
+  background: #22252b;
+  border-top: 3px solid #d8e95d;
+}
+.insight-card:nth-child(even) {
+  border-top-color: #65d6dc;
+}
+.insight-card > span {
+  color: #d8e95d;
+  font:
+    800 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.14em;
+}
+.insight-card h4 {
+  margin: 7px 0 9px;
+  font:
+    800 25px "Barlow Condensed",
+    sans-serif;
+  text-transform: uppercase;
+}
+.insight-card p {
+  margin: 0 0 12px;
+  color: #f0f1ee;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.insight-card small {
+  display: block;
+  margin-top: auto;
+  color: #b5b9be;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.insight-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.insight-evidence button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #727a80;
+  background: #2a3036;
+  color: #fff;
+  cursor: pointer;
+  font:
+    800 12px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.06em;
+}
+.insight-evidence button:hover {
+  border-color: #d8e95d;
+}
+.chart-data {
+  margin: 6px 0 10px;
+}
+.chart-data summary {
+  width: fit-content;
+  padding: 9px 0;
+  color: #dce9e8;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.chart-data caption {
+  padding: 14px 0 7px;
+  text-align: left;
+  color: #dce9e8;
+}
+.chart-data .table-wrap {
+  max-height: 300px;
+  overflow: auto;
+}
+.chart-data tbody th {
+  color: #dce9e8;
+}
+.context-jumps button,
+.timeline-control button {
+  min-height: 44px;
+}
+#lap-timeline:focus,
+#grid:focus {
+  outline: 3px solid #f4d95a;
+  outline-offset: 3px;
+}
+@media (max-width: 650px) {
+  .race-insights {
+    padding: 20px 15px;
+  }
+  .insight-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-data .table-wrap {
+    max-height: 260px;
+  }
+}
+
+.source-short {
+  display: none;
+}
+@media (max-width: 650px) {
+  .header-source {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  .source-full {
+    display: none;
+  }
+  .source-short {
+    display: inline;
+  }
+}
+@media (max-width: 650px) {
+  .site-header {
+    position: relative;
+  }
+  .header-source {
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    padding: 0 10px;
+  }
+  .header-source span[aria-hidden="true"] {
+    margin-left: 0;
   }
 }

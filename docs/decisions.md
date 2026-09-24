@@ -71,3 +71,20 @@
 **Decision:** fetch race-control messages once per comparison and intervals only for the two selected drivers. Keep Safety Car messages and selected Track/Sector flag events, using their source lap numbers without inventing placement for missing lap numbers. Collapse identical messages repeated within one lap. For each timed lap, use the latest gap-to-leader sample whose timestamp falls inside its approximate start/end window. Preserve numeric seconds, lapped labels and null. Both datasets are optional so their failure does not hide core race data.
 
 **Trade-off:** the gap sample may precede the actual lap end and each driver is sampled independently; it is neither an exact lap-end gap nor a measured gap between the selected drivers. Race-control messages show session context but do not prove their effect on a driver. The current stint median still includes Safety Car laps.
+
+
+## Evidence-linked Race Analysis
+
+**Problem:** charts make the data visible, but visitors still need to find the main recorded changes themselves.
+
+**Decision:** a pure TypeScript function in src/race-insights.ts produces four optional, descriptive observations from one normalized comparison: first and last reconstructable positions, median times on shared lap numbers, first recorded pit stops, and first and last numeric leader-gap samples. Each observation links to its source laps. Missing or insufficient data suppresses the relevant observation. See [rules and worked example](race-analysis.md).
+
+**Trade-off:** these observations do not establish why a change happened. Same-numbered laps may have different traffic, tyres, weather and Safety Car conditions. The summary uses no hidden pace filters beyond positive lap times and recorded pit/pit-out exclusions.
+
+## Accessible charts and deferred loading
+
+**Problem:** canvas charts do not expose their values reliably to assistive technology, and ECharts dominated the initial client bundle.
+
+**Decision:** provide expandable HTML tables with all charted lap values, visible keyboard focus, a skip link and larger touch targets. Load chart components only after a comparison is available, then split ECharts and zrender into their own chunks.
+
+**Trade-off:** a comparison still downloads the chart engine, while the landing page and selection flow avoid that cost. Tables add markup only when their chart module loads.

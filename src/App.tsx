@@ -1,38 +1,19 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import ReactECharts from "echarts-for-react/lib/core";
-import * as echarts from "echarts/core";
-import { LineChart, ScatterChart } from "echarts/charts";
-import {
-  GridComponent,
-  LegendComponent,
-  TooltipComponent,
-  MarkLineComponent,
-} from "echarts/components";
-import { CanvasRenderer } from "echarts/renderers";
 import type { Comparison, Driver, DriverRace, Race, RaceEvent } from "./domain";
+import { raceInsights } from "./race-insights";
 import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
 import { lapSnapshot, stintPace } from "./analysis";
 
-const surface = "#122632";
 const comparisonColors = ["#d8e95d", "#65d6dc"] as const;
-echarts.use([
-  LineChart,
-  ScatterChart,
-  GridComponent,
-  LegendComponent,
-  TooltipComponent,
-  MarkLineComponent,
-  CanvasRenderer,
-]);
-const line = "#36515c";
-const text = "#dce9e8";
-const axis = {
-  axisLine: { lineStyle: { color: line } },
-  axisLabel: { color: "#a5bdc0" },
-  splitLine: { lineStyle: { color: "#29404a" } },
-};
+const PositionChart = lazy(() =>
+  import("./Charts").then((module) => ({ default: module.PositionChart })),
+);
+const PaceChart = lazy(() =>
+  import("./Charts").then((module) => ({ default: module.PaceChart })),
+);
+
 function initialSelection() {
   if (typeof window === "undefined")
     return { season: "", race: "", a: "", b: "" };
@@ -70,19 +51,6 @@ function displayGap(lap: DriverRace["laps"][number] | null): string {
     return `+${lap.gapToLeader.toFixed(3)} s`;
   if (typeof lap.gapToLeader === "string") return lap.gapToLeader;
   return lap.position === 1 ? "LEADER" : "—";
-}
-
-function majorEventLaps(events: RaceEvent[]): number[] {
-  return [
-    ...new Set(
-      events
-        .filter(
-          (event) => event.category === "SafetyCar" || event.flag === "RED",
-        )
-        .map((event) => event.lap)
-        .filter((lap): lap is number => lap !== null),
-    ),
-  ];
 }
 
 function Select({
@@ -210,220 +178,6 @@ function ResultCard({ data, color }: { data: DriverRace; color: string }) {
   );
 }
 
-function PositionChart({
-  drivers,
-  selectedLap,
-  events,
-}: {
-  drivers: Comparison["drivers"];
-  selectedLap: number;
-  events: RaceEvent[];
-}) {
-  const maxLap = Math.max(
-    ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
-    1,
-  );
-  const cursorDriverIndex = drivers.findIndex(
-    (driver) => driver.laps.length > 0,
-  );
-  const options = {
-    backgroundColor: "transparent",
-    color: comparisonColors,
-    tooltip: {
-      trigger: "axis",
-      backgroundColor: surface,
-      borderColor: line,
-      textStyle: { color: text },
-      formatter: (
-        params: {
-          axisValue: string;
-          seriesName: string;
-          value: [number, number | null];
-        }[],
-      ) =>
-        `Lap ${params[0]?.axisValue}<br/>${params.map((p) => `${p.seriesName}: ${p.value[1] == null ? "unavailable" : `P${p.value[1]}`}`).join("<br/>")}`,
-    },
-    legend: { textStyle: { color: text }, top: 2 },
-    grid: { left: 46, right: 18, top: 48, bottom: 45 },
-    xAxis: {
-      type: "value",
-      name: "Lap",
-      min: 1,
-      max: maxLap,
-      nameTextStyle: { color: text },
-      ...axis,
-    },
-    yAxis: {
-      type: "value",
-      name: "Position",
-      inverse: true,
-      min: 1,
-      minInterval: 1,
-      nameTextStyle: { color: text },
-      ...axis,
-    },
-    series: drivers.map((d, index) => ({
-      name: d.driver.acronym,
-      type: "line",
-      step: "end",
-      showSymbol: false,
-      connectNulls: false,
-      lineStyle: { width: 3 },
-      markLine:
-        index === cursorDriverIndex
-          ? {
-              silent: true,
-              symbol: "none",
-              label: { show: false },
-              lineStyle: {
-                color: "#f4f3ef",
-                type: "solid",
-                width: 1.5,
-                opacity: 0.75,
-              },
-              data: [
-                { xAxis: selectedLap },
-                ...majorEventLaps(events).map((lap) => ({
-                  xAxis: lap,
-                  lineStyle: {
-                    color: "#f4d95a",
-                    type: "dashed",
-                    opacity: 0.65,
-                  },
-                })),
-              ],
-            }
-          : undefined,
-      data: d.laps.map((l) => [l.number, l.position]),
-    })),
-  };
-  return (
-    <ReactECharts
-      echarts={echarts}
-      option={options}
-      style={{ height: 350 }}
-      notMerge
-    />
-  );
-}
-
-function PaceChart({
-  drivers,
-  selectedLap,
-  events,
-}: {
-  drivers: Comparison["drivers"];
-  selectedLap: number;
-  events: RaceEvent[];
-}) {
-  const maxLap = Math.max(
-    ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
-    1,
-  );
-  const cursorDriverIndex = drivers.findIndex(
-    (driver) => driver.laps.length > 0,
-  );
-  const series = drivers.flatMap((d, index) => [
-    {
-      name: d.driver.acronym,
-      type: "line",
-      showSymbol: false,
-      connectNulls: false,
-      lineStyle: { width: 2.5 },
-      data: d.laps.map((l) => [l.number, l.durationSeconds]),
-      markLine: {
-        silent: true,
-        symbol: "none",
-        label: { show: false },
-        lineStyle: {
-          type: "dashed",
-          color: comparisonColors[index],
-          opacity: 0.5,
-        },
-        data: [
-          ...d.pitStops.map((p) => ({ xAxis: p.lap })),
-          ...(index === cursorDriverIndex
-            ? [
-                ...majorEventLaps(events).map((lap) => ({
-                  xAxis: lap,
-                  lineStyle: {
-                    color: "#f4d95a",
-                    type: "dashed",
-                    opacity: 0.65,
-                  },
-                })),
-                {
-                  xAxis: selectedLap,
-                  lineStyle: {
-                    color: "#f4f3ef",
-                    type: "solid",
-                    width: 1.5,
-                    opacity: 0.75,
-                  },
-                },
-              ]
-            : []),
-        ],
-      },
-    },
-    {
-      name: `${d.driver.acronym} pit-out`,
-      type: "scatter",
-      symbolSize: 10,
-      data: d.laps
-        .filter((l) => l.pitOut && l.durationSeconds !== null)
-        .map((l) => [l.number, l.durationSeconds]),
-    },
-  ]);
-  const options = {
-    backgroundColor: "transparent",
-    color: [
-      comparisonColors[0],
-      comparisonColors[0],
-      comparisonColors[1],
-      comparisonColors[1],
-    ],
-    tooltip: {
-      trigger: "item",
-      backgroundColor: surface,
-      borderColor: line,
-      textStyle: { color: text },
-      formatter: (p: { seriesName: string; value: [number, number] }) =>
-        `${p.seriesName}<br/>Lap ${p.value[0]} · ${displayTime(p.value[1])}`,
-    },
-    legend: {
-      data: drivers.map((d) => d.driver.acronym),
-      textStyle: { color: text },
-      top: 2,
-    },
-    grid: { left: 65, right: 18, top: 48, bottom: 45 },
-    xAxis: {
-      type: "value",
-      name: "Lap",
-      min: 1,
-      max: maxLap,
-      nameTextStyle: { color: text },
-      ...axis,
-    },
-    yAxis: {
-      type: "value",
-      name: "Seconds",
-      scale: true,
-      nameTextStyle: { color: text },
-      ...axis,
-    },
-    series,
-  };
-  return (
-    <ReactECharts
-      echarts={echarts}
-      option={options}
-      style={{ height: 350 }}
-      notMerge
-    />
-  );
-}
-
 function Stints({ drivers }: { drivers: Comparison["drivers"] }) {
   const maxLap = Math.max(
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
@@ -541,6 +295,8 @@ function LapTimeline({
   return (
     <article
       className="panel lap-timeline"
+      id="lap-timeline"
+      tabIndex={-1}
       aria-label="Explore the race lap by lap"
     >
       <div className="panel-heading">
@@ -741,6 +497,7 @@ function StintPace({ drivers }: { drivers: Comparison["drivers"] }) {
 }
 
 function ComparisonView({ data }: { data: Comparison }) {
+  const insights = raceInsights(data);
   const hasLaps = data.drivers.some((d) => d.laps.length);
   const maxLap = Math.max(
     ...data.drivers.flatMap((driver) => driver.laps.map((lap) => lap.number)),
@@ -767,6 +524,12 @@ function ComparisonView({ data }: { data: Comparison }) {
   };
   const selectLap = (lap: number) =>
     setSelectedLap(Math.min(maxLap, Math.max(1, lap)));
+  const jumpToLap = (lap: number) => {
+    selectLap(lap);
+    const timeline = document.getElementById("lap-timeline");
+    timeline?.focus();
+    timeline?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <section className="comparison" id="analysis" aria-label="Race comparison">
       <div className="section-heading">
@@ -826,6 +589,44 @@ function ComparisonView({ data }: { data: Comparison }) {
           </ul>
         </div>
       )}
+      {insights.length > 0 && (
+        <section
+          className="race-insights"
+          aria-labelledby="race-insights-title"
+        >
+          <div className="panel-heading">
+            <span>DATA-LED RACE ANALYSIS</span>
+            <h3 id="race-insights-title">What the records show</h3>
+            <p>
+              Descriptive observations with direct links to the recorded laps.
+              Missing evidence stays out of the summary; these comparisons do
+              not establish why a result happened.
+            </p>
+          </div>
+          <div className="insight-grid">
+            {insights.map((insight) => (
+              <article className="insight-card" key={insight.id}>
+                <span>{insight.id.toUpperCase()}</span>
+                <h4>{insight.title}</h4>
+                <p>{insight.description}</p>
+                <small>{insight.evidence}</small>
+                <div className="insight-evidence">
+                  {insight.laps.map((lap) => (
+                    <button
+                      type="button"
+                      key={lap}
+                      onClick={() => jumpToLap(lap)}
+                      aria-label={"View lap " + lap + " in race timeline"}
+                    >
+                      VIEW LAP {lap} ↗
+                    </button>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       {hasLaps && (
         <LapTimeline
           drivers={data.drivers}
@@ -847,11 +648,19 @@ function ComparisonView({ data }: { data: Comparison }) {
             </p>
           </div>
           {hasLaps ? (
-            <PositionChart
-              drivers={data.drivers}
-              selectedLap={selectedLap}
-              events={data.events ?? []}
-            />
+            <Suspense
+              fallback={
+                <p className="empty-inline" role="status">
+                  Loading position chart…
+                </p>
+              }
+            >
+              <PositionChart
+                drivers={data.drivers}
+                selectedLap={selectedLap}
+                events={data.events ?? []}
+              />
+            </Suspense>
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
@@ -867,11 +676,19 @@ function ComparisonView({ data }: { data: Comparison }) {
             </p>
           </div>
           {hasLaps ? (
-            <PaceChart
-              drivers={data.drivers}
-              selectedLap={selectedLap}
-              events={data.events ?? []}
-            />
+            <Suspense
+              fallback={
+                <p className="empty-inline" role="status">
+                  Loading pace chart…
+                </p>
+              }
+            >
+              <PaceChart
+                drivers={data.drivers}
+                selectedLap={selectedLap}
+                events={data.events ?? []}
+              />
+            </Suspense>
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
@@ -968,6 +785,9 @@ export default function App() {
   ].find(Boolean);
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#grid">
+        Skip to race selection
+      </a>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="PitWall home">
           <span className="brand-mark">
@@ -988,7 +808,9 @@ export default function App() {
           target="_blank"
           rel="noreferrer"
         >
-          POWERED BY OPENF1 <span>↗</span>
+          <span className="source-full">POWERED BY OPENF1</span>
+          <span className="source-short">OPENF1</span>
+          <span aria-hidden="true">↗</span>
         </a>
       </header>
       <main id="top">
@@ -1103,6 +925,7 @@ export default function App() {
         <section
           className="selector-panel"
           id="grid"
+          tabIndex={-1}
           aria-label="Choose race and drivers"
         >
           <div className="selector-title">
