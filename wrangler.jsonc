@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "pitwall",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-09-24",
+  "assets": { "not_found_handling": "single-page-application", "run_worker_first": ["/api/*"] }
+}
