@@ -21,6 +21,8 @@ export interface Lap {
   start: string | null;
   pitOut: boolean;
   position: number | null;
+  gapToLeader?: number | string | null;
+  gapSampledAt?: string | null;
 }
 
 export interface PitStop {
@@ -35,6 +37,15 @@ export interface Stint {
   endLap: number | null;
   compound: string;
   tyreAgeAtStart: number | null;
+}
+
+export interface RaceEvent {
+  date: string;
+  lap: number | null;
+  category: "SafetyCar" | "Flag";
+  flag: string | null;
+  scope: string | null;
+  message: string;
 }
 
 export interface Result {
@@ -56,5 +67,6 @@ export interface Comparison {
   race: Race;
   drivers: [DriverRace, DriverRace];
   notes: string[];
+  events?: RaceEvent[];
   source?: { kind: "snapshot"; capturedAt: string };
 }

@@ -32,5 +32,5 @@ export const pitwall = {
   drivers: (key: number) =>
     get<{ drivers: Driver[] }>(`/api/races/${key}/drivers`),
   comparison: (key: number, a: number, b: number) =>
-    get<Comparison>(`/api/races/${key}/comparison?drivers=${a},${b}`),
+    get<Comparison>(`/api/races/${key}/comparison?drivers=${a},${b}&v=2`),
 };

@@ -1410,3 +1410,78 @@ footer a {
   font-size: 12px;
   line-height: 1.5;
 }
+.timeline-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.timeline-stats strong {
+  white-space: normal;
+}
+.context-jumps {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: -4px 0 18px;
+  min-width: 0;
+}
+.context-jumps > span,
+.selected-race-events > strong {
+  flex: none;
+  color: #f4d95a;
+  font:
+    800 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.13em;
+}
+.context-jumps > div {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 3px 0 7px;
+  scrollbar-color: #676956 #1e2127;
+}
+.context-jumps button {
+  flex: none;
+  padding: 7px 9px;
+  border: 1px solid #65624c;
+  background: #29271f;
+  color: #e7dfb6;
+  cursor: pointer;
+  font:
+    700 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.06em;
+}
+.context-jumps button:hover,
+.context-jumps button[aria-pressed="true"] {
+  background: #645529;
+  color: #fff;
+}
+.selected-race-events {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: #222426;
+  border-left: 3px solid #f4d95a;
+}
+.selected-race-events p {
+  margin: 7px 0;
+  color: #e2e2df;
+  font-size: 12px;
+}
+.selected-race-events small {
+  display: block;
+  margin-top: 10px;
+  color: #a9abb0;
+  font-size: 11px;
+  line-height: 1.4;
+}
+@media (max-width: 650px) {
+  .timeline-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .context-jumps {
+    display: block;
+  }
+  .context-jumps > div {
+    margin-top: 7px;
+  }
+}

@@ -36,7 +36,7 @@
 
 **Decision:** cache historical API responses at the Worker boundary with Workers Caching enabled across deploy versions and `stale-if-error`, retain the Cache API as a local upstream cache, return browser cache headers, and use TanStack Query in memory. Race lists from past seasons remain fresh for 30 days; the current season remains fresh for one hour. Uncached upstream requests within one Worker request are spaced by at least 400 ms. Return actionable messages on `429` and OpenF1's live-session `401`, without automatic browser retries for either condition.
 
-**Trade-off:** The Cache API is local to a data center, while Workers Caching stores completed API responses before the Worker runs. Cross-version caching keeps warm responses after a deploy; if the API response contract changes, old entries may remain until expiry or purge. A cache miss during a live session still cannot load historical data without OpenF1 authentication. `stale-if-error` can serve previously cached data, but it is not a durable guarantee: edge cache entries may be evicted. Durable snapshots or precomputation would be justified if uninterrupted access becomes a requirement.
+**Trade-off:** The Cache API is local to a data center, while Workers Caching stores completed API responses before the Worker runs. Cross-version caching keeps warm responses after a deploy. The comparison API cache key includes a schema version query parameter; it must be incremented when the response contract changes, because old entries otherwise remain until expiry or purge. A cache miss during a live session still cannot load historical data without OpenF1 authentication. `stale-if-error` can serve previously cached data, but it is not a durable guarantee: edge cache entries may be evicted. Durable snapshots or precomputation would be justified if uninterrupted access becomes a requirement.
 
 ## Visualization
 
@@ -63,3 +63,11 @@
 **Decision:** capture one complete, dated and versioned PitWall API response for Bahrain 2024, Leclerc vs Sainz, with its catalog and driver list. The Worker serves it only when OpenF1 fails, marks the response with `X-PitWall-Source: snapshot`, and includes the capture date in the comparison body. The frontend displays this provenance. Season, race and drivers are encoded in the URL so a fresh browser can open the same comparison.
 
 **Trade-off:** this guarantees one representative comparison without new storage or account costs. Other uncached races still depend on OpenF1. The snapshot must be refreshed deliberately when transformation logic or the upstream dataset changes; the capture script rejects a response that already came from the snapshot.
+
+## Race context and sampled gaps
+
+**Problem:** a change in lap time or position is difficult to interpret without race-control context, while OpenF1 interval readings are timestamped samples rather than lap-end measurements.
+
+**Decision:** fetch race-control messages once per comparison and intervals only for the two selected drivers. Keep Safety Car messages and selected Track/Sector flag events, using their source lap numbers without inventing placement for missing lap numbers. Collapse identical messages repeated within one lap. For each timed lap, use the latest gap-to-leader sample whose timestamp falls inside its approximate start/end window. Preserve numeric seconds, lapped labels and null. Both datasets are optional so their failure does not hide core race data.
+
+**Trade-off:** the gap sample may precede the actual lap end and each driver is sampled independently; it is neither an exact lap-end gap nor a measured gap between the selected drivers. Race-control messages show session context but do not prove their effect on a driver. The current stint median still includes Safety Car laps.

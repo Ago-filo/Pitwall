@@ -133,6 +133,23 @@ export async function handleRequest(
     const pits = await api.pits(sessionKey);
     const stints = await api.stints(sessionKey);
     const results = await api.results(sessionKey);
+    const optional = async <T>(
+      load: () => Promise<T[]>,
+    ): Promise<T[] | null> => {
+      try {
+        return await load();
+      } catch (error) {
+        if (error instanceof UpstreamError) return null;
+        throw error;
+      }
+    };
+    const raceControl = await optional(() => api.raceControl(sessionKey));
+    const firstIntervals = await optional(() =>
+      api.intervals(sessionKey, chosen[0]!.number),
+    );
+    const secondIntervals = await optional(() =>
+      api.intervals(sessionKey, chosen[1]!.number),
+    );
     const unavailable = [
       ...(datasets.laps.length ? [] : ["Lap"]),
       ...(positions.length ? [] : ["Position"]),
@@ -140,16 +157,27 @@ export async function handleRequest(
       ...(stints.length ? [] : ["Stint"]),
       ...(results.length ? [] : ["Result"]),
     ];
-    return json(
-      buildComparison(
-        toRace(session),
-        [chosen[0], chosen[1]],
-        { ...datasets, positions, pits, stints, results },
-        unavailable,
-      ),
-      200,
-      604800,
+    const comparison = buildComparison(
+      toRace(session),
+      [chosen[0], chosen[1]],
+      {
+        ...datasets,
+        positions,
+        pits,
+        stints,
+        results,
+        raceControl: raceControl ?? [],
+        intervals: [...(firstIntervals ?? []), ...(secondIntervals ?? [])],
+      },
+      unavailable,
     );
+    if (!raceControl?.length)
+      comparison.notes.push("Race control data is unavailable for this race.");
+    if (!firstIntervals?.length || !secondIntervals?.length)
+      comparison.notes.push(
+        "Gap-to-leader samples are unavailable for one or both selected drivers.",
+      );
+    return json(comparison, 200, 604800);
   } catch (error) {
     if (error instanceof UpstreamError)
       return featuredFallback(url) ?? bad(error.message, error.status);

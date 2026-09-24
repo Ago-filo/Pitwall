@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-24T13:47:34.299Z",
+  "capturedAt": "2026-09-24T14:14:08.265Z",
   "races": [
     {
       "sessionKey": 9472,
@@ -360,399 +360,513 @@
             "durationSeconds": 98.679,
             "start": "2024-03-02T15:03:42.341000+00:00",
             "pitOut": false,
-            "position": 2
+            "position": 2,
+            "gapToLeader": 0.987,
+            "gapSampledAt": "2024-03-02T15:05:20.851000+00:00"
           },
           {
             "number": 2,
             "durationSeconds": 96.862,
             "start": "2024-03-02T15:05:21.019000+00:00",
             "pitOut": false,
-            "position": 2
+            "position": 2,
+            "gapToLeader": 1.553,
+            "gapSampledAt": "2024-03-02T15:06:57.739000+00:00"
           },
           {
             "number": 3,
             "durationSeconds": 98.062,
             "start": "2024-03-02T15:06:57.933000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 2.862,
+            "gapSampledAt": "2024-03-02T15:08:35.763000+00:00"
           },
           {
             "number": 4,
             "durationSeconds": 97.752,
             "start": "2024-03-02T15:08:36.013000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 3.967,
+            "gapSampledAt": "2024-03-02T15:10:13.530000+00:00"
           },
           {
             "number": 5,
             "durationSeconds": 98.131,
             "start": "2024-03-02T15:10:13.780000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 4.925,
+            "gapSampledAt": "2024-03-02T15:11:51.637000+00:00"
           },
           {
             "number": 6,
             "durationSeconds": 97.782,
             "start": "2024-03-02T15:11:51.804000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 5.615,
+            "gapSampledAt": "2024-03-02T15:13:29.454000+00:00"
           },
           {
             "number": 7,
             "durationSeconds": 98.957,
             "start": "2024-03-02T15:13:29.724000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 7.534,
+            "gapSampledAt": "2024-03-02T15:15:08.405000+00:00"
           },
           {
             "number": 8,
             "durationSeconds": 98.136,
             "start": "2024-03-02T15:15:08.572000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 8.646,
+            "gapSampledAt": "2024-03-02T15:16:46.573000+00:00"
           },
           {
             "number": 9,
             "durationSeconds": 97.844,
             "start": "2024-03-02T15:16:46.813000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 9.261,
+            "gapSampledAt": "2024-03-02T15:18:24.380000+00:00"
           },
           {
             "number": 10,
             "durationSeconds": 97.884,
             "start": "2024-03-02T15:18:24.582000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 10.185,
+            "gapSampledAt": "2024-03-02T15:20:02.284000+00:00"
           },
           {
             "number": 11,
             "durationSeconds": 101.737,
             "start": "2024-03-02T15:20:02.545000+00:00",
             "pitOut": false,
-            "position": 6
+            "position": 6,
+            "gapToLeader": 12.287,
+            "gapSampledAt": "2024-03-02T15:21:40.044000+00:00"
           },
           {
             "number": 12,
             "durationSeconds": 117.471,
             "start": "2024-03-02T15:21:44.282000+00:00",
             "pitOut": true,
-            "position": 13
+            "position": 13,
+            "gapToLeader": 35.263,
+            "gapSampledAt": "2024-03-02T15:23:41.483000+00:00"
           },
           {
             "number": 13,
             "durationSeconds": 96.432,
             "start": "2024-03-02T15:23:41.713000+00:00",
             "pitOut": false,
-            "position": 10
+            "position": 10,
+            "gapToLeader": 34.688,
+            "gapSampledAt": "2024-03-02T15:25:16.507000+00:00"
           },
           {
             "number": 14,
             "durationSeconds": 96.756,
             "start": "2024-03-02T15:25:18.300000+00:00",
             "pitOut": false,
-            "position": 8
+            "position": 8,
+            "gapToLeader": 34.393,
+            "gapSampledAt": "2024-03-02T15:26:54.704000+00:00"
           },
           {
             "number": 15,
             "durationSeconds": 96.813,
             "start": "2024-03-02T15:26:54.922000+00:00",
             "pitOut": false,
-            "position": 6
+            "position": 6,
+            "gapToLeader": 34.195,
+            "gapSampledAt": "2024-03-02T15:28:31.560000+00:00"
           },
           {
             "number": 16,
             "durationSeconds": 96.673,
             "start": "2024-03-02T15:28:31.703000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 33.7,
+            "gapSampledAt": "2024-03-02T15:30:08.162000+00:00"
           },
           {
             "number": 17,
             "durationSeconds": 97.302,
             "start": "2024-03-02T15:30:08.227000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 31.106,
+            "gapSampledAt": "2024-03-02T15:31:45.487000+00:00"
           },
           {
             "number": 18,
             "durationSeconds": 97.438,
             "start": "2024-03-02T15:31:45.651000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 10.69,
+            "gapSampledAt": "2024-03-02T15:33:22.933000+00:00"
           },
           {
             "number": 19,
             "durationSeconds": 96.821,
             "start": "2024-03-02T15:33:23.136000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 12.228,
+            "gapSampledAt": "2024-03-02T15:34:59.759000+00:00"
           },
           {
             "number": 20,
             "durationSeconds": 96.794,
             "start": "2024-03-02T15:34:59.925000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 13.862,
+            "gapSampledAt": "2024-03-02T15:36:36.535000+00:00"
           },
           {
             "number": 21,
             "durationSeconds": 96.977,
             "start": "2024-03-02T15:36:36.698000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 15.523,
+            "gapSampledAt": "2024-03-02T15:38:13.483000+00:00"
           },
           {
             "number": 22,
             "durationSeconds": 96.796,
             "start": "2024-03-02T15:38:13.647000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 17.115,
+            "gapSampledAt": "2024-03-02T15:39:50.308000+00:00"
           },
           {
             "number": 23,
             "durationSeconds": 96.987,
             "start": "2024-03-02T15:39:50.476000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 18.886,
+            "gapSampledAt": "2024-03-02T15:41:27.260000+00:00"
           },
           {
             "number": 24,
             "durationSeconds": 96.924,
             "start": "2024-03-02T15:41:27.495000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 20.521,
+            "gapSampledAt": "2024-03-02T15:43:04.219000+00:00"
           },
           {
             "number": 25,
             "durationSeconds": 96.76,
             "start": "2024-03-02T15:43:04.442000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 21.939,
+            "gapSampledAt": "2024-03-02T15:44:40.973000+00:00"
           },
           {
             "number": 26,
             "durationSeconds": 96.81,
             "start": "2024-03-02T15:44:41.174000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 23.526,
+            "gapSampledAt": "2024-03-02T15:46:17.788000+00:00"
           },
           {
             "number": 27,
             "durationSeconds": 96.831,
             "start": "2024-03-02T15:46:18.033000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 24.776,
+            "gapSampledAt": "2024-03-02T15:47:54.599000+00:00"
           },
           {
             "number": 28,
             "durationSeconds": 96.907,
             "start": "2024-03-02T15:47:54.787000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 26.206,
+            "gapSampledAt": "2024-03-02T15:49:31.491000+00:00"
           },
           {
             "number": 29,
             "durationSeconds": 96.963,
             "start": "2024-03-02T15:49:31.662000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 27.376,
+            "gapSampledAt": "2024-03-02T15:51:08.451000+00:00"
           },
           {
             "number": 30,
             "durationSeconds": 97.158,
             "start": "2024-03-02T15:51:08.688000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 28.763,
+            "gapSampledAt": "2024-03-02T15:52:45.627000+00:00"
           },
           {
             "number": 31,
             "durationSeconds": 97.031,
             "start": "2024-03-02T15:52:45.777000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 30.115,
+            "gapSampledAt": "2024-03-02T15:54:22.665000+00:00"
           },
           {
             "number": 32,
             "durationSeconds": 96.941,
             "start": "2024-03-02T15:54:22.697000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 31.17,
+            "gapSampledAt": "2024-03-02T15:55:59.609000+00:00"
           },
           {
             "number": 33,
             "durationSeconds": 96.741,
             "start": "2024-03-02T15:55:59.834000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 32.048,
+            "gapSampledAt": "2024-03-02T15:57:36.348000+00:00"
           },
           {
             "number": 34,
             "durationSeconds": 99.614,
             "start": "2024-03-02T15:57:36.511000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 33.113,
+            "gapSampledAt": "2024-03-02T15:59:12.099000+00:00"
           },
           {
             "number": 35,
             "durationSeconds": 116.166,
             "start": "2024-03-02T15:59:16.179000+00:00",
             "pitOut": true,
-            "position": 6
+            "position": 6,
+            "gapToLeader": 55.677,
+            "gapSampledAt": "2024-03-02T16:01:12.158000+00:00"
           },
           {
             "number": 36,
             "durationSeconds": 94.09,
             "start": "2024-03-02T16:01:12.318000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 53.562,
+            "gapSampledAt": "2024-03-02T16:02:46.235000+00:00"
           },
           {
             "number": 37,
             "durationSeconds": 94.897,
             "start": "2024-03-02T16:02:46.475000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 49.225,
+            "gapSampledAt": "2024-03-02T16:04:21.125000+00:00"
           },
           {
             "number": 38,
             "durationSeconds": 94.783,
             "start": "2024-03-02T16:04:21.318000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 27.563,
+            "gapSampledAt": "2024-03-02T16:05:55.934000+00:00"
           },
           {
             "number": 39,
             "durationSeconds": 95.087,
             "start": "2024-03-02T16:05:56.155000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 30.042,
+            "gapSampledAt": "2024-03-02T16:07:30.988000+00:00"
           },
           {
             "number": 40,
             "durationSeconds": 94.859,
             "start": "2024-03-02T16:07:31.234000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 28.312,
+            "gapSampledAt": "2024-03-02T16:09:05.836000+00:00"
           },
           {
             "number": 41,
             "durationSeconds": 95.028,
             "start": "2024-03-02T16:09:05.969000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 28.05,
+            "gapSampledAt": "2024-03-02T16:10:40.876000+00:00"
           },
           {
             "number": 42,
             "durationSeconds": 94.982,
             "start": "2024-03-02T16:10:41.023000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 28.365,
+            "gapSampledAt": "2024-03-02T16:12:15.875000+00:00"
           },
           {
             "number": 43,
             "durationSeconds": 95.192,
             "start": "2024-03-02T16:12:16.114000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 29.406,
+            "gapSampledAt": "2024-03-02T16:13:51.039000+00:00"
           },
           {
             "number": 44,
             "durationSeconds": 95.051,
             "start": "2024-03-02T16:13:51.222000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 29.926,
+            "gapSampledAt": "2024-03-02T16:15:26.113000+00:00"
           },
           {
             "number": 45,
             "durationSeconds": 95.22,
             "start": "2024-03-02T16:15:26.233000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 30.897,
+            "gapSampledAt": "2024-03-02T16:17:01.316000+00:00"
           },
           {
             "number": 46,
             "durationSeconds": 95.058,
             "start": "2024-03-02T16:17:01.499000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 31.762,
+            "gapSampledAt": "2024-03-02T16:18:36.372000+00:00"
           },
           {
             "number": 47,
             "durationSeconds": 95.057,
             "start": "2024-03-02T16:18:36.521000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 32.58,
+            "gapSampledAt": "2024-03-02T16:20:11.448000+00:00"
           },
           {
             "number": 48,
             "durationSeconds": 95.308,
             "start": "2024-03-02T16:20:11.619000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 33.538,
+            "gapSampledAt": "2024-03-02T16:21:46.813000+00:00"
           },
           {
             "number": 49,
             "durationSeconds": 95.302,
             "start": "2024-03-02T16:21:47.040000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 34.437,
+            "gapSampledAt": "2024-03-02T16:23:22.041000+00:00"
           },
           {
             "number": 50,
             "durationSeconds": 95.383,
             "start": "2024-03-02T16:23:22.246000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 35.037,
+            "gapSampledAt": "2024-03-02T16:24:57.431000+00:00"
           },
           {
             "number": 51,
             "durationSeconds": 95.418,
             "start": "2024-03-02T16:24:57.621000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 36.115,
+            "gapSampledAt": "2024-03-02T16:26:32.889000+00:00"
           },
           {
             "number": 52,
             "durationSeconds": 95.394,
             "start": "2024-03-02T16:26:33.105000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 36.603,
+            "gapSampledAt": "2024-03-02T16:28:08.220000+00:00"
           },
           {
             "number": 53,
             "durationSeconds": 95.48,
             "start": "2024-03-02T16:28:08.474000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 36.483,
+            "gapSampledAt": "2024-03-02T16:29:43.708000+00:00"
           },
           {
             "number": 54,
             "durationSeconds": 95.265,
             "start": "2024-03-02T16:29:43.963000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 36.414,
+            "gapSampledAt": "2024-03-02T16:31:19.003000+00:00"
           },
           {
             "number": 55,
             "durationSeconds": 95.785,
             "start": "2024-03-02T16:31:19.188000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 37.015,
+            "gapSampledAt": "2024-03-02T16:32:54.785000+00:00"
           },
           {
             "number": 56,
             "durationSeconds": 95.924,
             "start": "2024-03-02T16:32:55.041000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 38.268,
+            "gapSampledAt": "2024-03-02T16:34:30.730000+00:00"
           },
           {
             "number": 57,
             "durationSeconds": 96.324,
             "start": "2024-03-02T16:34:30.893000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 39.669,
+            "gapSampledAt": "2024-03-02T16:36:07.071000+00:00"
           }
         ],
         "pitStops": [
@@ -811,399 +925,513 @@
             "durationSeconds": 101.034,
             "start": "2024-03-02T15:03:42.341000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 3.336,
+            "gapSampledAt": "2024-03-02T15:05:23.224000+00:00"
           },
           {
             "number": 2,
             "durationSeconds": 97.236,
             "start": "2024-03-02T15:05:23.374000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 4.276,
+            "gapSampledAt": "2024-03-02T15:07:00.420000+00:00"
           },
           {
             "number": 3,
             "durationSeconds": 97.08,
             "start": "2024-03-02T15:07:00.599000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 4.603,
+            "gapSampledAt": "2024-03-02T15:08:37.529000+00:00"
           },
           {
             "number": 4,
             "durationSeconds": 97.264,
             "start": "2024-03-02T15:08:37.735000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 5.22,
+            "gapSampledAt": "2024-03-02T15:10:14.794000+00:00"
           },
           {
             "number": 5,
             "durationSeconds": 98.032,
             "start": "2024-03-02T15:10:14.948000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 6.079,
+            "gapSampledAt": "2024-03-02T15:11:52.851000+00:00"
           },
           {
             "number": 6,
             "durationSeconds": 97.741,
             "start": "2024-03-02T15:11:53.110000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 6.728,
+            "gapSampledAt": "2024-03-02T15:13:30.579000+00:00"
           },
           {
             "number": 7,
             "durationSeconds": 98.26,
             "start": "2024-03-02T15:13:30.813000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 7.95,
+            "gapSampledAt": "2024-03-02T15:15:08.830000+00:00"
           },
           {
             "number": 8,
             "durationSeconds": 98.183,
             "start": "2024-03-02T15:15:09.048000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 9.109,
+            "gapSampledAt": "2024-03-02T15:16:47.001000+00:00"
           },
           {
             "number": 9,
             "durationSeconds": 98.03,
             "start": "2024-03-02T15:16:47.231000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 9.91,
+            "gapSampledAt": "2024-03-02T15:18:25.033000+00:00"
           },
           {
             "number": 10,
             "durationSeconds": 97.608,
             "start": "2024-03-02T15:18:25.188000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 10.558,
+            "gapSampledAt": "2024-03-02T15:20:02.680000+00:00"
           },
           {
             "number": 11,
             "durationSeconds": 97.656,
             "start": "2024-03-02T15:20:02.878000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 11.129,
+            "gapSampledAt": "2024-03-02T15:21:40.299000+00:00"
           },
           {
             "number": 12,
             "durationSeconds": 97.65,
             "start": "2024-03-02T15:21:40.496000+00:00",
             "pitOut": false,
-            "position": 2
+            "position": 2,
+            "gapToLeader": 11.734,
+            "gapSampledAt": "2024-03-02T15:23:17.955000+00:00"
           },
           {
             "number": 13,
             "durationSeconds": 97.243,
             "start": "2024-03-02T15:23:18.127000+00:00",
             "pitOut": false,
-            "position": 2
+            "position": 2,
+            "gapToLeader": 11.947,
+            "gapSampledAt": "2024-03-02T15:24:55.243000+00:00"
           },
           {
             "number": 14,
             "durationSeconds": 99.753,
             "start": "2024-03-02T15:24:55.375000+00:00",
             "pitOut": false,
-            "position": 2
+            "position": 2,
+            "gapToLeader": 12.207,
+            "gapSampledAt": "2024-03-02T15:26:31.031000+00:00"
           },
           {
             "number": 15,
             "durationSeconds": 117.225,
             "start": "2024-03-02T15:26:35.190000+00:00",
             "pitOut": true,
-            "position": 7
+            "position": 7,
+            "gapToLeader": 34.886,
+            "gapSampledAt": "2024-03-02T15:28:32.178000+00:00"
           },
           {
             "number": 16,
             "durationSeconds": 96.376,
             "start": "2024-03-02T15:28:32.415000+00:00",
             "pitOut": false,
-            "position": 5
+            "position": 5,
+            "gapToLeader": 34.094,
+            "gapSampledAt": "2024-03-02T15:30:08.556000+00:00"
           },
           {
             "number": 17,
             "durationSeconds": 95.507,
             "start": "2024-03-02T15:30:08.672000+00:00",
             "pitOut": false,
-            "position": 4
+            "position": 4,
+            "gapToLeader": 29.705,
+            "gapSampledAt": "2024-03-02T15:31:44.143000+00:00"
           },
           {
             "number": 18,
             "durationSeconds": 96.088,
             "start": "2024-03-02T15:31:44.184000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 7.939,
+            "gapSampledAt": "2024-03-02T15:33:20.177000+00:00"
           },
           {
             "number": 19,
             "durationSeconds": 96.236,
             "start": "2024-03-02T15:33:20.251000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 8.892,
+            "gapSampledAt": "2024-03-02T15:34:56.423000+00:00"
           },
           {
             "number": 20,
             "durationSeconds": 96.034,
             "start": "2024-03-02T15:34:56.624000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 9.766,
+            "gapSampledAt": "2024-03-02T15:36:32.413000+00:00"
           },
           {
             "number": 21,
             "durationSeconds": 96.104,
             "start": "2024-03-02T15:36:32.579000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 10.554,
+            "gapSampledAt": "2024-03-02T15:38:08.611000+00:00"
           },
           {
             "number": 22,
             "durationSeconds": 96.008,
             "start": "2024-03-02T15:38:08.718000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 11.358,
+            "gapSampledAt": "2024-03-02T15:39:44.548000+00:00"
           },
           {
             "number": 23,
             "durationSeconds": 96.149,
             "start": "2024-03-02T15:39:44.773000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 12.291,
+            "gapSampledAt": "2024-03-02T15:41:20.704000+00:00"
           },
           {
             "number": 24,
             "durationSeconds": 96.2,
             "start": "2024-03-02T15:41:20.891000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 13.202,
+            "gapSampledAt": "2024-03-02T15:42:56.888000+00:00"
           },
           {
             "number": 25,
             "durationSeconds": 96.22,
             "start": "2024-03-02T15:42:57.074000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 14.08,
+            "gapSampledAt": "2024-03-02T15:44:33.118000+00:00"
           },
           {
             "number": 26,
             "durationSeconds": 96.221,
             "start": "2024-03-02T15:44:33.258000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 15.078,
+            "gapSampledAt": "2024-03-02T15:46:09.336000+00:00"
           },
           {
             "number": 27,
             "durationSeconds": 96.272,
             "start": "2024-03-02T15:46:09.627000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 15.769,
+            "gapSampledAt": "2024-03-02T15:47:45.568000+00:00"
           },
           {
             "number": 28,
             "durationSeconds": 96.534,
             "start": "2024-03-02T15:47:45.755000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 16.826,
+            "gapSampledAt": "2024-03-02T15:49:22.130000+00:00"
           },
           {
             "number": 29,
             "durationSeconds": 96.6,
             "start": "2024-03-02T15:49:22.302000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 17.633,
+            "gapSampledAt": "2024-03-02T15:50:58.737000+00:00"
           },
           {
             "number": 30,
             "durationSeconds": 96.337,
             "start": "2024-03-02T15:50:58.869000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 18.199,
+            "gapSampledAt": "2024-03-02T15:52:35.087000+00:00"
           },
           {
             "number": 31,
             "durationSeconds": 96.537,
             "start": "2024-03-02T15:52:35.311000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 19.057,
+            "gapSampledAt": "2024-03-02T15:54:11.669000+00:00"
           },
           {
             "number": 32,
             "durationSeconds": 96.762,
             "start": "2024-03-02T15:54:11.818000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 19.933,
+            "gapSampledAt": "2024-03-02T15:55:48.411000+00:00"
           },
           {
             "number": 33,
             "durationSeconds": 96.556,
             "start": "2024-03-02T15:55:48.562000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 20.626,
+            "gapSampledAt": "2024-03-02T15:57:24.939000+00:00"
           },
           {
             "number": 34,
             "durationSeconds": 96.551,
             "start": "2024-03-02T15:57:25.132000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 21.044,
+            "gapSampledAt": "2024-03-02T15:59:01.469000+00:00"
           },
           {
             "number": 35,
             "durationSeconds": 99.274,
             "start": "2024-03-02T15:59:01.692000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 21.868,
+            "gapSampledAt": "2024-03-02T16:00:36.862000+00:00"
           },
           {
             "number": 36,
             "durationSeconds": 115.62,
             "start": "2024-03-02T16:00:40.929000+00:00",
             "pitOut": true,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 43.715,
+            "gapSampledAt": "2024-03-02T16:02:36.363000+00:00"
           },
           {
             "number": 37,
             "durationSeconds": 95.302,
             "start": "2024-03-02T16:02:36.585000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 39.783,
+            "gapSampledAt": "2024-03-02T16:04:11.669000+00:00"
           },
           {
             "number": 38,
             "durationSeconds": 95.1,
             "start": "2024-03-02T16:04:11.792000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 18.438,
+            "gapSampledAt": "2024-03-02T16:05:46.781000+00:00"
           },
           {
             "number": 39,
             "durationSeconds": 94.709,
             "start": "2024-03-02T16:05:46.917000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 20.539,
+            "gapSampledAt": "2024-03-02T16:07:21.482000+00:00"
           },
           {
             "number": 40,
             "durationSeconds": 94.739,
             "start": "2024-03-02T16:07:21.661000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 18.689,
+            "gapSampledAt": "2024-03-02T16:08:56.200000+00:00"
           },
           {
             "number": 41,
             "durationSeconds": 95.041,
             "start": "2024-03-02T16:08:56.441000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 18.44,
+            "gapSampledAt": "2024-03-02T16:10:31.250000+00:00"
           },
           {
             "number": 42,
             "durationSeconds": 94.861,
             "start": "2024-03-02T16:10:31.440000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 18.634,
+            "gapSampledAt": "2024-03-02T16:12:06.136000+00:00"
           },
           {
             "number": 43,
             "durationSeconds": 94.795,
             "start": "2024-03-02T16:12:06.345000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 19.278,
+            "gapSampledAt": "2024-03-02T16:13:40.906000+00:00"
           },
           {
             "number": 44,
             "durationSeconds": 94.507,
             "start": "2024-03-02T16:13:41.129000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 19.254,
+            "gapSampledAt": "2024-03-02T16:15:15.469000+00:00"
           },
           {
             "number": 45,
             "durationSeconds": 94.79,
             "start": "2024-03-02T16:15:15.714000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 19.795,
+            "gapSampledAt": "2024-03-02T16:16:50.229000+00:00"
           },
           {
             "number": 46,
             "durationSeconds": 94.853,
             "start": "2024-03-02T16:16:50.393000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 20.455,
+            "gapSampledAt": "2024-03-02T16:18:25.109000+00:00"
           },
           {
             "number": 47,
             "durationSeconds": 94.901,
             "start": "2024-03-02T16:18:25.312000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 21.117,
+            "gapSampledAt": "2024-03-02T16:20:00.015000+00:00"
           },
           {
             "number": 48,
             "durationSeconds": 94.981,
             "start": "2024-03-02T16:20:00.228000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 21.748,
+            "gapSampledAt": "2024-03-02T16:21:34.957000+00:00"
           },
           {
             "number": 49,
             "durationSeconds": 95.44,
             "start": "2024-03-02T16:21:35.199000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 22.785,
+            "gapSampledAt": "2024-03-02T16:23:10.409000+00:00"
           },
           {
             "number": 50,
             "durationSeconds": 95.142,
             "start": "2024-03-02T16:23:10.557000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 23.144,
+            "gapSampledAt": "2024-03-02T16:24:45.532000+00:00"
           },
           {
             "number": 51,
             "durationSeconds": 95.282,
             "start": "2024-03-02T16:24:45.766000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 24.086,
+            "gapSampledAt": "2024-03-02T16:26:20.828000+00:00"
           },
           {
             "number": 52,
             "durationSeconds": 95.083,
             "start": "2024-03-02T16:26:20.950000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 24.263,
+            "gapSampledAt": "2024-03-02T16:27:55.915000+00:00"
           },
           {
             "number": 53,
             "durationSeconds": 95.211,
             "start": "2024-03-02T16:27:56.175000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 23.874,
+            "gapSampledAt": "2024-03-02T16:29:31.139000+00:00"
           },
           {
             "number": 54,
             "durationSeconds": 95.309,
             "start": "2024-03-02T16:29:31.299000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 23.849,
+            "gapSampledAt": "2024-03-02T16:31:06.454000+00:00"
           },
           {
             "number": 55,
             "durationSeconds": 95.407,
             "start": "2024-03-02T16:31:06.647000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 24.072,
+            "gapSampledAt": "2024-03-02T16:32:41.799000+00:00"
           },
           {
             "number": 56,
             "durationSeconds": 95.305,
             "start": "2024-03-02T16:32:41.989000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 24.706,
+            "gapSampledAt": "2024-03-02T16:34:17.135000+00:00"
           },
           {
             "number": 57,
             "durationSeconds": 95.327,
             "start": "2024-03-02T16:34:17.271000+00:00",
             "pitOut": false,
-            "position": 3
+            "position": 3,
+            "gapToLeader": 25.11,
+            "gapSampledAt": "2024-03-02T16:35:52.483000+00:00"
           }
         ],
         "pitStops": [
@@ -1247,6 +1475,64 @@
           "status": "FINISHED"
         },
         "unavailable": []
+      }
+    ],
+    "events": [
+      {
+        "date": "2024-03-02T14:20:01+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "GREEN",
+        "scope": "Track",
+        "message": "GREEN LIGHT - PIT EXIT OPEN"
+      },
+      {
+        "date": "2024-03-02T15:03:59+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "DOUBLE YELLOW",
+        "scope": "Sector",
+        "message": "DOUBLE YELLOW IN TRACK SECTOR 2"
+      },
+      {
+        "date": "2024-03-02T15:04:03+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 2"
+      },
+      {
+        "date": "2024-03-02T15:05:55+00:00",
+        "lap": 2,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 4"
+      },
+      {
+        "date": "2024-03-02T15:19:07+00:00",
+        "lap": 10,
+        "category": "Flag",
+        "flag": "YELLOW",
+        "scope": "Sector",
+        "message": "YELLOW IN TRACK SECTOR 4"
+      },
+      {
+        "date": "2024-03-02T15:19:58+00:00",
+        "lap": 11,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 4"
+      },
+      {
+        "date": "2024-03-02T16:35:26+00:00",
+        "lap": 57,
+        "category": "Flag",
+        "flag": "CHEQUERED",
+        "scope": "Track",
+        "message": "CHEQUERED FLAG"
       }
     ],
     "notes": []

@@ -32,7 +32,7 @@ const races = await read("/api/races?season=2024");
 await pause(1500);
 const drivers = await read("/api/races/9472/drivers");
 await pause(1500);
-const comparison = await read("/api/races/9472/comparison?drivers=16,55");
+const comparison = await read("/api/races/9472/comparison?drivers=16,55&v=2");
 if (
   !Array.isArray(races.races) ||
   !races.races.some((race) => race.sessionKey === 9472)
@@ -57,6 +57,14 @@ if (
   throw new Error("Featured comparison is incomplete.");
 if (comparison.source?.kind === "snapshot")
   throw new Error("The comparison came from a saved snapshot.");
+if (!Array.isArray(comparison.events) || comparison.events.length === 0)
+  throw new Error("Race-control context is missing from the comparison.");
+if (
+  !comparison.drivers.every((driver) =>
+    driver.laps.some((lap) => lap.gapSampledAt),
+  )
+)
+  throw new Error("Gap-to-leader samples are missing for a featured driver.");
 const snapshot = {
   capturedAt: new Date().toISOString(),
   races: races.races,

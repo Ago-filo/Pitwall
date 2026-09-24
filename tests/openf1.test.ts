@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
-import { buildComparison, normalizeLaps, OpenF1 } from "../worker/openf1";
+import {
+  buildComparison,
+  normalizeLaps,
+  normalizeRaceEvents,
+  OpenF1,
+  UpstreamError,
+} from "../worker/openf1";
 import { handleRequest } from "../worker/index";
 
 const race = {
@@ -51,6 +57,88 @@ describe("race data normalization", () => {
       { position: 3, durationSeconds: 90 },
       { position: null, durationSeconds: null, pitOut: true },
     ]);
+  });
+
+  it("uses only gap samples within a timed lap and preserves lapped labels", () => {
+    const laps = [
+      {
+        driver_number: 16,
+        lap_number: 1,
+        date_start: "2024-03-02T15:00:00Z",
+        lap_duration: 90,
+        is_pit_out_lap: false,
+      },
+      {
+        driver_number: 16,
+        lap_number: 2,
+        date_start: "2024-03-02T15:01:30Z",
+        lap_duration: 90,
+        is_pit_out_lap: false,
+      },
+      {
+        driver_number: 16,
+        lap_number: 3,
+        date_start: "2024-03-02T15:03:00Z",
+        lap_duration: null,
+        is_pit_out_lap: false,
+      },
+    ];
+    const intervals = [
+      { driver_number: 16, date: "2024-03-02T14:59:59Z", gap_to_leader: 5 },
+      { driver_number: 16, date: "2024-03-02T15:00:40Z", gap_to_leader: 3.2 },
+      { driver_number: 16, date: "2024-03-02T15:01:20Z", gap_to_leader: 2.8 },
+      {
+        driver_number: 16,
+        date: "2024-03-02T15:02:00Z",
+        gap_to_leader: "+1 LAP",
+      },
+      { driver_number: 16, date: "2024-03-02T15:03:30Z", gap_to_leader: 1.5 },
+    ];
+    expect(normalizeLaps(laps, [], intervals)).toMatchObject([
+      { gapToLeader: 2.8, gapSampledAt: "2024-03-02T15:01:20Z" },
+      { gapToLeader: "+1 LAP", gapSampledAt: "2024-03-02T15:02:00Z" },
+      { gapToLeader: null, gapSampledAt: null },
+    ]);
+  });
+
+  it("keeps major race-control context and collapses repeated messages within a lap", () => {
+    const events = normalizeRaceEvents([
+      {
+        date: "2025-03-16T04:00:00Z",
+        lap_number: 1,
+        category: "SafetyCar",
+        flag: null,
+        scope: "Track",
+        message: "SAFETY CAR DEPLOYED",
+      },
+      {
+        date: "2025-03-16T04:00:02Z",
+        lap_number: 1,
+        category: "SafetyCar",
+        flag: null,
+        scope: "Track",
+        message: "SAFETY CAR DEPLOYED",
+      },
+      {
+        date: "2025-03-16T04:05:00Z",
+        lap_number: null,
+        category: "Flag",
+        flag: "RED",
+        scope: "Track",
+        message: "RED FLAG",
+      },
+      {
+        date: "2025-03-16T04:10:00Z",
+        lap_number: 4,
+        category: "Flag",
+        flag: "BLUE",
+        scope: "Driver",
+        message: "BLUE FLAG FOR CAR 16",
+      },
+    ]);
+    expect(events).toHaveLength(2);
+    expect(events[0]).toMatchObject({ lap: 1, category: "SafetyCar" });
+    expect(events[1]).toMatchObject({ lap: null, flag: "RED" });
   });
 
   it("keeps a DNF with no final position and distinguishes pit durations", () => {
@@ -203,6 +291,36 @@ describe("PitWall API", () => {
     expect(data.notes).toContain("Pit stop data is unavailable for this race.");
   });
 
+  it("keeps the core comparison when optional context endpoints fail", async () => {
+    const optionalApi = new OpenF1(fetcher as typeof fetch);
+    optionalApi.raceControl = vi
+      .fn()
+      .mockRejectedValue(new UpstreamError(503, "Unavailable"));
+    optionalApi.intervals = vi
+      .fn()
+      .mockRejectedValue(new UpstreamError(429, "Limited"));
+    const response = await handleRequest(
+      new Request(
+        "https://pitwall.test/api/races/7953/comparison?drivers=16,44",
+      ),
+      optionalApi,
+    );
+    const body = (await response.json()) as {
+      drivers: unknown[];
+      events: unknown[];
+      notes: string[];
+    };
+    expect(response.status).toBe(200);
+    expect(body.drivers).toHaveLength(2);
+    expect(body.events).toEqual([]);
+    expect(body.notes).toContain(
+      "Race control data is unavailable for this race.",
+    );
+    expect(body.notes).toContain(
+      "Gap-to-leader samples are unavailable for one or both selected drivers.",
+    );
+  });
+
   it("rejects duplicate drivers before fetching comparison datasets", async () => {
     const response = await handleRequest(
       new Request(
@@ -292,7 +410,11 @@ describe("featured race fallback", () => {
       unavailable,
     );
     const body = (await response.json()) as {
-      drivers: { driver: { number: number }; laps: unknown[] }[];
+      drivers: {
+        driver: { number: number };
+        laps: { gapSampledAt?: string | null }[];
+      }[];
+      events: { lap: number | null; message: string }[];
       source: { kind: string; capturedAt: string };
     };
     expect(response.status).toBe(200);
@@ -301,6 +423,12 @@ describe("featured race fallback", () => {
       55, 16,
     ]);
     expect(body.drivers.every((driver) => driver.laps.length >= 40)).toBe(true);
+    expect(
+      body.drivers.every((driver) =>
+        driver.laps.some((lap) => lap.gapSampledAt),
+      ),
+    ).toBe(true);
+    expect(body.events.length).toBeGreaterThan(0);
     expect(body.source.kind).toBe("snapshot");
     expect(Date.parse(body.source.capturedAt)).not.toBeNaN();
   });

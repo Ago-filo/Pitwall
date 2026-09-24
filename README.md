@@ -10,7 +10,7 @@ PitWall is an independent Formula 1 race strategy explorer. Pick a completed Gra
 
 - Completed races from 2023 onward, depending on OpenF1 availability
 - Two-driver position and lap-time charts with pit-out and pit-stop markers
-- Interactive lap timeline with synchronized chart markers and driver snapshots
+- Interactive lap timeline with synchronized chart markers, race-control messages, sampled gap-to-leader values and driver snapshots
 - Per-stint median pace from available timed laps, with explicit pit-lap exclusions
 - One-click Bahrain 2024 sample comparison and shareable comparison links
 - Saved, dated fallback for the featured comparison when OpenF1 is unavailable
@@ -48,7 +48,7 @@ Open the local URL printed by Vite. The development server runs the Worker throu
 
 ## Featured race snapshot
 
-The versioned file `worker/snapshots/bahrain-2024.json` contains a validated response for Bahrain 2024, Leclerc vs Sainz, plus the 2024 race list and driver list. It is used only if an upstream request fails. The comparison visibly displays the snapshot capture date. To refresh it when OpenF1 historical access is available, run the app locally and then:
+The versioned file `worker/snapshots/bahrain-2024.json` contains a validated response for Bahrain 2024, Leclerc vs Sainz, including race-control context and gap samples, plus the 2024 race list and driver list. It is used only if an upstream request fails. The comparison visibly displays the snapshot capture date. To refresh it when OpenF1 historical access is available, run the app locally and then:
 
 ```sh
 npm run capture:featured
@@ -65,7 +65,7 @@ npm test
 npm run build
 ```
 
-GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position reconstruction, missing data, DNF results, stint pace and a mocked Worker request.
+GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position and gap alignment, race-control filtering, missing data, DNF results, stint pace and mocked Worker requests.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ Authenticate Wrangler with a Cloudflare account, then run `npm run deploy`. The 
 
 ## Engineering decisions and limitations
 
-See [architecture decisions](docs/decisions.md) and the [OpenF1 data model](docs/openf1-data-model.md). OpenF1 is unofficial and may have incomplete historical data. PitWall does not infer overtakes, causality or strategy outcomes from a position change alone. A position at lap end is an approximation based on timestamped position events and approximate lap starts. The free OpenF1 tier is limited to 3 requests per second and 30 per minute; high concurrent traffic can still encounter `429` errors despite caching. During live F1 sessions, OpenF1 may block unauthenticated historical requests too. The saved Bahrain 2024 comparison remains available; other uncached comparisons require waiting until the session ends.
+See [architecture decisions](docs/decisions.md) and the [OpenF1 data model](docs/openf1-data-model.md). OpenF1 is unofficial and may have incomplete historical data. PitWall does not infer overtakes, causality or strategy outcomes from a position change alone. A position at lap end is an approximation based on timestamped position events and approximate lap starts. Gap-to-leader is the latest OpenF1 sample within each approximate lap window; it is not a synchronized head-to-head gap. The free OpenF1 tier is limited to 3 requests per second and 30 per minute; high concurrent traffic can still encounter `429` errors despite caching. During live F1 sessions, OpenF1 may block unauthenticated historical requests too. The saved Bahrain 2024 comparison remains available; other uncached comparisons require waiting until the session ends.
 
 This is an independent fan project and is not associated with Formula 1, FIA or OpenF1. See [portrait credits and licences](docs/photo-credits.md): portraits are archival and only available for selected drivers; all others use a typographic fallback. The interface does not use official Formula 1, team or sponsor logos as site branding.
 

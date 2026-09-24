@@ -5,6 +5,7 @@ import type {
   DriverRace,
   Lap,
   Race,
+  RaceEvent,
   Result,
 } from "../src/domain";
 
@@ -39,6 +40,19 @@ const positionSchema = z.object({
   driver_number: number,
   date: z.string(),
   position: number,
+});
+const intervalSchema = z.object({
+  driver_number: number,
+  date: z.string(),
+  gap_to_leader: z.union([number, z.string()]).nullish(),
+});
+const raceControlSchema = z.object({
+  date: z.string(),
+  lap_number: nullableNumber,
+  category: z.string(),
+  flag: z.string().nullish(),
+  scope: z.string().nullish(),
+  message: z.string(),
 });
 const pitSchema = z.object({
   driver_number: number,
@@ -179,6 +193,20 @@ export class OpenF1 {
   async results(key: number) {
     return this.get(`session_result?session_key=${key}`, resultSchema, 604800);
   }
+  async intervals(key: number, driverNumber: number) {
+    return this.get(
+      `intervals?session_key=${key}&driver_number=${driverNumber}`,
+      intervalSchema,
+      604800,
+    );
+  }
+  async raceControl(key: number) {
+    return this.get(
+      `race_control?session_key=${key}`,
+      raceControlSchema,
+      604800,
+    );
+  }
 }
 
 type Session = z.infer<typeof sessionSchema>;
@@ -214,11 +242,16 @@ export function toDriver(raw: z.infer<typeof driverSchema>): Driver {
 export function normalizeLaps(
   raw: z.infer<typeof lapSchema>[],
   positions: z.infer<typeof positionSchema>[],
+  intervals: z.infer<typeof intervalSchema>[] = [],
 ): Lap[] {
   const events = [...positions].sort(
     (a, b) => Date.parse(a.date) - Date.parse(b.date),
   );
+  const samples = [...intervals]
+    .filter((sample) => Number.isFinite(Date.parse(sample.date)))
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
   let eventIndex = 0;
+  let sampleIndex = 0;
   let lastPosition: number | null = null;
   return [...raw]
     .sort((a, b) => a.lap_number - b.lap_number)
@@ -237,13 +270,70 @@ export function normalizeLaps(
           eventIndex++;
         }
       }
+      let gapSample: (typeof samples)[number] | null = null;
+      if (Number.isFinite(start) && Number.isFinite(end)) {
+        while (
+          sampleIndex < samples.length &&
+          Date.parse(samples[sampleIndex].date) <= end
+        ) {
+          const sample = samples[sampleIndex];
+          if (Date.parse(sample.date) >= start) gapSample = sample;
+          sampleIndex++;
+        }
+      }
       return {
         number: lap.lap_number,
         durationSeconds: lap.lap_duration ?? null,
         start: lap.date_start ?? null,
         pitOut: lap.is_pit_out_lap ?? false,
         position: Number.isFinite(end) ? lastPosition : null,
+        gapToLeader: gapSample?.gap_to_leader ?? null,
+        gapSampledAt: gapSample?.date ?? null,
       };
+    });
+}
+
+export function normalizeRaceEvents(
+  raw: z.infer<typeof raceControlSchema>[],
+): RaceEvent[] {
+  const flags = new Set([
+    "YELLOW",
+    "DOUBLE YELLOW",
+    "RED",
+    "GREEN",
+    "CLEAR",
+    "CHEQUERED",
+  ]);
+  const seen = new Set<string>();
+  return raw
+    .filter(
+      (event) =>
+        event.category === "SafetyCar" ||
+        (event.category === "Flag" &&
+          !!event.flag &&
+          flags.has(event.flag) &&
+          ["Track", "Sector"].includes(event.scope ?? "")),
+    )
+    .filter((event) => Number.isFinite(Date.parse(event.date)))
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+    .flatMap((event) => {
+      const lap =
+        Number.isInteger(event.lap_number) && (event.lap_number ?? 0) > 0
+          ? event.lap_number!
+          : null;
+      const key = `${lap}:${event.category}:${event.flag ?? ""}:${event.message}`;
+      if (seen.has(key)) return [];
+      seen.add(key);
+      return [
+        {
+          date: event.date,
+          lap,
+          category: event.category as RaceEvent["category"],
+          flag: event.flag ?? null,
+          scope: event.scope ?? null,
+          message: event.message,
+        },
+      ];
     });
 }
 
@@ -270,6 +360,8 @@ export type RawComparison = {
   pits: z.infer<typeof pitSchema>[];
   stints: z.infer<typeof stintSchema>[];
   results: z.infer<typeof resultSchema>[];
+  intervals?: z.infer<typeof intervalSchema>[];
+  raceControl?: z.infer<typeof raceControlSchema>[];
 };
 export function buildComparison(
   race: Race,
@@ -282,7 +374,11 @@ export function buildComparison(
       items.filter((item) => item.driver_number === driver.number);
     return {
       driver,
-      laps: normalizeLaps(forDriver(raw.laps), forDriver(raw.positions)),
+      laps: normalizeLaps(
+        forDriver(raw.laps),
+        forDriver(raw.positions),
+        forDriver(raw.intervals ?? []),
+      ),
       pitStops: forDriver(raw.pits).map((p) => ({
         lap: p.lap_number,
         laneSeconds: p.lane_duration ?? null,
@@ -322,5 +418,10 @@ export function buildComparison(
     notes.push(
       "Some lap positions could not be reconstructed from timed position events.",
     );
-  return { race, drivers: mapped, notes };
+  return {
+    race,
+    drivers: mapped,
+    events: normalizeRaceEvents(raw.raceControl ?? []),
+    notes,
+  };
 }

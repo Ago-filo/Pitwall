@@ -10,7 +10,7 @@ import {
   MarkLineComponent,
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
-import type { Comparison, Driver, DriverRace, Race } from "./domain";
+import type { Comparison, Driver, DriverRace, Race, RaceEvent } from "./domain";
 import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
 import { lapSnapshot, stintPace } from "./analysis";
@@ -63,6 +63,27 @@ const displayTime = (seconds: number | null) =>
   seconds === null
     ? "—"
     : `${Math.floor(seconds / 60)}:${(seconds % 60).toFixed(3).padStart(6, "0")}`;
+
+function displayGap(lap: DriverRace["laps"][number] | null): string {
+  if (!lap?.gapSampledAt) return "—";
+  if (typeof lap.gapToLeader === "number")
+    return `+${lap.gapToLeader.toFixed(3)} s`;
+  if (typeof lap.gapToLeader === "string") return lap.gapToLeader;
+  return lap.position === 1 ? "LEADER" : "—";
+}
+
+function majorEventLaps(events: RaceEvent[]): number[] {
+  return [
+    ...new Set(
+      events
+        .filter(
+          (event) => event.category === "SafetyCar" || event.flag === "RED",
+        )
+        .map((event) => event.lap)
+        .filter((lap): lap is number => lap !== null),
+    ),
+  ];
+}
 
 function Select({
   label,
@@ -192,9 +213,11 @@ function ResultCard({ data, color }: { data: DriverRace; color: string }) {
 function PositionChart({
   drivers,
   selectedLap,
+  events,
 }: {
   drivers: Comparison["drivers"];
   selectedLap: number;
+  events: RaceEvent[];
 }) {
   const maxLap = Math.max(
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
@@ -258,7 +281,17 @@ function PositionChart({
                 width: 1.5,
                 opacity: 0.75,
               },
-              data: [{ xAxis: selectedLap }],
+              data: [
+                { xAxis: selectedLap },
+                ...majorEventLaps(events).map((lap) => ({
+                  xAxis: lap,
+                  lineStyle: {
+                    color: "#f4d95a",
+                    type: "dashed",
+                    opacity: 0.65,
+                  },
+                })),
+              ],
             }
           : undefined,
       data: d.laps.map((l) => [l.number, l.position]),
@@ -277,9 +310,11 @@ function PositionChart({
 function PaceChart({
   drivers,
   selectedLap,
+  events,
 }: {
   drivers: Comparison["drivers"];
   selectedLap: number;
+  events: RaceEvent[];
 }) {
   const maxLap = Math.max(
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
@@ -309,6 +344,14 @@ function PaceChart({
           ...d.pitStops.map((p) => ({ xAxis: p.lap })),
           ...(index === cursorDriverIndex
             ? [
+                ...majorEventLaps(events).map((lap) => ({
+                  xAxis: lap,
+                  lineStyle: {
+                    color: "#f4d95a",
+                    type: "dashed",
+                    opacity: 0.65,
+                  },
+                })),
                 {
                   xAxis: selectedLap,
                   lineStyle: {
@@ -478,15 +521,23 @@ function PitTable({ drivers }: { drivers: Comparison["drivers"] }) {
 
 function LapTimeline({
   drivers,
+  events,
   selectedLap,
   maxLap,
   onSelectLap,
 }: {
   drivers: Comparison["drivers"];
+  events: RaceEvent[];
   selectedLap: number;
   maxLap: number;
   onSelectLap: (lap: number) => void;
 }) {
+  const selectedEvents = events.filter((event) => event.lap === selectedLap);
+  const placedEvents = events.filter(
+    (event): event is RaceEvent & { lap: number } =>
+      event.lap !== null && event.lap <= maxLap,
+  );
+  const eventLaps = [...new Set(placedEvents.map((event) => event.lap))];
   return (
     <article
       className="panel lap-timeline"
@@ -497,7 +548,9 @@ function LapTimeline({
         <h3>Read the race, one lap at a time.</h3>
         <p>
           Move through the race to see both drivers at the same lap. Chart
-          markers follow your selection; unavailable data stays blank.
+          markers follow your selection; unavailable data stays blank. Gap to
+          leader uses the latest OpenF1 sample within each driver's approximate
+          lap window.
         </p>
       </div>
       <div className="timeline-control">
@@ -531,6 +584,34 @@ function LapTimeline({
           →
         </button>
       </div>
+      {eventLaps.length > 0 && (
+        <div className="context-jumps" aria-label="Race control events by lap">
+          <span>RACE CONTROL</span>
+          <div>
+            {eventLaps.map((lap) => {
+              const onLap = placedEvents.filter((event) => event.lap === lap);
+              const headline = onLap.find(
+                (event) => event.category === "SafetyCar",
+              )
+                ? "SAFETY CAR"
+                : (onLap.find((event) => event.flag === "RED")?.flag ??
+                  onLap[0].flag);
+              return (
+                <button
+                  key={lap}
+                  type="button"
+                  onClick={() => onSelectLap(lap)}
+                  aria-pressed={selectedLap === lap}
+                  title={onLap.map((event) => event.message).join(" · ")}
+                >
+                  L{lap} · {headline}
+                  {onLap.length > 1 ? ` +${onLap.length - 1}` : ""}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
       <div className="timeline-driver-grid">
         {drivers.map((driver, index) => {
           const snapshot = lapSnapshot(driver, selectedLap);
@@ -562,6 +643,16 @@ function LapTimeline({
                   <span>TYRE</span>
                   <strong>{stint?.compound ?? "—"}</strong>
                 </div>
+                <div
+                  title={
+                    lap?.gapSampledAt
+                      ? `OpenF1 sample: ${new Date(lap.gapSampledAt).toLocaleTimeString("en-GB", { timeZone: "UTC" })} UTC`
+                      : "No gap sample within this lap"
+                  }
+                >
+                  <span>GAP TO LEADER</span>
+                  <strong>{displayGap(lap)}</strong>
+                </div>
               </div>
               <p className="timeline-event">
                 {pitStop
@@ -575,6 +666,21 @@ function LapTimeline({
             </div>
           );
         })}
+      </div>
+      <div className="selected-race-events">
+        <strong>RACE CONTROL · LAP {selectedLap}</strong>
+        {selectedEvents.length ? (
+          selectedEvents.map((event, index) => (
+            <p key={`${event.date}-${index}`}>{event.message}</p>
+          ))
+        ) : (
+          <p>No selected race-control event is recorded on this lap.</p>
+        )}
+        <small>
+          Session messages provide context; they do not prove an effect on
+          either driver. Repeated identical messages within a lap are shown
+          once.
+        </small>
       </div>
     </article>
   );
@@ -723,6 +829,7 @@ function ComparisonView({ data }: { data: Comparison }) {
       {hasLaps && (
         <LapTimeline
           drivers={data.drivers}
+          events={data.events ?? []}
           selectedLap={selectedLap}
           maxLap={maxLap}
           onSelectLap={selectLap}
@@ -735,11 +842,16 @@ function ComparisonView({ data }: { data: Comparison }) {
             <h3>Where they ran</h3>
             <p>
               Last known position at each timed lap end. Gaps mean the position
-              could not be reconstructed.
+              could not be reconstructed. Amber dashed lines show Safety Car or
+              red-flag laps when recorded.
             </p>
           </div>
           {hasLaps ? (
-            <PositionChart drivers={data.drivers} selectedLap={selectedLap} />
+            <PositionChart
+              drivers={data.drivers}
+              selectedLap={selectedLap}
+              events={data.events ?? []}
+            />
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
@@ -750,11 +862,16 @@ function ComparisonView({ data }: { data: Comparison }) {
             <h3>Lap by lap</h3>
             <p>
               All available lap times. Dots mark pit-out laps; dashed lines mark
-              pit stops.
+              pit stops. Amber dashed lines show Safety Car or red-flag laps
+              when recorded.
             </p>
           </div>
           {hasLaps ? (
-            <PaceChart drivers={data.drivers} selectedLap={selectedLap} />
+            <PaceChart
+              drivers={data.drivers}
+              selectedLap={selectedLap}
+              events={data.events ?? []}
+            />
           ) : (
             <p className="empty-inline">Lap data unavailable.</p>
           )}
