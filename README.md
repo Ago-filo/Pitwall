@@ -14,6 +14,8 @@ PitWall is an independent Formula 1 race strategy explorer. Pick a completed Gra
 - Explicit notes for missing upstream data and unreconstructable lap positions
 - Responsive layout for desktop and mobile
 
+![PitWall race comparison of Leclerc and Hamilton](docs/comparison.png)
+
 ## Architecture
 
 ```mermaid
@@ -26,7 +28,7 @@ flowchart LR
   Query --> UI[React and ECharts]
 ```
 
-A Cloudflare Worker serves `/api/*` and Vite serves the React application as static assets from the same deployment. The browser never calls OpenF1 directly. The Worker caches historical upstream responses with the Workers Cache API, while TanStack Query caches API results in the browser. No database, account or paid API subscription is required.
+A Cloudflare Worker serves `/api/*` and Vite serves the React application as static assets from the same deployment. The browser never calls OpenF1 directly. Cloudflare Workers Caching stores completed PitWall API responses, the Worker uses the Cache API for upstream responses, and TanStack Query caches API results in the browser. No database, account or paid API subscription is required.
 
 ## Local development
 

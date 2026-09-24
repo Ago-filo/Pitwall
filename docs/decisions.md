@@ -34,9 +34,9 @@
 
 **Problem:** OpenF1's free historical tier is 3 requests per second and 30 per minute.
 
-**Decision:** cache upstream completed-race responses in the Worker for seven days and season lists for one hour, return browser cache headers, and use TanStack Query in memory. Uncached upstream requests within one Worker request are spaced by at least 400 ms. Return an actionable message on `429`; do not retry it automatically in the browser.
+**Decision:** cache historical API responses at the Worker boundary with Workers Caching enabled, retain the Cache API as a local upstream cache, return browser cache headers, and use TanStack Query in memory. Uncached upstream requests within one Worker request are spaced by at least 400 ms. Return an actionable message on `429`; do not retry it automatically in the browser.
 
-**Trade-off:** Cloudflare's Cache API is local to a data center and does not guarantee a global request ceiling during concurrent cold requests. A coordinated limiter or precomputation would be justified if public traffic grows.
+**Trade-off:** The Cache API is local to a data center, while Workers Caching stores completed API responses before the Worker runs. Cold or simultaneous distinct requests can still reach OpenF1. A coordinated limiter or precomputation would be justified if public traffic grows.
 
 ## Visualization
 

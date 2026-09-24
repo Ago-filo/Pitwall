@@ -14,6 +14,7 @@ import type { Comparison, DriverRace, Race } from "./domain";
 import { pitwall } from "./api";
 
 const surface = "#122632";
+const comparisonColors = ["#d8e95d", "#65d6dc"] as const;
 echarts.use([
   LineChart,
   ScatterChart,
@@ -67,13 +68,10 @@ function Select({
   );
 }
 
-function ResultCard({ data }: { data: DriverRace }) {
+function ResultCard({ data, color }: { data: DriverRace; color: string }) {
   const r = data.result;
   return (
-    <article
-      className="result-card"
-      style={{ borderTopColor: data.driver.color }}
-    >
+    <article className="result-card" style={{ borderTopColor: color }}>
       <div className="driver-line">
         <span className="driver-number">{data.driver.number}</span>
         <div>
@@ -100,7 +98,7 @@ function PositionChart({ drivers }: { drivers: Comparison["drivers"] }) {
   );
   const options = {
     backgroundColor: "transparent",
-    color: drivers.map((d) => d.driver.color),
+    color: comparisonColors,
     tooltip: {
       trigger: "axis",
       backgroundColor: surface,
@@ -159,7 +157,7 @@ function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
     ...drivers.flatMap((d) => d.laps.map((l) => l.number)),
     1,
   );
-  const series = drivers.flatMap((d) => [
+  const series = drivers.flatMap((d, index) => [
     {
       name: d.driver.acronym,
       type: "line",
@@ -171,7 +169,11 @@ function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
         silent: true,
         symbol: "none",
         label: { show: false },
-        lineStyle: { type: "dashed", color: d.driver.color, opacity: 0.5 },
+        lineStyle: {
+          type: "dashed",
+          color: comparisonColors[index],
+          opacity: 0.5,
+        },
         data: d.pitStops.map((p) => ({ xAxis: p.lap })),
       },
     },
@@ -187,10 +189,10 @@ function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
   const options = {
     backgroundColor: "transparent",
     color: [
-      drivers[0].driver.color,
-      drivers[0].driver.color,
-      drivers[1].driver.color,
-      drivers[1].driver.color,
+      comparisonColors[0],
+      comparisonColors[0],
+      comparisonColors[1],
+      comparisonColors[1],
     ],
     tooltip: {
       trigger: "item",
@@ -200,7 +202,11 @@ function PaceChart({ drivers }: { drivers: Comparison["drivers"] }) {
       formatter: (p: { seriesName: string; value: [number, number] }) =>
         `${p.seriesName}<br/>Lap ${p.value[0]} · ${displayTime(p.value[1])}`,
     },
-    legend: { textStyle: { color: text }, top: 2 },
+    legend: {
+      data: drivers.map((d) => d.driver.acronym),
+      textStyle: { color: text },
+      top: 2,
+    },
     grid: { left: 65, right: 18, top: 48, bottom: 45 },
     xAxis: {
       type: "value",
@@ -236,9 +242,12 @@ function Stints({ drivers }: { drivers: Comparison["drivers"] }) {
   );
   return (
     <div className="stints">
-      {drivers.map((d) => (
+      {drivers.map((d, index) => (
         <div className="stint-row" key={d.driver.number}>
-          <div className="stint-name" style={{ color: d.driver.color }}>
+          <div
+            className="stint-name"
+            style={{ color: comparisonColors[index] }}
+          >
             {d.driver.acronym}
           </div>
           <div className="stint-track">
@@ -262,6 +271,13 @@ function Stints({ drivers }: { drivers: Comparison["drivers"] }) {
               <span className="empty-inline">Stint data unavailable</span>
             )}
           </div>
+          <div className="stint-detail">
+            {d.stints.map((s) => (
+              <span key={s.number}>
+                {s.compound} {s.startLap}–{s.endLap ?? "?"}
+              </span>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -270,7 +286,13 @@ function Stints({ drivers }: { drivers: Comparison["drivers"] }) {
 
 function PitTable({ drivers }: { drivers: Comparison["drivers"] }) {
   const rows = drivers
-    .flatMap((d) => d.pitStops.map((p) => ({ ...p, driver: d.driver })))
+    .flatMap((d, index) =>
+      d.pitStops.map((p) => ({
+        ...p,
+        driver: d.driver,
+        color: comparisonColors[index],
+      })),
+    )
     .sort((a, b) => a.lap - b.lap);
   return rows.length ? (
     <div className="table-wrap">
@@ -286,7 +308,7 @@ function PitTable({ drivers }: { drivers: Comparison["drivers"] }) {
         <tbody>
           {rows.map((p, i) => (
             <tr key={`${p.driver.number}-${p.lap}-${i}`}>
-              <td style={{ color: p.driver.color }}>{p.driver.acronym}</td>
+              <td style={{ color: p.color }}>{p.driver.acronym}</td>
               <td>{p.lap}</td>
               <td>
                 {p.laneSeconds == null ? "—" : `${p.laneSeconds.toFixed(3)} s`}
@@ -329,8 +351,12 @@ function ComparisonView({ data }: { data: Comparison }) {
         </div>
       </div>
       <div className="result-grid">
-        {data.drivers.map((d) => (
-          <ResultCard key={d.driver.number} data={d} />
+        {data.drivers.map((d, index) => (
+          <ResultCard
+            key={d.driver.number}
+            data={d}
+            color={comparisonColors[index]}
+          />
         ))}
       </div>
       {data.notes.length > 0 && (

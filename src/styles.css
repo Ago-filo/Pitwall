@@ -535,3 +535,21 @@ footer a {
     max-width: 100%;
   }
 }
+.stint-detail {
+  display: none;
+}
+@media (max-width: 580px) {
+  .stint-detail {
+    display: flex;
+    grid-column: 2;
+    flex-wrap: wrap;
+    gap: 5px;
+    color: #b9cdd0;
+    font-size: 11px;
+  }
+  .stint-detail span {
+    background: #203842;
+    padding: 4px 6px;
+    border-radius: 2px;
+  }
+}
