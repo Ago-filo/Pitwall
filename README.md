@@ -12,6 +12,7 @@ PitWall is an independent Formula 1 race strategy explorer. Pick a completed Gra
 - Two-driver position and lap-time charts with pit-out and pit-stop markers
 - Tyre stints, pit lane duration and stationary duration when available
 - Explicit notes for missing upstream data and unreconstructable lap positions
+- Motorsport-inspired responsive interface with animated driver cards and selected Creative Commons portraits
 - Responsive layout for desktop and mobile
 
 ![PitWall race comparison of Leclerc and Hamilton](docs/comparison.png)
@@ -60,7 +61,7 @@ Authenticate Wrangler with a Cloudflare account, then run `npm run deploy`. The 
 
 See [architecture decisions](docs/decisions.md) and the [OpenF1 data model](docs/openf1-data-model.md). OpenF1 is unofficial and may have incomplete historical data. PitWall does not infer overtakes, causality or strategy outcomes from a position change alone. A position at lap end is an approximation based on timestamped position events and approximate lap starts. The free OpenF1 tier is limited to 3 requests per second and 30 per minute; high concurrent traffic can still encounter `429` errors despite caching.
 
-This is an independent fan project and is not associated with Formula 1, FIA or OpenF1.
+This is an independent fan project and is not associated with Formula 1, FIA or OpenF1. See [portrait credits and licences](docs/photo-credits.md): portraits are archival and only available for selected drivers; all others use a typographic fallback. The interface does not use official Formula 1, team or sponsor logos as site branding.
 
 ## Roadmap
 

@@ -10,7 +10,8 @@ import {
   MarkLineComponent,
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
-import type { Comparison, DriverRace, Race } from "./domain";
+import type { Comparison, Driver, DriverRace, Race } from "./domain";
+import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
 
 const surface = "#122632";
@@ -68,24 +69,94 @@ function Select({
   );
 }
 
+function PortraitPanel({
+  driver,
+  side,
+  season,
+}: {
+  driver: Driver | null;
+  side: "A" | "B";
+  season: number;
+}) {
+  const [failed, setFailed] = useState(false);
+  const portrait = driver ? portraitFor(driver.name, season) : null;
+  return (
+    <article
+      className={`portrait-panel portrait-${side.toLowerCase()} ${driver ? "is-selected" : ""}`}
+    >
+      <div className="portrait-topline">
+        <span>DRIVER {side}</span>
+        <span>{driver ? `#${driver.number}` : "AWAITING SELECTION"}</span>
+      </div>
+      <div className="portrait-visual">
+        {driver && portrait && !failed ? (
+          <img
+            src={portrait.url}
+            alt={driver.name}
+            loading="lazy"
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <span className="portrait-monogram" aria-hidden="true">
+            {driver ? driver.acronym : side}
+          </span>
+        )}
+        <span className="portrait-number" aria-hidden="true">
+          {driver?.number ?? "—"}
+        </span>
+      </div>
+      <div className="portrait-information">
+        <div>
+          <span className="portrait-team">
+            {driver?.team ?? "THE GRID IS OPEN"}
+          </span>
+          <h3>{driver?.name ?? "Select a driver"}</h3>
+        </div>
+        <span className="portrait-acronym">{driver?.acronym ?? "---"}</span>
+      </div>
+      {driver && portrait && !failed && (
+        <a
+          className="portrait-credit"
+          href={portrait.source}
+          target="_blank"
+          rel="noreferrer"
+        >
+          ARCHIVE PHOTO {portrait.year}: {portrait.author} · {portrait.license}{" "}
+          ↗
+        </a>
+      )}
+    </article>
+  );
+}
+
 function ResultCard({ data, color }: { data: DriverRace; color: string }) {
   const r = data.result;
+  const result =
+    r?.status === "FINISHED" && r.position
+      ? `P${r.position}`
+      : r?.status || "NO RESULT";
   return (
-    <article className="result-card" style={{ borderTopColor: color }}>
-      <div className="driver-line">
-        <span className="driver-number">{data.driver.number}</span>
+    <article className="result-card" style={{ borderColor: color }}>
+      <div className="result-card-kicker">
+        <span>RACE CLASSIFICATION</span>
+        <span>#{data.driver.number}</span>
+      </div>
+      <div className="result-card-main">
         <div>
+          <span className="result-acronym" style={{ color }}>
+            {data.driver.acronym}
+          </span>
           <h3>{data.driver.name}</h3>
           <p>{data.driver.team}</p>
         </div>
+        <strong className="result-position">{result}</strong>
       </div>
-      <div className="result-meta">
-        <strong>
-          {r?.status === "FINISHED" && r.position
-            ? `P${r.position}`
-            : r?.status || "NO RESULT"}
-        </strong>
-        <span>{r?.lapsCompleted ?? "—"} laps completed</span>
+      <div className="result-card-footer">
+        <span>{r?.lapsCompleted ?? "—"} LAPS COMPLETED</span>
+        <span>
+          {data.pitStops.length} PIT{" "}
+          {data.pitStops.length === 1 ? "STOP" : "STOPS"}
+        </span>
       </div>
     </article>
   );
@@ -333,12 +404,12 @@ function PitTable({ drivers }: { drivers: Comparison["drivers"] }) {
 function ComparisonView({ data }: { data: Comparison }) {
   const hasLaps = data.drivers.some((d) => d.laps.length);
   return (
-    <section className="comparison" aria-label="Race comparison">
+    <section className="comparison" id="analysis" aria-label="Race comparison">
       <div className="section-heading">
         <div>
           <span className="eyebrow">RACE COMPARISON</span>
           <h2>
-            {data.race.name} <span>{data.race.year}</span>
+            {data.race.name.toUpperCase()} <span>{data.race.year}</span>
           </h2>
           <p>
             {data.race.circuit} · {data.race.country} ·{" "}
@@ -461,6 +532,10 @@ export default function App() {
       value: String(d.number),
       label: `${d.acronym} — ${d.name}`,
     })) ?? [];
+  const selectedA =
+    drivers.data?.drivers.find((d) => String(d.number) === a) ?? null;
+  const selectedB =
+    drivers.data?.drivers.find((d) => String(d.number) === b) ?? null;
   const error = [
     seasons.error,
     races.error,
@@ -470,50 +545,148 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <div className="brand">
+        <a className="brand" href="#top" aria-label="PitWall home">
           <span className="brand-mark">
-            PW<span>.</span>
+            P<span>W</span>
+            <i>.</i>
           </span>
-          <span>PITWALL</span>
-        </div>
-        <a href="https://openf1.org/" target="_blank" rel="noreferrer">
-          DATA BY OPENF1 ↗
+          <span className="brand-name">
+            PITWALL <small>RACE INTELLIGENCE</small>
+          </span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#grid">THE GRID</a>
+          <a href="#analysis">ANALYSIS</a>
+        </nav>
+        <a
+          className="header-source"
+          href="https://openf1.org/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          POWERED BY OPENF1 <span>↗</span>
         </a>
       </header>
-      <main>
+      <main id="top">
         <section className="hero">
+          <div className="hero-scan" aria-hidden="true" />
           <div className="hero-copy">
             <span className="eyebrow">
-              <span className="live-dot" /> THE RACE, EXPLAINED
+              <span className="live-dot" /> INDEPENDENT RACE INTELLIGENCE /
+              2023—PRESENT
             </span>
             <h1>
-              Every race
+              EVERY RACE
               <br />
-              <em>has a story.</em>
+              <em>HAS A STORY.</em>
             </h1>
             <p>
-              Compare two drivers through position, pace and strategy. See how
-              the race unfolded, lap by lap.
+              Go beyond the chequered flag. Put two drivers side by side and
+              uncover the pace, position and pit strategy that shaped their
+              race.
             </p>
+            <a className="hero-cta" href="#grid">
+              BUILD A COMPARISON <span>↘</span>
+            </a>
           </div>
           <div className="hero-art" aria-hidden="true">
-            <div className="hero-ring ring-one" />
-            <div className="hero-ring ring-two" />
-            <div className="hero-ring ring-three" />
-            <span>
-              RACE
-              <br />
-              INTELLIGENCE
-            </span>
+            <span className="hero-art-caption">ENGINEERED FOR THE DETAIL</span>
+            <svg viewBox="0 0 780 380" role="presentation" focusable="false">
+              <g className="speed-lines" stroke="currentColor" strokeWidth="2">
+                <path d="M0 88h260M15 116h225M0 262h220M48 288h245M80 316h180" />
+                <path d="M480 88h300M545 116h235M580 262h200M520 288h260M600 316h180" />
+              </g>
+              <g
+                className="car-drawing"
+                fill="none"
+                stroke="currentColor"
+                strokeLinejoin="round"
+              >
+                <path
+                  strokeWidth="6"
+                  d="M350 28h80l16 56 30 27 61 29v94l-61 29-30 29-16 58h-80l-16-58-30-29-61-29v-94l61-29 30-27z"
+                />
+                <path
+                  strokeWidth="5"
+                  d="M326 110h128l24 31v98l-24 31H326l-24-31v-98z"
+                />
+                <path
+                  strokeWidth="4"
+                  d="M357 96l-14 54v80l14 53h66l14-53v-80l-14-54zM360 171h60v38h-60zM325 52h130M315 326h150"
+                />
+                <path
+                  strokeWidth="3"
+                  d="M390 28v54M390 292v58M302 164h-56M302 215h-56M478 164h56M478 215h56"
+                />
+                <rect
+                  x="215"
+                  y="120"
+                  width="38"
+                  height="74"
+                  rx="7"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <rect
+                  x="215"
+                  y="200"
+                  width="38"
+                  height="74"
+                  rx="7"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <rect
+                  x="527"
+                  y="120"
+                  width="38"
+                  height="74"
+                  rx="7"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <rect
+                  x="527"
+                  y="200"
+                  width="38"
+                  height="74"
+                  rx="7"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </g>
+            </svg>
+            <span className="hero-art-index">PW / 001</span>
           </div>
+          <span className="hero-watermark" aria-hidden="true">
+            RACE DATA
+          </span>
         </section>
+        <div className="race-ticker" aria-label="What PitWall compares">
+          <span>
+            01 <b>SELECT THE EVENT</b>
+          </span>
+          <i />
+          <span>
+            02 <b>SET THE DUEL</b>
+          </span>
+          <i />
+          <span>
+            03 <b>READ THE RACE</b>
+          </span>
+          <strong>POSITION · PACE · STRATEGY</strong>
+        </div>
         <section
           className="selector-panel"
+          id="grid"
           aria-label="Choose race and drivers"
         >
           <div className="selector-title">
             <span className="eyebrow">BUILD YOUR COMPARISON</span>
-            <h2>Choose the grid.</h2>
+            <h2>
+              SET THE <em>GRID.</em>
+            </h2>
+            <p>Choose a completed Grand Prix, then line up two drivers.</p>
           </div>
           <div className="selector-grid">
             <Select
@@ -559,6 +732,23 @@ export default function App() {
               disabled={!raceKey || drivers.isLoading}
             />
           </div>
+          <div className="portrait-grid" aria-label="Selected drivers">
+            <PortraitPanel
+              key={selectedA?.name ?? "empty-a"}
+              driver={selectedA}
+              side="A"
+              season={Number(season)}
+            />
+            <div className="versus" aria-hidden="true">
+              VS
+            </div>
+            <PortraitPanel
+              key={selectedB?.name ?? "empty-b"}
+              driver={selectedB}
+              side="B"
+              season={Number(season)}
+            />
+          </div>
           {races.data && !raceOptions.length && (
             <p className="selector-note">
               No completed races are available for this season yet.
@@ -598,7 +788,15 @@ export default function App() {
       <footer>
         <span>© {new Date().getFullYear()} PITWALL</span>
         <span>
-          Independent fan project · Historical data from{" "}
+          Independent fan project ·{" "}
+          <a
+            href="https://github.com/Ago-filo/Pitwall/blob/main/docs/photo-credits.md"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Photo credits
+          </a>{" "}
+          · Historical data from{" "}
           <a href="https://openf1.org/" target="_blank" rel="noreferrer">
             OpenF1
           </a>
