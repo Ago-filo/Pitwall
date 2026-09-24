@@ -761,10 +761,10 @@ export default function App() {
                 : "Unable to load race data."}{" "}
               <button
                 onClick={() => {
-                  void seasons.refetch();
-                  void races.refetch();
-                  void drivers.refetch();
-                  void comparison.refetch();
+                  if (seasons.error) void seasons.refetch();
+                  else if (races.error) void races.refetch();
+                  else if (drivers.error) void drivers.refetch();
+                  else if (comparison.error) void comparison.refetch();
                 }}
               >
                 Try again

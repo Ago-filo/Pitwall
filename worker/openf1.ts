@@ -103,6 +103,22 @@ export class OpenF1 {
         throw new UpstreamError(503, "OpenF1 is temporarily unavailable.");
       }
       if (response.status === 404) return [];
+      if (response.status === 401) {
+        const body: unknown = await response
+          .clone()
+          .json()
+          .catch(() => null);
+        const detail =
+          body && typeof body === "object" && "detail" in body
+            ? String(body.detail)
+            : "";
+        if (/live f1 session in progress/i.test(detail))
+          throw new UpstreamError(
+            503,
+            "OpenF1 pauses free historical access during live F1 sessions. Please try again after the session ends.",
+          );
+        throw new UpstreamError(502, "OpenF1 access is unavailable.");
+      }
       if (response.status === 429)
         throw new UpstreamError(
           429,
@@ -139,7 +155,7 @@ export class OpenF1 {
     return this.get(
       `sessions?year=${year}&session_name=Race`,
       sessionSchema,
-      3600,
+      year < new Date().getUTCFullYear() ? 30 * 86400 : 3600,
     );
   }
   async session(key: number) {

@@ -32,11 +32,11 @@
 
 ## Caching and rate limits
 
-**Problem:** OpenF1's free historical tier is 3 requests per second and 30 per minute.
+**Problem:** OpenF1's free historical tier is 3 requests per second and 30 per minute. During a live F1 session, its public API can also return `401` for past sessions.
 
-**Decision:** cache historical API responses at the Worker boundary with Workers Caching enabled, retain the Cache API as a local upstream cache, return browser cache headers, and use TanStack Query in memory. Uncached upstream requests within one Worker request are spaced by at least 400 ms. Return an actionable message on `429`; do not retry it automatically in the browser.
+**Decision:** cache historical API responses at the Worker boundary with Workers Caching enabled across deploy versions and `stale-if-error`, retain the Cache API as a local upstream cache, return browser cache headers, and use TanStack Query in memory. Race lists from past seasons remain fresh for 30 days; the current season remains fresh for one hour. Uncached upstream requests within one Worker request are spaced by at least 400 ms. Return actionable messages on `429` and OpenF1's live-session `401`, without automatic browser retries for either condition.
 
-**Trade-off:** The Cache API is local to a data center, while Workers Caching stores completed API responses before the Worker runs. Cold or simultaneous distinct requests can still reach OpenF1. A coordinated limiter or precomputation would be justified if public traffic grows.
+**Trade-off:** The Cache API is local to a data center, while Workers Caching stores completed API responses before the Worker runs. Cross-version caching keeps warm responses after a deploy; if the API response contract changes, old entries may remain until expiry or purge. A cache miss during a live session still cannot load historical data without OpenF1 authentication. `stale-if-error` can serve previously cached data, but it is not a durable guarantee: edge cache entries may be evicted. Durable snapshots or precomputation would be justified if uninterrupted access becomes a requirement.
 
 ## Visualization
 

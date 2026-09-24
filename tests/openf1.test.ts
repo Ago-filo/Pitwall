@@ -212,6 +212,30 @@ describe("PitWall API", () => {
     );
     expect(response.status).toBe(400);
   });
+  it("explains OpenF1's live-session lock without exposing its payment link", async () => {
+    const paused = new OpenF1(
+      vi.fn(async () =>
+        Response.json(
+          {
+            detail:
+              "Live F1 session in progress. Global API access (including past sessions) is restricted to authenticated users until the session ends. Get an API key here: https://example.test/pay",
+          },
+          { status: 401 },
+        ),
+      ) as typeof fetch,
+    );
+    const response = await handleRequest(
+      new Request("https://pitwall.test/api/races?season=2024"),
+      paused,
+    );
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error:
+        "OpenF1 pauses free historical access during live F1 sessions. Please try again after the session ends.",
+    });
+    expect(response.headers.get("Cache-Control")).toBe("no-store");
+  });
+
   it("turns upstream rate limits into a readable API response", async () => {
     const limited = new OpenF1(
       vi.fn(async () => new Response(null, { status: 429 })) as typeof fetch,

@@ -1,5 +1,14 @@
 import type { Comparison, Driver, Race } from "./domain";
 
+export class PitwallApiError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+  ) {
+    super(message);
+  }
+}
+
 async function get<T>(path: string): Promise<T> {
   const response = await fetch(path);
   const body: unknown = await response.json().catch(() => ({}));
@@ -11,7 +20,7 @@ async function get<T>(path: string): Promise<T> {
       typeof body.error === "string"
         ? body.error
         : "Unable to load race data.";
-    throw new Error(message);
+    throw new PitwallApiError(message, response.status);
   }
   return body as T;
 }

@@ -12,7 +12,9 @@ const json = (body: unknown, status = 200, maxAge = 0) =>
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": maxAge ? `public, max-age=${maxAge}` : "no-store",
+      "Cache-Control": maxAge
+        ? `public, max-age=${maxAge}, stale-if-error=${maxAge >= 604800 ? 30 * 86400 : 86400}`
+        : "no-store",
     },
   });
 const bad = (message: string, status = 400) => json({ error: message }, status);
@@ -58,7 +60,7 @@ export async function handleRequest(
             .map(toRace),
         },
         200,
-        3600,
+        year < new Date().getUTCFullYear() ? 30 * 86400 : 3600,
       );
     }
     const match = /^\/api\/races\/(\d+)\/(drivers|comparison)$/.exec(
