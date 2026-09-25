@@ -6,7 +6,12 @@ import {
   toRace,
   UpstreamError,
 } from "./openf1";
-import featured from "./snapshots/bahrain-2024.json";
+import {
+  archivedComparison,
+  archivedDrivers,
+  archivedRaces,
+  guidedRaces,
+} from "./snapshots";
 
 const json = (body: unknown, status = 200, maxAge = 0) =>
   new Response(JSON.stringify(body), {
@@ -28,35 +33,25 @@ function archived(body: unknown): Response {
   return response;
 }
 
-function featuredFallback(url: URL): Response | null {
-  if (
-    url.pathname === "/api/races" &&
-    url.searchParams.get("season") === "2024"
-  )
-    return archived({ races: featured.races });
-  if (url.pathname === "/api/races/9472/drivers")
-    return archived({ drivers: featured.drivers });
-  if (url.pathname !== "/api/races/9472/comparison") return null;
-  const numbers = url.searchParams.get("drivers")?.split(",").map(Number);
-  if (
-    !numbers ||
-    numbers.length !== 2 ||
-    ![16, 55].includes(numbers[0]) ||
-    ![16, 55].includes(numbers[1]) ||
-    numbers[0] === numbers[1]
-  )
-    return null;
-  const selected = numbers.map((number) =>
-    featured.comparison.drivers.find(
-      (driver) => driver.driver.number === number,
-    ),
+function snapshotFallback(url: URL): Response | null {
+  if (url.pathname === "/api/races") {
+    const season = Number(url.searchParams.get("season"));
+    const races = archivedRaces(season);
+    return races.length ? archived({ races }) : null;
+  }
+  const match = /^\/api\/races\/(\d+)\/(drivers|comparison)$/.exec(
+    url.pathname,
   );
-  if (!selected[0] || !selected[1]) return null;
-  return archived({
-    ...featured.comparison,
-    drivers: [selected[0], selected[1]],
-    source: { kind: "snapshot", capturedAt: featured.capturedAt },
-  });
+  if (!match) return null;
+  const sessionKey = keyFrom(match[1]);
+  if (!sessionKey) return null;
+  if (match[2] === "drivers") {
+    const drivers = archivedDrivers(sessionKey);
+    return drivers ? archived({ drivers }) : null;
+  }
+  const numbers = url.searchParams.get("drivers")?.split(",").map(Number) ?? [];
+  const comparison = archivedComparison(sessionKey, numbers);
+  return comparison ? archived(comparison) : null;
 }
 
 export async function handleRequest(
@@ -69,6 +64,8 @@ export async function handleRequest(
   const url = new URL(request.url);
   if (request.method !== "GET") return bad("Method not allowed.", 405);
   if (url.pathname === "/api/health") return json({ status: "ok" });
+  if (url.pathname === "/api/highlights")
+    return json({ highlights: guidedRaces() }, 200, 30 * 86400);
   if (url.pathname === "/api/seasons")
     return json(
       {
@@ -90,12 +87,13 @@ export async function handleRequest(
       )
         return bad("Select a season from 2023 onward.");
       const sessions = await api.sessions(year);
+      const races = sessions.filter((s) => isCompleted(s)).map(toRace);
+      for (const archivedRace of archivedRaces(year))
+        if (!races.some((race) => race.sessionKey === archivedRace.sessionKey))
+          races.push(archivedRace);
       return json(
         {
-          races: sessions
-            .filter((s) => isCompleted(s))
-            .sort((a, b) => Date.parse(a.date_start) - Date.parse(b.date_start))
-            .map(toRace),
+          races: races.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)),
         },
         200,
         year < new Date().getUTCFullYear() ? 30 * 86400 : 3600,
@@ -107,6 +105,21 @@ export async function handleRequest(
     if (!match) return bad("Route not found.", 404);
     const sessionKey = keyFrom(match[1]);
     if (!sessionKey) return bad("Invalid race.");
+    const requested =
+      match[2] === "comparison"
+        ? (url.searchParams.get("drivers")?.split(",") ?? [])
+        : [];
+    if (
+      match[2] === "comparison" &&
+      (requested.length !== 2 ||
+        requested[0] === requested[1] ||
+        requested.some((number) => !/^\d{1,3}$/.test(number)))
+    )
+      return bad("Choose two different drivers.");
+    if (match[2] === "comparison" && url.searchParams.get("live") !== "1") {
+      const saved = archivedComparison(sessionKey, requested.map(Number));
+      if (saved) return archived(saved);
+    }
     const sessions = await api.session(sessionKey);
     const session = sessions[0];
     if (!session || !isCompleted(session))
@@ -116,13 +129,6 @@ export async function handleRequest(
       .map(toDriver)
       .sort((a, b) => a.name.localeCompare(b.name));
     if (match[2] === "drivers") return json({ drivers }, 200, 604800);
-    const requested = url.searchParams.get("drivers")?.split(",") ?? [];
-    if (
-      requested.length !== 2 ||
-      requested[0] === requested[1] ||
-      requested.some((s) => !/^\d{1,3}$/.test(s))
-    )
-      return bad("Choose two different drivers.");
     const chosen = requested.map((s) =>
       drivers.find((d) => d.number === Number(s)),
     );
@@ -180,7 +186,7 @@ export async function handleRequest(
     return json(comparison, 200, 604800);
   } catch (error) {
     if (error instanceof UpstreamError)
-      return featuredFallback(url) ?? bad(error.message, error.status);
+      return snapshotFallback(url) ?? bad(error.message, error.status);
     console.error("PitWall API request failed", error);
     return bad("Race data is temporarily unavailable.", 500);
   }

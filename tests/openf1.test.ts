@@ -343,7 +343,7 @@ describe("PitWall API", () => {
       ) as typeof fetch,
     );
     const response = await handleRequest(
-      new Request("https://pitwall.test/api/races?season=2025"),
+      new Request("https://pitwall.test/api/races?season=2026"),
       paused,
     );
     expect(response.status).toBe(503);
@@ -359,7 +359,7 @@ describe("PitWall API", () => {
       vi.fn(async () => new Response(null, { status: 429 })) as typeof fetch,
     );
     const response = await handleRequest(
-      new Request("https://pitwall.test/api/races?season=2025"),
+      new Request("https://pitwall.test/api/races?season=2026"),
       limited,
     );
     expect(response.status).toBe(429);

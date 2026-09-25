@@ -1,4 +1,4 @@
-import type { Comparison, Driver, Race } from "./domain";
+import type { Comparison, Driver, GuidedRace, Race } from "./domain";
 
 export class PitwallApiError extends Error {
   constructor(
@@ -27,10 +27,11 @@ async function get<T>(path: string): Promise<T> {
 
 export const pitwall = {
   seasons: () => get<{ seasons: number[] }>("/api/seasons"),
+  highlights: () => get<{ highlights: GuidedRace[] }>("/api/highlights"),
   races: (season: number) =>
     get<{ races: Race[] }>(`/api/races?season=${season}`),
   drivers: (key: number) =>
     get<{ drivers: Driver[] }>(`/api/races/${key}/drivers`),
   comparison: (key: number, a: number, b: number) =>
-    get<Comparison>(`/api/races/${key}/comparison?drivers=${a},${b}&v=2`),
+    get<Comparison>(`/api/races/${key}/comparison?drivers=${a},${b}&v=3`),
 };

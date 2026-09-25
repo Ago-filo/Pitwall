@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-24T14:14:08.265Z",
+  "capturedAt": "2026-09-25T07:44:40.241Z",
   "races": [
     {
       "sessionKey": 9472,
@@ -1535,6 +1535,33 @@
         "message": "CHEQUERED FLAG"
       }
     ],
+    "notes": []
+  },
+  "coverage": {
+    "drivers": [
+      {
+        "number": 16,
+        "status": "FINISHED",
+        "laps": 57,
+        "timedLaps": 57,
+        "positionedLaps": 57,
+        "gapSamples": 57,
+        "pitStops": 2,
+        "stints": 3
+      },
+      {
+        "number": 55,
+        "status": "FINISHED",
+        "laps": 57,
+        "timedLaps": 57,
+        "positionedLaps": 57,
+        "gapSamples": 57,
+        "pitStops": 2,
+        "stints": 3
+      }
+    ],
+    "raceEvents": 7,
+    "safetyCarEvents": 0,
     "notes": []
   }
 }

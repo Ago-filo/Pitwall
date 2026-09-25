@@ -56,13 +56,13 @@
 
 **Trade-off:** this median is descriptive, not a controlled comparison of driver ability. Missing durations are omitted; Safety Car, traffic, weather and tyre age are not adjusted for. A stint without usable timed laps has no pace value.
 
-## Featured comparison fallback and links
+## Curated snapshots and guided races
 
-**Problem:** a cold cache during an OpenF1 live session leaves a portfolio visitor unable to see any comparison. A selected race is also difficult to share without a direct URL.
+**Problem:** one saved comparison left other portfolio examples dependent on OpenF1 availability, while a fallback season catalog listed races that could not be opened during an outage.
 
-**Decision:** capture one complete, dated and versioned PitWall API response for Bahrain 2024, Leclerc vs Sainz, with its catalog and driver list. The Worker serves it only when OpenF1 fails, marks the response with `X-PitWall-Source: snapshot`, and includes the capture date in the comparison body. The frontend displays this provenance. Season, race and drivers are encoded in the URL so a fresh browser can open the same comparison.
+**Decision:** bundle three validated, dated comparisons from different seasons: a DNF with missing pit records, a complete teammate comparison, and a race with Safety Car context. Serve the saved pair directly in either order, mark the response and show its capture date. A static GET /api/highlights endpoint exposes each race, pair and measured data coverage. On an upstream failure reaching the Worker, fallback race and driver catalogs include only saved choices; a previously cached full catalog may still be served until it expires. The capture script requests provider-backed data explicitly, validates each scenario and records coverage.
 
-**Trade-off:** this guarantees one representative comparison without new storage or account costs. Other uncached races still depend on OpenF1. The snapshot must be refreshed deliberately when transformation logic or the upstream dataset changes; the capture script rejects a response that already came from the snapshot.
+**Trade-off:** the guided pair is a dated historical snapshot; it does not update automatically if OpenF1 later revises past data. Other driver pairs still need OpenF1 or a warm cache. The source date and data notes remain visible to avoid implying current or complete data. Season, race and drivers remain encoded in shareable URLs.
 
 ## Race context and sampled gaps
 

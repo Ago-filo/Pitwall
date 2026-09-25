@@ -1,0 +1,1432 @@
+{
+  "capturedAt": "2026-09-25T07:44:16.839Z",
+  "races": [
+    {
+      "sessionKey": 7953,
+      "year": 2023,
+      "name": "Sakhir",
+      "circuit": "Sakhir",
+      "country": "Bahrain",
+      "date": "2023-03-05T15:00:00+00:00"
+    },
+    {
+      "sessionKey": 7779,
+      "year": 2023,
+      "name": "Jeddah",
+      "circuit": "Jeddah",
+      "country": "Saudi Arabia",
+      "date": "2023-03-19T17:00:00+00:00"
+    },
+    {
+      "sessionKey": 7787,
+      "year": 2023,
+      "name": "Melbourne",
+      "circuit": "Melbourne",
+      "country": "Australia",
+      "date": "2023-04-02T05:00:00+00:00"
+    },
+    {
+      "sessionKey": 9070,
+      "year": 2023,
+      "name": "Baku",
+      "circuit": "Baku",
+      "country": "Azerbaijan",
+      "date": "2023-04-30T11:00:00+00:00"
+    },
+    {
+      "sessionKey": 9078,
+      "year": 2023,
+      "name": "Miami",
+      "circuit": "Miami",
+      "country": "United States",
+      "date": "2023-05-07T19:30:00+00:00"
+    },
+    {
+      "sessionKey": 9094,
+      "year": 2023,
+      "name": "Monaco",
+      "circuit": "Monte Carlo",
+      "country": "Monaco",
+      "date": "2023-05-28T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9102,
+      "year": 2023,
+      "name": "Barcelona",
+      "circuit": "Catalunya",
+      "country": "Spain",
+      "date": "2023-06-04T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9110,
+      "year": 2023,
+      "name": "Montréal",
+      "circuit": "Montreal",
+      "country": "Canada",
+      "date": "2023-06-18T18:00:00+00:00"
+    },
+    {
+      "sessionKey": 9118,
+      "year": 2023,
+      "name": "Spielberg",
+      "circuit": "Spielberg",
+      "country": "Austria",
+      "date": "2023-07-02T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9126,
+      "year": 2023,
+      "name": "Silverstone",
+      "circuit": "Silverstone",
+      "country": "United Kingdom",
+      "date": "2023-07-09T14:00:00+00:00"
+    },
+    {
+      "sessionKey": 9133,
+      "year": 2023,
+      "name": "Budapest",
+      "circuit": "Hungaroring",
+      "country": "Hungary",
+      "date": "2023-07-23T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9141,
+      "year": 2023,
+      "name": "Spa-Francorchamps",
+      "circuit": "Spa-Francorchamps",
+      "country": "Belgium",
+      "date": "2023-07-30T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9149,
+      "year": 2023,
+      "name": "Zandvoort",
+      "circuit": "Zandvoort",
+      "country": "Netherlands",
+      "date": "2023-08-27T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9157,
+      "year": 2023,
+      "name": "Monza",
+      "circuit": "Monza",
+      "country": "Italy",
+      "date": "2023-09-03T13:00:00+00:00"
+    },
+    {
+      "sessionKey": 9165,
+      "year": 2023,
+      "name": "Marina Bay",
+      "circuit": "Singapore",
+      "country": "Singapore",
+      "date": "2023-09-17T12:00:00+00:00"
+    },
+    {
+      "sessionKey": 9173,
+      "year": 2023,
+      "name": "Suzuka",
+      "circuit": "Suzuka",
+      "country": "Japan",
+      "date": "2023-09-24T05:00:00+00:00"
+    },
+    {
+      "sessionKey": 9221,
+      "year": 2023,
+      "name": "Lusail",
+      "circuit": "Lusail",
+      "country": "Qatar",
+      "date": "2023-10-08T17:00:00+00:00"
+    },
+    {
+      "sessionKey": 9213,
+      "year": 2023,
+      "name": "Austin",
+      "circuit": "Austin",
+      "country": "United States",
+      "date": "2023-10-22T19:00:00+00:00"
+    },
+    {
+      "sessionKey": 9181,
+      "year": 2023,
+      "name": "Mexico City",
+      "circuit": "Mexico City",
+      "country": "Mexico",
+      "date": "2023-10-29T20:00:00+00:00"
+    },
+    {
+      "sessionKey": 9205,
+      "year": 2023,
+      "name": "São Paulo",
+      "circuit": "Interlagos",
+      "country": "Brazil",
+      "date": "2023-11-05T17:00:00+00:00"
+    },
+    {
+      "sessionKey": 9189,
+      "year": 2023,
+      "name": "Las Vegas",
+      "circuit": "Las Vegas",
+      "country": "United States",
+      "date": "2023-11-19T06:00:00+00:00"
+    },
+    {
+      "sessionKey": 9197,
+      "year": 2023,
+      "name": "Yas Island",
+      "circuit": "Yas Marina Circuit",
+      "country": "United Arab Emirates",
+      "date": "2023-11-26T13:00:00+00:00"
+    }
+  ],
+  "drivers": [
+    {
+      "number": 23,
+      "name": "Alexander ALBON",
+      "acronym": "ALB",
+      "team": "Williams",
+      "color": "#37BEDD"
+    },
+    {
+      "number": 55,
+      "name": "Carlos SAINZ",
+      "acronym": "SAI",
+      "team": "Ferrari",
+      "color": "#F91536"
+    },
+    {
+      "number": 16,
+      "name": "Charles LECLERC",
+      "acronym": "LEC",
+      "team": "Ferrari",
+      "color": "#F91536"
+    },
+    {
+      "number": 31,
+      "name": "Esteban OCON",
+      "acronym": "OCO",
+      "team": "Alpine",
+      "color": "#2293D1"
+    },
+    {
+      "number": 14,
+      "name": "Fernando ALONSO",
+      "acronym": "ALO",
+      "team": "Aston Martin",
+      "color": "#358C75"
+    },
+    {
+      "number": 63,
+      "name": "George RUSSELL",
+      "acronym": "RUS",
+      "team": "Mercedes",
+      "color": "#6CD3BF"
+    },
+    {
+      "number": 20,
+      "name": "Kevin MAGNUSSEN",
+      "acronym": "MAG",
+      "team": "Haas F1 Team",
+      "color": "#B6BABD"
+    },
+    {
+      "number": 18,
+      "name": "Lance STROLL",
+      "acronym": "STR",
+      "team": "Aston Martin",
+      "color": "#358C75"
+    },
+    {
+      "number": 4,
+      "name": "Lando NORRIS",
+      "acronym": "NOR",
+      "team": "McLaren",
+      "color": "#F58020"
+    },
+    {
+      "number": 44,
+      "name": "Lewis HAMILTON",
+      "acronym": "HAM",
+      "team": "Mercedes",
+      "color": "#6CD3BF"
+    },
+    {
+      "number": 2,
+      "name": "Logan SARGEANT",
+      "acronym": "SAR",
+      "team": "Williams",
+      "color": "#37BEDD"
+    },
+    {
+      "number": 1,
+      "name": "Max VERSTAPPEN",
+      "acronym": "VER",
+      "team": "Red Bull Racing",
+      "color": "#3671C6"
+    },
+    {
+      "number": 27,
+      "name": "Nico HULKENBERG",
+      "acronym": "HUL",
+      "team": "Haas F1 Team",
+      "color": "#B6BABD"
+    },
+    {
+      "number": 21,
+      "name": "Nyck DE VRIES",
+      "acronym": "DEV",
+      "team": "AlphaTauri",
+      "color": "#5E8FAA"
+    },
+    {
+      "number": 81,
+      "name": "Oscar PIASTRI",
+      "acronym": "PIA",
+      "team": "McLaren",
+      "color": "#F58020"
+    },
+    {
+      "number": 10,
+      "name": "Pierre GASLY",
+      "acronym": "GAS",
+      "team": "Alpine",
+      "color": "#2293D1"
+    },
+    {
+      "number": 11,
+      "name": "Sergio PEREZ",
+      "acronym": "PER",
+      "team": "Red Bull Racing",
+      "color": "#3671C6"
+    },
+    {
+      "number": 77,
+      "name": "Valtteri BOTTAS",
+      "acronym": "BOT",
+      "team": "Alfa Romeo",
+      "color": "#C92D4B"
+    },
+    {
+      "number": 22,
+      "name": "Yuki TSUNODA",
+      "acronym": "TSU",
+      "team": "AlphaTauri",
+      "color": "#5E8FAA"
+    },
+    {
+      "number": 24,
+      "name": "ZHOU Guanyu",
+      "acronym": "ZHO",
+      "team": "Alfa Romeo",
+      "color": "#C92D4B"
+    }
+  ],
+  "comparison": {
+    "race": {
+      "sessionKey": 7953,
+      "year": 2023,
+      "name": "Sakhir",
+      "circuit": "Sakhir",
+      "country": "Bahrain",
+      "date": "2023-03-05T15:00:00+00:00"
+    },
+    "drivers": [
+      {
+        "driver": {
+          "number": 16,
+          "name": "Charles LECLERC",
+          "acronym": "LEC",
+          "team": "Ferrari",
+          "color": "#F91536"
+        },
+        "laps": [
+          {
+            "number": 1,
+            "durationSeconds": 100.609,
+            "start": "2023-03-05T15:03:38.500000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 2,
+            "durationSeconds": 98.75,
+            "start": "2023-03-05T15:05:19.108000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 3,
+            "durationSeconds": 98.658,
+            "start": "2023-03-05T15:06:57.871000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 4,
+            "durationSeconds": 98.825,
+            "start": "2023-03-05T15:08:36.510000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 5,
+            "durationSeconds": 98.664,
+            "start": "2023-03-05T15:10:15.352000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 6,
+            "durationSeconds": 98.572,
+            "start": "2023-03-05T15:11:53.991000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 7,
+            "durationSeconds": 98.691,
+            "start": "2023-03-05T15:13:32.583000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 8,
+            "durationSeconds": 98.614,
+            "start": "2023-03-05T15:15:11.253000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 9,
+            "durationSeconds": 98.828,
+            "start": "2023-03-05T15:16:49.892000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 10,
+            "durationSeconds": 99.073,
+            "start": "2023-03-05T15:18:28.734000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 11,
+            "durationSeconds": 99.212,
+            "start": "2023-03-05T15:20:07.780000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 12,
+            "durationSeconds": 99.489,
+            "start": "2023-03-05T15:21:47.043000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 13,
+            "durationSeconds": 102.068,
+            "start": "2023-03-05T15:23:26.478000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 14,
+            "durationSeconds": 118.77,
+            "start": "2023-03-05T15:25:08.539000+00:00",
+            "pitOut": true,
+            "position": 5,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 15,
+            "durationSeconds": 98.477,
+            "start": "2023-03-05T15:27:07.318000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 16,
+            "durationSeconds": 97.953,
+            "start": "2023-03-05T15:28:45.754000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 17,
+            "durationSeconds": 98.031,
+            "start": "2023-03-05T15:30:23.752000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 18,
+            "durationSeconds": 97.798,
+            "start": "2023-03-05T15:32:01.797000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 19,
+            "durationSeconds": 97.858,
+            "start": "2023-03-05T15:33:39.483000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 20,
+            "durationSeconds": 97.631,
+            "start": "2023-03-05T15:35:17.466000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 21,
+            "durationSeconds": 97.753,
+            "start": "2023-03-05T15:36:55.058000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 22,
+            "durationSeconds": 98.162,
+            "start": "2023-03-05T15:38:32.853000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 23,
+            "durationSeconds": 98.054,
+            "start": "2023-03-05T15:40:11.038000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 24,
+            "durationSeconds": 97.972,
+            "start": "2023-03-05T15:41:49.083000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 25,
+            "durationSeconds": 98.541,
+            "start": "2023-03-05T15:43:27.019000+00:00",
+            "pitOut": false,
+            "position": 2,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 26,
+            "durationSeconds": 99.668,
+            "start": "2023-03-05T15:45:05.564000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 27,
+            "durationSeconds": 98.814,
+            "start": "2023-03-05T15:46:45.234000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 28,
+            "durationSeconds": 98.618,
+            "start": "2023-03-05T15:48:24.030000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 29,
+            "durationSeconds": 98.447,
+            "start": "2023-03-05T15:50:02.637000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 30,
+            "durationSeconds": 98.39,
+            "start": "2023-03-05T15:51:41.136000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 31,
+            "durationSeconds": 98.746,
+            "start": "2023-03-05T15:53:19.493000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 32,
+            "durationSeconds": 98.948,
+            "start": "2023-03-05T15:54:58.272000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 33,
+            "durationSeconds": 101.323,
+            "start": "2023-03-05T15:56:37.210000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 34,
+            "durationSeconds": 119.477,
+            "start": "2023-03-05T15:58:18.472000+00:00",
+            "pitOut": true,
+            "position": 4,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 35,
+            "durationSeconds": 98.073,
+            "start": "2023-03-05T16:00:18.001000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 36,
+            "durationSeconds": 97.313,
+            "start": "2023-03-05T16:01:56.030000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 37,
+            "durationSeconds": 97.17,
+            "start": "2023-03-05T16:03:33.357000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 38,
+            "durationSeconds": 97.17,
+            "start": "2023-03-05T16:05:10.558000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 39,
+            "durationSeconds": 97.287,
+            "start": "2023-03-05T16:06:47.728000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          },
+          {
+            "number": 40,
+            "durationSeconds": null,
+            "start": "2023-03-05T16:08:25.023000+00:00",
+            "pitOut": false,
+            "position": null,
+            "gapToLeader": null,
+            "gapSampledAt": null
+          }
+        ],
+        "pitStops": [],
+        "stints": [
+          {
+            "number": 1,
+            "startLap": 1,
+            "endLap": 13,
+            "compound": "SOFT",
+            "tyreAgeAtStart": 0
+          },
+          {
+            "number": 2,
+            "startLap": 14,
+            "endLap": 33,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          },
+          {
+            "number": 3,
+            "startLap": 34,
+            "endLap": 39,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          }
+        ],
+        "result": {
+          "position": null,
+          "lapsCompleted": 39,
+          "status": "DNF"
+        },
+        "unavailable": ["Pit stop"]
+      },
+      {
+        "driver": {
+          "number": 55,
+          "name": "Carlos SAINZ",
+          "acronym": "SAI",
+          "team": "Ferrari",
+          "color": "#F91536"
+        },
+        "laps": [
+          {
+            "number": 1,
+            "durationSeconds": 102.03,
+            "start": "2023-03-05T15:03:38.500000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 2.64,
+            "gapSampledAt": "2023-03-05T15:05:20.404000+00:00"
+          },
+          {
+            "number": 2,
+            "durationSeconds": 98.933,
+            "start": "2023-03-05T15:05:20.529000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 3.599,
+            "gapSampledAt": "2023-03-05T15:06:59.340000+00:00"
+          },
+          {
+            "number": 3,
+            "durationSeconds": 99.042,
+            "start": "2023-03-05T15:06:59.465000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 4.635,
+            "gapSampledAt": "2023-03-05T15:08:38.401000+00:00"
+          },
+          {
+            "number": 4,
+            "durationSeconds": 98.985,
+            "start": "2023-03-05T15:08:38.495000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 5.644,
+            "gapSampledAt": "2023-03-05T15:10:17.399000+00:00"
+          },
+          {
+            "number": 5,
+            "durationSeconds": 99.128,
+            "start": "2023-03-05T15:10:17.524000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 6.737,
+            "gapSampledAt": "2023-03-05T15:11:56.507000+00:00"
+          },
+          {
+            "number": 6,
+            "durationSeconds": 99.474,
+            "start": "2023-03-05T15:11:56.647000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 8.225,
+            "gapSampledAt": "2023-03-05T15:13:35.973000+00:00"
+          },
+          {
+            "number": 7,
+            "durationSeconds": 99.502,
+            "start": "2023-03-05T15:13:36.098000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 9.706,
+            "gapSampledAt": "2023-03-05T15:15:15.503000+00:00"
+          },
+          {
+            "number": 8,
+            "durationSeconds": 99.779,
+            "start": "2023-03-05T15:15:15.628000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 11.331,
+            "gapSampledAt": "2023-03-05T15:16:55.267000+00:00"
+          },
+          {
+            "number": 9,
+            "durationSeconds": 99.744,
+            "start": "2023-03-05T15:16:55.376000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 12.797,
+            "gapSampledAt": "2023-03-05T15:18:35.015000+00:00"
+          },
+          {
+            "number": 10,
+            "durationSeconds": 100.102,
+            "start": "2023-03-05T15:18:35.141000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 14.53,
+            "gapSampledAt": "2023-03-05T15:20:15.107000+00:00"
+          },
+          {
+            "number": 11,
+            "durationSeconds": 100.507,
+            "start": "2023-03-05T15:20:15.232000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 16.554,
+            "gapSampledAt": "2023-03-05T15:21:55.589000+00:00"
+          },
+          {
+            "number": 12,
+            "durationSeconds": 100.52,
+            "start": "2023-03-05T15:21:55.730000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 18.483,
+            "gapSampledAt": "2023-03-05T15:23:36.119000+00:00"
+          },
+          {
+            "number": 13,
+            "durationSeconds": 103.31,
+            "start": "2023-03-05T15:23:36.244000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 20.713,
+            "gapSampledAt": "2023-03-05T15:25:15.414000+00:00"
+          },
+          {
+            "number": 14,
+            "durationSeconds": 119.006,
+            "start": "2023-03-05T15:25:19.539000+00:00",
+            "pitOut": true,
+            "position": 6,
+            "gapToLeader": 41.022,
+            "gapSampledAt": "2023-03-05T15:27:18.427000+00:00"
+          },
+          {
+            "number": 15,
+            "durationSeconds": 97.985,
+            "start": "2023-03-05T15:27:18.552000+00:00",
+            "pitOut": false,
+            "position": 5,
+            "gapToLeader": 31.937,
+            "gapSampledAt": "2023-03-05T15:28:56.426000+00:00"
+          },
+          {
+            "number": 16,
+            "durationSeconds": 98.433,
+            "start": "2023-03-05T15:28:56.504000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 31.6,
+            "gapSampledAt": "2023-03-05T15:30:34.877000+00:00"
+          },
+          {
+            "number": 17,
+            "durationSeconds": 98.161,
+            "start": "2023-03-05T15:30:34.908000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 28.401,
+            "gapSampledAt": "2023-03-05T15:32:13.031000+00:00"
+          },
+          {
+            "number": 18,
+            "durationSeconds": 98.287,
+            "start": "2023-03-05T15:32:13.156000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 22.447,
+            "gapSampledAt": "2023-03-05T15:33:51.311000+00:00"
+          },
+          {
+            "number": 19,
+            "durationSeconds": 98.21,
+            "start": "2023-03-05T15:33:51.436000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 22.945,
+            "gapSampledAt": "2023-03-05T15:35:29.497000+00:00"
+          },
+          {
+            "number": 20,
+            "durationSeconds": 98.096,
+            "start": "2023-03-05T15:35:29.653000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 23.253,
+            "gapSampledAt": "2023-03-05T15:37:07.604000+00:00"
+          },
+          {
+            "number": 21,
+            "durationSeconds": 98.24,
+            "start": "2023-03-05T15:37:07.745000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 23.911,
+            "gapSampledAt": "2023-03-05T15:38:45.884000+00:00"
+          },
+          {
+            "number": 22,
+            "durationSeconds": 98.453,
+            "start": "2023-03-05T15:38:46.024000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": null,
+            "gapSampledAt": "2023-03-05T15:40:24.304000+00:00"
+          },
+          {
+            "number": 23,
+            "durationSeconds": 98.597,
+            "start": "2023-03-05T15:40:24.429000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 25.758,
+            "gapSampledAt": "2023-03-05T15:42:02.896000+00:00"
+          },
+          {
+            "number": 24,
+            "durationSeconds": 98.314,
+            "start": "2023-03-05T15:42:03.021000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 26.685,
+            "gapSampledAt": "2023-03-05T15:43:41.206000+00:00"
+          },
+          {
+            "number": 25,
+            "durationSeconds": 98.571,
+            "start": "2023-03-05T15:43:41.363000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 27.884,
+            "gapSampledAt": "2023-03-05T15:45:19.814000+00:00"
+          },
+          {
+            "number": 26,
+            "durationSeconds": 98.331,
+            "start": "2023-03-05T15:45:19.939000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 28.533,
+            "gapSampledAt": "2023-03-05T15:46:58.109000+00:00"
+          },
+          {
+            "number": 27,
+            "durationSeconds": 98.423,
+            "start": "2023-03-05T15:46:58.265000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 29.577,
+            "gapSampledAt": "2023-03-05T15:48:36.529000+00:00"
+          },
+          {
+            "number": 28,
+            "durationSeconds": 98.474,
+            "start": "2023-03-05T15:48:36.670000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 30.4,
+            "gapSampledAt": "2023-03-05T15:50:15.043000+00:00"
+          },
+          {
+            "number": 29,
+            "durationSeconds": 98.55,
+            "start": "2023-03-05T15:50:15.168000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 31.379,
+            "gapSampledAt": "2023-03-05T15:51:53.541000+00:00"
+          },
+          {
+            "number": 30,
+            "durationSeconds": 98.601,
+            "start": "2023-03-05T15:51:53.682000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 32.431,
+            "gapSampledAt": "2023-03-05T15:53:32.227000+00:00"
+          },
+          {
+            "number": 31,
+            "durationSeconds": 101.274,
+            "start": "2023-03-05T15:53:32.352000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 33.719,
+            "gapSampledAt": "2023-03-05T15:55:09.460000+00:00"
+          },
+          {
+            "number": 32,
+            "durationSeconds": 118.492,
+            "start": "2023-03-05T15:55:13.585000+00:00",
+            "pitOut": true,
+            "position": 5,
+            "gapToLeader": 57.075,
+            "gapSampledAt": "2023-03-05T15:57:11.989000+00:00"
+          },
+          {
+            "number": 33,
+            "durationSeconds": 97.548,
+            "start": "2023-03-05T15:57:12.129000+00:00",
+            "pitOut": false,
+            "position": 5,
+            "gapToLeader": 56.937,
+            "gapSampledAt": "2023-03-05T15:58:49.503000+00:00"
+          },
+          {
+            "number": 34,
+            "durationSeconds": 97.475,
+            "start": "2023-03-05T15:58:49.643000+00:00",
+            "pitOut": false,
+            "position": 5,
+            "gapToLeader": 56.573,
+            "gapSampledAt": "2023-03-05T16:00:26.985000+00:00"
+          },
+          {
+            "number": 35,
+            "durationSeconds": 97.441,
+            "start": "2023-03-05T16:00:27.110000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 56.164,
+            "gapSampledAt": "2023-03-05T16:02:04.437000+00:00"
+          },
+          {
+            "number": 36,
+            "durationSeconds": 97.706,
+            "start": "2023-03-05T16:02:04.499000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 52.906,
+            "gapSampledAt": "2023-03-05T16:03:42.122000+00:00"
+          },
+          {
+            "number": 37,
+            "durationSeconds": 97.13,
+            "start": "2023-03-05T16:03:42.263000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 31.546,
+            "gapSampledAt": "2023-03-05T16:05:19.246000+00:00"
+          },
+          {
+            "number": 38,
+            "durationSeconds": 97.444,
+            "start": "2023-03-05T16:05:19.386000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 32.693,
+            "gapSampledAt": "2023-03-05T16:06:56.681000+00:00"
+          },
+          {
+            "number": 39,
+            "durationSeconds": 97.403,
+            "start": "2023-03-05T16:06:56.806000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 33.65,
+            "gapSampledAt": "2023-03-05T16:08:34.086000+00:00"
+          },
+          {
+            "number": 40,
+            "durationSeconds": 97.587,
+            "start": "2023-03-05T16:08:34.227000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": 34.295,
+            "gapSampledAt": "2023-03-05T16:10:11.678000+00:00"
+          },
+          {
+            "number": 41,
+            "durationSeconds": 126.436,
+            "start": "2023-03-05T16:10:11.803000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": 40.236,
+            "gapSampledAt": "2023-03-05T16:12:18.113000+00:00"
+          },
+          {
+            "number": 42,
+            "durationSeconds": 97.375,
+            "start": "2023-03-05T16:12:18.238000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": 32.787,
+            "gapSampledAt": "2023-03-05T16:13:55.486000+00:00"
+          },
+          {
+            "number": 43,
+            "durationSeconds": 97.294,
+            "start": "2023-03-05T16:13:55.627000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": 33.191,
+            "gapSampledAt": "2023-03-05T16:15:32.766000+00:00"
+          },
+          {
+            "number": 44,
+            "durationSeconds": 97.389,
+            "start": "2023-03-05T16:15:32.906000+00:00",
+            "pitOut": false,
+            "position": 3,
+            "gapToLeader": 34.344,
+            "gapSampledAt": "2023-03-05T16:17:10.217000+00:00"
+          },
+          {
+            "number": 45,
+            "durationSeconds": 99.561,
+            "start": "2023-03-05T16:17:10.342000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 36.89,
+            "gapSampledAt": "2023-03-05T16:18:49.747000+00:00"
+          },
+          {
+            "number": 46,
+            "durationSeconds": 97.844,
+            "start": "2023-03-05T16:18:49.872000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 38.033,
+            "gapSampledAt": "2023-03-05T16:20:27.620000+00:00"
+          },
+          {
+            "number": 47,
+            "durationSeconds": 98.222,
+            "start": "2023-03-05T16:20:27.760000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 39.246,
+            "gapSampledAt": "2023-03-05T16:22:05.822000+00:00"
+          },
+          {
+            "number": 48,
+            "durationSeconds": 97.897,
+            "start": "2023-03-05T16:22:05.931000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 40.225,
+            "gapSampledAt": "2023-03-05T16:23:43.679000+00:00"
+          },
+          {
+            "number": 49,
+            "durationSeconds": 97.765,
+            "start": "2023-03-05T16:23:43.835000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 41.028,
+            "gapSampledAt": "2023-03-05T16:25:21.474000+00:00"
+          },
+          {
+            "number": 50,
+            "durationSeconds": 97.604,
+            "start": "2023-03-05T16:25:21.599000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 41.382,
+            "gapSampledAt": "2023-03-05T16:26:59.050000+00:00"
+          },
+          {
+            "number": 51,
+            "durationSeconds": 97.672,
+            "start": "2023-03-05T16:26:59.175000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 41.627,
+            "gapSampledAt": "2023-03-05T16:28:36.752000+00:00"
+          },
+          {
+            "number": 52,
+            "durationSeconds": 97.49,
+            "start": "2023-03-05T16:28:36.908000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 42.198,
+            "gapSampledAt": "2023-03-05T16:30:14.219000+00:00"
+          },
+          {
+            "number": 53,
+            "durationSeconds": 97.66,
+            "start": "2023-03-05T16:30:14.344000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 42.968,
+            "gapSampledAt": "2023-03-05T16:31:51.873000+00:00"
+          },
+          {
+            "number": 54,
+            "durationSeconds": 97.694,
+            "start": "2023-03-05T16:31:51.998000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 43.984,
+            "gapSampledAt": "2023-03-05T16:33:29.574000+00:00"
+          },
+          {
+            "number": 55,
+            "durationSeconds": 97.821,
+            "start": "2023-03-05T16:33:29.715000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 45.483,
+            "gapSampledAt": "2023-03-05T16:35:07.401000+00:00"
+          },
+          {
+            "number": 56,
+            "durationSeconds": 98.126,
+            "start": "2023-03-05T16:35:07.526000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 46.404,
+            "gapSampledAt": "2023-03-05T16:36:45.524000+00:00"
+          },
+          {
+            "number": 57,
+            "durationSeconds": 98.021,
+            "start": "2023-03-05T16:36:45.649000+00:00",
+            "pitOut": false,
+            "position": 4,
+            "gapToLeader": 48.052,
+            "gapSampledAt": "2023-03-05T16:38:23.569000+00:00"
+          }
+        ],
+        "pitStops": [],
+        "stints": [
+          {
+            "number": 1,
+            "startLap": 1,
+            "endLap": 13,
+            "compound": "SOFT",
+            "tyreAgeAtStart": 3
+          },
+          {
+            "number": 2,
+            "startLap": 14,
+            "endLap": 31,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          },
+          {
+            "number": 3,
+            "startLap": 32,
+            "endLap": 57,
+            "compound": "HARD",
+            "tyreAgeAtStart": 0
+          }
+        ],
+        "result": {
+          "position": 4,
+          "lapsCompleted": 57,
+          "status": "FINISHED"
+        },
+        "unavailable": ["Pit stop"]
+      }
+    ],
+    "events": [
+      {
+        "date": "2023-03-05T14:20:00+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "GREEN",
+        "scope": "Track",
+        "message": "GREEN LIGHT - PIT EXIT OPEN"
+      },
+      {
+        "date": "2023-03-05T14:23:00+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "YELLOW",
+        "scope": "Sector",
+        "message": "YELLOW IN TRACK SECTOR 10"
+      },
+      {
+        "date": "2023-03-05T14:23:04+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 10"
+      },
+      {
+        "date": "2023-03-05T15:04:09+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "YELLOW",
+        "scope": "Sector",
+        "message": "YELLOW IN TRACK SECTOR 4"
+      },
+      {
+        "date": "2023-03-05T15:04:09+00:00",
+        "lap": 1,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 4"
+      },
+      {
+        "date": "2023-03-05T15:05:17+00:00",
+        "lap": 2,
+        "category": "Flag",
+        "flag": "YELLOW",
+        "scope": "Sector",
+        "message": "YELLOW IN TRACK SECTOR 11"
+      },
+      {
+        "date": "2023-03-05T15:05:52+00:00",
+        "lap": 2,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 11"
+      },
+      {
+        "date": "2023-03-05T16:10:01+00:00",
+        "lap": 41,
+        "category": "Flag",
+        "flag": "YELLOW",
+        "scope": "Sector",
+        "message": "YELLOW IN TRACK SECTOR 16"
+      },
+      {
+        "date": "2023-03-05T16:10:19+00:00",
+        "lap": 41,
+        "category": "SafetyCar",
+        "flag": null,
+        "scope": null,
+        "message": "VIRTUAL SAFETY CAR DEPLOYED"
+      },
+      {
+        "date": "2023-03-05T16:11:53+00:00",
+        "lap": 42,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Sector",
+        "message": "CLEAR IN TRACK SECTOR 16"
+      },
+      {
+        "date": "2023-03-05T16:11:55+00:00",
+        "lap": 42,
+        "category": "SafetyCar",
+        "flag": null,
+        "scope": null,
+        "message": "VIRTUAL SAFETY CAR ENDING"
+      },
+      {
+        "date": "2023-03-05T16:12:08+00:00",
+        "lap": 42,
+        "category": "Flag",
+        "flag": "CLEAR",
+        "scope": "Track",
+        "message": "TRACK CLEAR"
+      },
+      {
+        "date": "2023-03-05T16:37:31+00:00",
+        "lap": 57,
+        "category": "Flag",
+        "flag": "CHEQUERED",
+        "scope": "Track",
+        "message": "CHEQUERED FLAG"
+      }
+    ],
+    "notes": [
+      "Pit stop data is unavailable for this race.",
+      "Some lap positions could not be reconstructed from timed position events.",
+      "Gap-to-leader samples are unavailable for one or both selected drivers."
+    ]
+  },
+  "coverage": {
+    "drivers": [
+      {
+        "number": 16,
+        "status": "DNF",
+        "laps": 40,
+        "timedLaps": 39,
+        "positionedLaps": 39,
+        "gapSamples": 0,
+        "pitStops": 0,
+        "stints": 3
+      },
+      {
+        "number": 55,
+        "status": "FINISHED",
+        "laps": 57,
+        "timedLaps": 57,
+        "positionedLaps": 57,
+        "gapSamples": 57,
+        "pitStops": 0,
+        "stints": 3
+      }
+    ],
+    "raceEvents": 13,
+    "safetyCarEvents": 2,
+    "notes": [
+      "Pit stop data is unavailable for this race.",
+      "Some lap positions could not be reconstructed from timed position events.",
+      "Gap-to-leader samples are unavailable for one or both selected drivers."
+    ]
+  }
+}

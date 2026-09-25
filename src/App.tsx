@@ -1,6 +1,13 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import type { Comparison, Driver, DriverRace, Race, RaceEvent } from "./domain";
+import type {
+  Comparison,
+  Driver,
+  DriverRace,
+  GuidedRace,
+  Race,
+  RaceEvent,
+} from "./domain";
 import { raceInsights } from "./race-insights";
 import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
@@ -567,7 +574,7 @@ function ComparisonView({ data }: { data: Comparison }) {
             month: "long",
             year: "numeric",
           })}
-          . Current OpenF1 data is temporarily unavailable.
+          . This guided comparison uses the data saved on that date.
         </div>
       )}
       <div className="result-grid">
@@ -726,6 +733,19 @@ export default function App() {
   const [a, setA] = useState(initial.a);
   const [b, setB] = useState(initial.b);
   const seasons = useQuery({ queryKey: ["seasons"], queryFn: pitwall.seasons });
+  const highlights = useQuery({
+    queryKey: ["highlights"],
+    queryFn: pitwall.highlights,
+  });
+  const selectedGuide = highlights.data?.highlights.find(
+    (guide) => guide.race.sessionKey === Number(raceKey),
+  );
+  const guidedPair =
+    !!selectedGuide &&
+    [a, b].every((number) =>
+      selectedGuide.drivers.some((driver) => String(driver.number) === number),
+    ) &&
+    a !== b;
   const races = useQuery({
     queryKey: ["races", season],
     queryFn: () => pitwall.races(Number(season)),
@@ -736,7 +756,10 @@ export default function App() {
     queryFn: () => pitwall.drivers(Number(raceKey)),
     enabled:
       !!raceKey &&
-      !!races.data?.races.some((race) => race.sessionKey === Number(raceKey)),
+      (!!selectedGuide ||
+        !!races.data?.races.some(
+          (race) => race.sessionKey === Number(raceKey),
+        )),
   });
   const comparison = useQuery({
     queryKey: ["comparison", raceKey, a, b],
@@ -746,8 +769,13 @@ export default function App() {
       !!a &&
       !!b &&
       a !== b &&
-      !!drivers.data?.drivers.some((driver) => String(driver.number) === a) &&
-      !!drivers.data?.drivers.some((driver) => String(driver.number) === b),
+      (guidedPair ||
+        (!!drivers.data?.drivers.some(
+          (driver) => String(driver.number) === a,
+        ) &&
+          !!drivers.data?.drivers.some(
+            (driver) => String(driver.number) === b,
+          ))),
   });
   useEffect(() => {
     if (!season && seasons.data?.seasons.length)
@@ -763,26 +791,51 @@ export default function App() {
     else url.searchParams.delete("drivers");
     window.history.replaceState(null, "", url);
   }, [season, raceKey, a, b]);
-  const raceOptions =
-    races.data?.races.map((r: Race) => ({
-      value: String(r.sessionKey),
-      label: `${r.name} · ${new Date(r.date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`,
-    })) ?? [];
-  const driverOptions =
-    drivers.data?.drivers.map((d) => ({
-      value: String(d.number),
-      label: `${d.acronym} — ${d.name}`,
-    })) ?? [];
+  const raceList = [...(races.data?.races ?? [])];
+  for (const guide of highlights.data?.highlights ?? [])
+    if (
+      guide.race.year === Number(season) &&
+      !raceList.some((race) => race.sessionKey === guide.race.sessionKey)
+    )
+      raceList.push(guide.race);
+  raceList.sort(
+    (left, right) => Date.parse(left.date) - Date.parse(right.date),
+  );
+  const raceOptions = raceList.map((race: Race) => ({
+    value: String(race.sessionKey),
+    label:
+      race.name +
+      " · " +
+      new Date(race.date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+      }),
+  }));
+  const driverList = [...(drivers.data?.drivers ?? [])];
+  for (const driver of selectedGuide?.drivers ?? [])
+    if (!driverList.some((entry) => entry.number === driver.number))
+      driverList.push(driver);
+  const driverOptions = driverList.map((driver) => ({
+    value: String(driver.number),
+    label: driver.acronym + " — " + driver.name,
+  }));
   const selectedA =
-    drivers.data?.drivers.find((d) => String(d.number) === a) ?? null;
+    driverList.find((driver) => String(driver.number) === a) ?? null;
   const selectedB =
-    drivers.data?.drivers.find((d) => String(d.number) === b) ?? null;
+    driverList.find((driver) => String(driver.number) === b) ?? null;
   const error = [
     seasons.error,
-    races.error,
-    drivers.error,
+    highlights.error,
+    guidedPair ? null : races.error,
+    guidedPair ? null : drivers.error,
     comparison.error,
   ].find(Boolean);
+  const chooseGuide = (guide: GuidedRace) => {
+    setSeason(String(guide.race.year));
+    setRaceKey(String(guide.race.sessionKey));
+    setA(String(guide.drivers[0].number));
+    setB(String(guide.drivers[1].number));
+  };
   return (
     <div className="app-shell">
       <a className="skip-link" href="#grid">
@@ -979,20 +1032,66 @@ export default function App() {
               disabled={!raceKey || drivers.isLoading}
             />
           </div>
-          <button
-            className="featured-race"
-            type="button"
-            onClick={() => {
-              setSeason("2024");
-              setRaceKey("9472");
-              setA("16");
-              setB("55");
-            }}
-          >
-            <span>START WITH A RACE</span>
-            <strong>BAHRAIN 2024 · LECLERC VS SAINZ</strong>
-            <span aria-hidden="true">↗</span>
-          </button>
+          <div className="guide-section">
+            <div className="guide-heading">
+              <span>START WITH A STORY</span>
+              <p>
+                Three saved races stay available when OpenF1 cannot be reached.
+                Each card shows the captured evidence.
+              </p>
+            </div>
+            {highlights.isLoading && (
+              <p className="selector-note" role="status">
+                Loading guided races…
+              </p>
+            )}
+            <div className="guide-grid">
+              {highlights.data?.highlights.map((guide) => (
+                <button
+                  className="guide-card"
+                  key={guide.id}
+                  type="button"
+                  onClick={() => chooseGuide(guide)}
+                  aria-pressed={selectedGuide?.id === guide.id && guidedPair}
+                  aria-label={
+                    "Open " +
+                    guide.title +
+                    ": " +
+                    guide.race.name +
+                    " " +
+                    guide.race.year
+                  }
+                >
+                  <span className="guide-label">{guide.label}</span>
+                  <strong>{guide.title}</strong>
+                  <span className="guide-race">
+                    {guide.race.name} {guide.race.year} ·{" "}
+                    {guide.drivers.map((driver) => driver.acronym).join(" vs ")}
+                  </span>
+                  <span className="guide-description">{guide.description}</span>
+                  <span className="guide-coverage">
+                    {guide.coverage.drivers
+                      .map((driver) => driver.laps)
+                      .join(" / ")}{" "}
+                    laps recorded
+                    {" · "}
+                    {guide.coverage.safetyCarEvents} Safety Car messages
+                    {" · "}
+                    {guide.coverage.notes.length} data notes
+                  </span>
+                  <span className="guide-date">
+                    SAVED{" "}
+                    {new Date(guide.capturedAt).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                    <span aria-hidden="true"> ↗</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="portrait-grid" aria-label="Selected drivers">
             <PortraitPanel
               key={selectedA?.name ?? "empty-a"}
@@ -1023,6 +1122,7 @@ export default function App() {
               <button
                 onClick={() => {
                   if (seasons.error) void seasons.refetch();
+                  else if (highlights.error) void highlights.refetch();
                   else if (races.error) void races.refetch();
                   else if (drivers.error) void drivers.refetch();
                   else if (comparison.error) void comparison.refetch();

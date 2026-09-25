@@ -70,3 +70,30 @@ export interface Comparison {
   events?: RaceEvent[];
   source?: { kind: "snapshot"; capturedAt: string };
 }
+
+export interface SnapshotCoverage {
+  drivers: {
+    number: number;
+    status: Result["status"];
+    laps: number;
+    timedLaps: number;
+    positionedLaps: number;
+    gapSamples: number;
+    pitStops: number;
+    stints: number;
+  }[];
+  raceEvents: number;
+  safetyCarEvents: number;
+  notes: string[];
+}
+
+export interface GuidedRace {
+  id: string;
+  title: string;
+  description: string;
+  label: string;
+  race: Race;
+  drivers: [Driver, Driver];
+  capturedAt: string;
+  coverage: SnapshotCoverage;
+}

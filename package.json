@@ -12,7 +12,8 @@
     "format": "prettier --write src worker tests scripts vite.config.ts vitest.config.ts eslint.config.js",
     "typecheck": "tsc -b",
     "test": "vitest run",
-    "capture:featured": "node scripts/capture-featured.mjs",
+    "capture:featured": "node scripts/capture-snapshot.mjs bahrain-2024",
+    "capture:snapshot": "node scripts/capture-snapshot.mjs",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
