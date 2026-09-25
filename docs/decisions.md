@@ -88,3 +88,11 @@
 **Decision:** provide expandable HTML tables with all charted lap values, visible keyboard focus, a skip link and larger touch targets. Load chart components only after a comparison is available, then split ECharts and zrender into their own chunks.
 
 **Trade-off:** a comparison still downloads the chart engine, while the landing page and selection flow avoid that cost. Tables add markup only when their chart module loads.
+
+## Race Story from recorded moments
+
+**Problem:** readers need an ordered account of recorded race events without assuming that a chart change proves a cause.
+
+**Decision:** derive a lap-ordered list from the first shared reconstructed position, pit-stop records, Safety Car and red-flag messages, and each DNF driver’s last recorded lap. Group same-lap signals and link each moment to the lap timeline. Keep reported classification separate and count notable control messages that lack a usable lap number. See [Race Story](race-story.md).
+
+**Trade-off:** this deliberately omits ordinary yellow and green flags from the summary, though they remain in the detailed lap timeline. The last DNF lap record is not necessarily the exact retirement lap. A Safety Car message marks a recorded event, not a measured phase interval or cause of a position change.

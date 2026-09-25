@@ -1723,3 +1723,164 @@ footer a {
     min-height: 0;
   }
 }
+
+.race-story {
+  margin-top: 16px;
+  padding: 24px;
+  border: 1px solid #565b61;
+  background: linear-gradient(145deg, #20242b, #15181d);
+}
+.race-story .panel-heading p {
+  max-width: 760px;
+}
+.story-list {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.story-list::before {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 33px;
+  width: 2px;
+  background: #aeba52;
+  content: "";
+}
+.story-moment {
+  position: relative;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 13px;
+}
+.story-lap {
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  align-self: start;
+  width: 68px;
+  height: 68px;
+  border: 2px solid #d8e95d;
+  background: #1b2025;
+  text-align: center;
+}
+.story-lap span,
+.story-classification > span {
+  color: #d8e95d;
+  font:
+    800 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.12em;
+}
+.story-lap strong {
+  color: #fff;
+  font:
+    800 29px "Barlow Condensed",
+    sans-serif;
+  line-height: 1;
+}
+.story-content {
+  min-width: 0;
+  padding: 15px 17px;
+  border: 1px solid #4b5258;
+  background: #24292f;
+}
+.story-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.story-tags span {
+  padding: 4px 7px;
+  background: #3c4850;
+  color: #eef3e7;
+  font:
+    800 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.1em;
+}
+.story-tags span:first-child {
+  background: #d8e95d;
+  color: #17191e;
+}
+.story-content ul {
+  margin: 11px 0 0;
+  padding-left: 18px;
+  color: #f1f2ef;
+  line-height: 1.55;
+}
+.story-content li + li {
+  margin-top: 6px;
+}
+.story-positions,
+.story-caveat {
+  color: #bfc9ce;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.story-positions {
+  margin: 12px 0 0;
+}
+.story-content button,
+.story-expand {
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid #a8b4b7;
+  background: #20262b;
+  color: #fff;
+  cursor: pointer;
+  font:
+    800 12px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.08em;
+}
+.story-content button:hover,
+.story-expand:hover {
+  border-color: #d8e95d;
+}
+.story-expand {
+  margin-left: 81px;
+}
+.story-classification {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-left: 3px solid #65d6dc;
+  background: #283137;
+}
+.story-classification > span {
+  color: #65d6dc;
+}
+.story-classification p {
+  margin: 5px 0 0;
+  color: #fff;
+  font-weight: 700;
+}
+.story-caveat {
+  margin: 14px 0 0;
+}
+@media (max-width: 650px) {
+  .race-story {
+    padding: 20px 15px;
+  }
+  .story-list::before {
+    left: 25px;
+  }
+  .story-moment {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 9px;
+  }
+  .story-lap {
+    width: 52px;
+    height: 52px;
+  }
+  .story-content {
+    padding: 12px;
+  }
+  .story-expand {
+    margin-left: 61px;
+  }
+}

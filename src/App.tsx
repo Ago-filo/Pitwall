@@ -9,6 +9,7 @@ import type {
   RaceEvent,
 } from "./domain";
 import { raceInsights } from "./race-insights";
+import { RaceStoryView } from "./RaceStoryView";
 import { portraitFor } from "./portraits";
 import { pitwall } from "./api";
 import { lapSnapshot, stintPace } from "./analysis";
@@ -596,6 +597,7 @@ function ComparisonView({ data }: { data: Comparison }) {
           </ul>
         </div>
       )}
+      <RaceStoryView comparison={data} onViewLap={jumpToLap} />
       {insights.length > 0 && (
         <section
           className="race-insights"

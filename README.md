@@ -12,6 +12,7 @@ Guided examples: [2023 retirement](https://pitwall.ago-filo-labs.workers.dev/?se
 
 - Completed races from 2023 onward, depending on OpenF1 availability
 - Two-driver position and lap-time charts with pit-out and pit-stop markers
+- Race Story with lap-linked pit stops, Safety Car messages, DNF records and separate reported classification
 - Evidence-linked Race Analysis for observed positions, same-numbered lap pace, first pit stops and sampled leader gaps
 - Interactive lap timeline with synchronized chart markers, race-control messages, sampled gap-to-leader values and driver snapshots
 - Per-stint median pace from available timed laps, with explicit pit-lap exclusions
@@ -24,6 +25,17 @@ Guided examples: [2023 retirement](https://pitwall.ago-filo-labs.workers.dev/?se
 - Charts and ECharts load only when a comparison is shown; renderer and chart engine are separate build chunks
 
 ![PitWall Bahrain 2024 comparison of Leclerc and Sainz](docs/comparison.png)
+
+Race Story for the Australia 2025 guided comparison:
+
+![PitWall Race Story showing recorded Safety Car messages and pit stops](docs/race-story-desktop.png)
+
+<details>
+<summary>Race Story on mobile (390 px)</summary>
+
+<img src="docs/race-story-mobile.png" alt="PitWall Race Story on a 390 px mobile viewport" width="320">
+
+</details>
 
 <details>
 <summary>Mobile view (390 px)</summary>
@@ -42,7 +54,7 @@ flowchart LR
   Domain --> API[PitWall API]
   Snapshots[Validated race snapshots] --> API
   API --> Query[TanStack Query]
-  Query --> Analysis[Pure TypeScript race insights]
+  Query --> Analysis[Pure TypeScript race insights and story]
   Analysis --> UI[React and lazy-loaded ECharts]
 ```
 
@@ -82,7 +94,7 @@ npm test
 npm run build
 ```
 
-GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position and gap alignment, race-control filtering, missing data, DNF results, stint pace, race-insight evidence rules and mocked Worker requests. The analysis rules and a worked fixture are documented in [Race Analysis](docs/race-analysis.md).
+GitHub Actions runs these checks on pushes and pull requests. Tests cover timestamp-based position and gap alignment, race-control filtering, missing data, DNF results, stint pace, race-insight and Race Story evidence rules, saved-race scenarios and mocked Worker requests. See [Race Analysis](docs/race-analysis.md) and [Race Story](docs/race-story.md) for worked examples and limits.
 
 ## Deploy
 
@@ -90,12 +102,12 @@ Authenticate Wrangler with a Cloudflare account, then run `npm run deploy`. The 
 
 ## Engineering decisions and limitations
 
-See [architecture decisions](docs/decisions.md) and the [OpenF1 data model](docs/openf1-data-model.md). OpenF1 is unofficial and may have incomplete historical data. PitWall does not infer overtakes, causality or strategy outcomes from a position change alone. Race Analysis presents descriptive observations only when the required samples exist. A position at lap end is an approximation based on timestamped position events and approximate lap starts. Gap-to-leader is the latest OpenF1 sample within each approximate lap window; it is not a synchronized head-to-head gap. The free OpenF1 tier is limited to 3 requests per second and 30 per minute; high concurrent traffic can still encounter `429` errors despite caching. During live F1 sessions, OpenF1 may block unauthenticated historical requests too. The three guided comparisons remain available; other uncached comparisons require waiting until the session ends.
+See [architecture decisions](docs/decisions.md) and the [OpenF1 data model](docs/openf1-data-model.md). OpenF1 is unofficial and may have incomplete historical data. PitWall does not infer overtakes, causality or strategy outcomes from a position change alone. Race Analysis and Race Story present descriptive observations only when the required records exist. A position at lap end is an approximation based on timestamped position events and approximate lap starts. Gap-to-leader is the latest OpenF1 sample within each approximate lap window; it is not a synchronized head-to-head gap. The free OpenF1 tier is limited to 3 requests per second and 30 per minute; high concurrent traffic can still encounter `429` errors despite caching. During live F1 sessions, OpenF1 may block unauthenticated historical requests too. The three guided comparisons remain available; other uncached comparisons require waiting until the session ends.
 
 This is an independent fan project and is not associated with Formula 1, FIA or OpenF1. See [portrait credits and licences](docs/photo-credits.md): portraits are archival and only available for selected drivers; all others use a typographic fallback. The interface does not use official Formula 1, team or sponsor logos as site branding.
 
 ## Roadmap
 
-Completed: race-control context, sampled leader gaps, per-stint pace, shareable comparisons, an evidence-linked Race Analysis, three validated guided comparisons, accessible chart tables and deferred chart loading.
+Completed: race-control context, sampled leader gaps, per-stint pace, shareable comparisons, evidence-linked Race Analysis and Race Story, three validated guided comparisons, accessible chart tables and deferred chart loading.
 
-Next: build a race story from recorded turning points with explicit evidence and session-state windows when source coverage permits; expand automated accessibility and browser checks. Future integrations, including MCP tools, can reuse the pure TypeScript analysis rules.
+Next: expand automated accessibility and browser checks; investigate session-state windows only where source coverage supports start and end boundaries. Future integrations, including MCP tools, can reuse the pure TypeScript analysis rules.
